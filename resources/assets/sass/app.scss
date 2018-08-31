@@ -1,0 +1,40 @@
+@import "~uikit/src/scss/variables-theme.scss";
+$global-primary-background: #083b6d;
+$global-secondary-background: #222;
+$global-danger-background: #d32545;
+$global-warning-background: #f88a36;
+$global-success-background: #218b64;
+@import "~uikit/src/scss/mixins-theme.scss";
+// Variables
+// 4. Import UIkit.
+@import "~uikit/src/scss/uikit-theme.scss";
+body {
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas: "header" "main" "footer";
+}
+
+header {
+    grid-area: header;
+    nav {
+        // background: repeating-linear-gradient(45deg, red, red 25px, blue 25px, blue 50px);
+    }
+}
+
+main {
+    grid-area: main
+}
+
+footer {
+    grid-area: footer
+}
+
+.admin-login-container {
+    background: {
+        image: url('../images/abstract/1920x1200 (3).jpg');
+        position: center center;
+        repeat: no-repeat;
+        size: cover;
+    }
+}
