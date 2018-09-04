@@ -1000,6 +1000,10 @@ module.exports = Component.exports
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_uikit__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_uikit___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_uikit__);
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 //
@@ -1116,17 +1120,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 
 
+
 var genders = ["male", "female", "others"];
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Register",
   props: {
     courses: Array
   },
   data: function data() {
+    var _user;
+
     return {
       genders: genders,
       uploadPicture: false,
-      user: _defineProperty({
+      user: (_user = {
         username: "",
         surname: "",
         firstname: "",
@@ -1136,24 +1144,49 @@ var genders = ["male", "female", "others"];
         password_confirmation: "",
         gender: "",
         courses: []
-      }, "password", "")
+      }, _defineProperty(_user, "password", ""), _defineProperty(_user, "picture", []), _user)
     };
   },
   mounted: function mounted() {
     console.log("Component mounted.");
-    // JSON.parse(this.courses).forEach(val => {
-    //   console.log(val);
-    // });
   },
 
   computed: {},
   methods: {
+    fileChange: function fileChange() {
+      this.user.picture = this.$refs.picture.files[0];
+    },
     submit: function submit(form) {
-      console.log(form);
-      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post("/epanel/register/user", form).then(function () {
-        //   window.location.reload();
+      var formData = new FormData();
+      /*
+        *Add the form data we need to submit
+      */
+      Object.entries(form).forEach(function (_ref) {
+        var _ref2 = _slicedToArray(_ref, 2),
+            key = _ref2[0],
+            value = _ref2[1];
+
+        formData.append(key, value);
+      });
+
+      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post("/epanel/register/user", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data"
+        }
+      }).then(function (res) {
+        return res.json();
+      }).then(function (response) {
+        if (response.status === "success") {
+          __WEBPACK_IMPORTED_MODULE_1_uikit___default.a.notification(response.message);
+          window.location.reload;
+        }
       }).catch(function (val) {
-        UIkit.notification("Incorrect Login Details");
+        //   if (response.status === "success") {
+        //     UIkit.notification(response.message);
+        //     window.location.reload;
+        //   } else {
+        //     UIkit.notification("Incorrect Login Details");
+        //   }
       });
     }
   }
@@ -1184,7 +1217,12 @@ var render = function() {
                 {
                   ref: "user",
                   staticClass: "uk-form uk-form-horizontal",
-                  attrs: { action: "", id: "register-form" }
+                  attrs: {
+                    action: "",
+                    id: "register-form",
+                    enctype: "multipart/form-data",
+                    name: "myForm"
+                  }
                 },
                 [
                   _c("div", [
@@ -1652,7 +1690,22 @@ var render = function() {
                             [_vm._v("Picture: ")]
                           ),
                           _vm._v(" "),
-                          _vm._m(1)
+                          _c("div", { staticClass: "uk-form-controls" }, [
+                            _c("input", {
+                              ref: "picture",
+                              attrs: {
+                                type: "file",
+                                name: "picture",
+                                id: "picture",
+                                accept: "image/*"
+                              },
+                              on: {
+                                change: function($event) {
+                                  _vm.fileChange()
+                                }
+                              }
+                            })
+                          ])
                         ])
                       : _vm._e()
                   ]),
@@ -1690,15 +1743,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "uk-card-header" }, [
-      _c("h3", { staticClass: "uk-heading" }, [_vm._v("Login")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "uk-form-controls" }, [
-      _c("input", { attrs: { type: "file", name: "picture", id: "picture" } })
+      _c("h3", { staticClass: "uk-heading" }, [_vm._v("Add New User")])
     ])
   }
 ]
@@ -2051,7 +2096,7 @@ var render = function() {
                     }
                   }
                 },
-                [_vm._v("Login")]
+                [_vm._v("Create")]
               )
             ])
           ]

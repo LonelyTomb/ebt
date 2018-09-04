@@ -20,6 +20,7 @@ class CreateCoursesTable extends Migration
             $table->string('code')->unique();
             $table->integer('questions');
             $table->integer('duration');
+            $table->integer('points');
             $table->boolean('status')->default(1);
             $table->timestamps();
         });

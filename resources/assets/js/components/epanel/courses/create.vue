@@ -39,7 +39,7 @@
 </form>
 </div>
 <div class="uk-card-footer">
-<button class="uk-button uk-button-primary" form="course-creation-form" @click.prevent="submit(course)">Login</button>
+<button class="uk-button uk-button-primary" form="course-creation-form" @click.prevent="submit(course)">Create</button>
 </div>
 </div>
         </section>

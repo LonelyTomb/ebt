@@ -1,14 +1,14 @@
 <template>
 <div class="register-container">
     <article class="uk-article uk-background-muted">
-        <!-- <h2 class="">Admin Login</h2> -->
+        <!-- <h2 class="">Register User</h2> -->
         <section class="uk-section">
 <div class="uk-card uk-card-default uk-width-1-2@m uk-margin-auto">
 <div class="uk-card-header">
-    <h3 class="uk-heading">Login</h3>
+    <h3 class="uk-heading">Add New User</h3>
 </div>
 <div class="uk-card-body">
-<form action="" class="uk-form uk-form-horizontal" id="register-form" ref="user">
+<form action="" class="uk-form uk-form-horizontal" id="register-form" ref="user" enctype="multipart/form-data" name="myForm">
     <div>
     <label for="username" class="uk-form-label">Username: </label>
     <div class="uk-form-controls">
@@ -94,7 +94,7 @@
 <div v-if="uploadPicture === true">
     <label for="Picture" class="uk-form-label">Picture: </label>
     <div class="uk-form-controls">
-    <input type="file" name="picture" id="picture" class="">
+    <input type="file" name="picture" id="picture" class="" accept="image/*" @change="fileChange()" ref="picture">
     </div>
     </div>
 </div>
@@ -112,7 +112,9 @@
 
 <script>
 import axios from "axios";
+import UIkit from "uikit";
 let genders = ["male", "female", "others"];
+
 export default {
   name: "Register",
   props: {
@@ -132,27 +134,48 @@ export default {
         password_confirmation: "",
         gender: "",
         courses: [],
-        password: ""
+        password: "",
+        picture: []
       }
     };
   },
   mounted() {
     console.log("Component mounted.");
-    // JSON.parse(this.courses).forEach(val => {
-    //   console.log(val);
-    // });
   },
   computed: {},
   methods: {
+    fileChange() {
+      this.user.picture = this.$refs.picture.files[0];
+    },
     submit(form) {
-      console.log(form);
+      let formData = new FormData();
+      /*
+        *Add the form data we need to submit
+    */
+      Object.entries(form).forEach(([key, value]) => {
+        formData.append(key, value);
+      });
+
       axios
-        .post("/epanel/register/user", form)
-        .then(() => {
-          //   window.location.reload();
+        .post("/epanel/register/user", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data"
+          }
+        })
+        .then(res => res.json())
+        .then(response => {
+          if (response.status === "success") {
+            UIkit.notification(response.message);
+            window.location.reload;
+          }
         })
         .catch(val => {
-          UIkit.notification("Incorrect Login Details");
+        //   if (response.status === "success") {
+        //     UIkit.notification(response.message);
+        //     window.location.reload;
+        //   } else {
+        //     UIkit.notification("Incorrect Login Details");
+        //   }
         });
     }
   }

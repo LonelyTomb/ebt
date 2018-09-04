@@ -9,6 +9,7 @@ $factory->define(
             'code' => $faker->randomNumber(3),
             'questions' => $faker->numberBetween(1, 10),
             'duration' => $faker->numberBetween(1, 10),
+            'points' => $faker->numberBetween(1, 5)
         ];
     }
 );

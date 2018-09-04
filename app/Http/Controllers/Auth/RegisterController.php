@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\Course;
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -31,7 +32,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/epanel';
 
     /**
      * Create a new controller instance.
@@ -56,12 +57,12 @@ class RegisterController extends Controller
     /**
      * Get a validator for an incoming registration request.
      *
-     * @param  array  $data
+     * @param  Illuminate\Http\Request  $request
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)
+    protected function validator(Request $request)
     {
-        return Validator::make($data, [
+        return Validator::make($request->all(), [
             'surname' => 'required|string|max:255',
             'firstname' => 'required|string|max:255',
             'othernames' => 'required|string|max:255',
@@ -69,30 +70,72 @@ class RegisterController extends Controller
             'gender' => 'required|string',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
+            'picture' => 'nullable|file|image',
         ]);
+    }
+    /**
+     * File Upload Function
+     *
+     * @param $file
+     * @param App\Models\User $user
+     * @return void
+     */
+    public function uploadImage($file, User $user)
+    {
+        if ($file->isValid()) {
+            $filename = "{$user->username}.{$file->extension()}";
+            $uploadPath = "user/{$user->id}";
+            $file->storeAs($uploadPath, $filename);
+            $user->picture = "$uploadPath/$filename";
+            $user->save();
+            return $user;
+        }
+        return;
     }
 
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array  $data
+     * @param  Illuminate\Http\Request  $request
      * @return \App\Models\User
      */
-    protected function create(array $data)
+    protected function create(Request $request)
     {
-        $user = User::create([
-            'surname' => $data['surname'],
-            'firstname' => $data['firstname'],
-            'othernames' => $data['othernames'],
-            'username' => $data['username'],
-            'gender' => $data['gender'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
+        $user = new User();
 
-        $user->courses()->attach($data['courses']);
+        $user->surname = $request->surname;
+        $user->firstname = $request->firstname;
+        $user->othernames = $request->othernames;
+        $user->username = $request->username;
+        $user->gender = $request->gender;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->save();
 
+        $user->courses()->attach(explode(",", $request->courses));
+
+        if ($request->hasFile('picture')) {
+            $this->uploadImage($request->picture, $user);
+        }
         return $user;
+    }
+    /**
+     * Handle a registration request for the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function register(Request $request)
+    {
+        $this->validator($request)->validate();
+
+        event(new Registered($user = $this->create($request)));
+
+        // $this->guard()->login($user);
+        // return $this->registered($request, $user)
+
+        // ?: redirect($this->redirectPath());
+        return ['status' => 'success', 'message' => 'Registeration Successful'];
     }
     /**
      * Get the guard to be used during registration.

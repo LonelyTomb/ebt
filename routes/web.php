@@ -31,7 +31,7 @@ Route::prefix('epanel')->group(
             ->name('epanel.register.admin');
         Route::get('/register/user', 'Auth\RegisterController@showRegistrationForm')
             ->name('epanel.register.user');
-            Route::post('/register/user', 'Auth\RegisterController@register')
+        Route::post('/register/user', 'Auth\RegisterController@register')
             ->name('epanel.registerProcess.user');
 
         /**
