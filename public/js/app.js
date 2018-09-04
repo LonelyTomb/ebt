@@ -172,6 +172,11 @@ Vue.component('register-component', __webpack_require__(43));
  */
 Vue.component('create-course', __webpack_require__(46));
 
+/**
+ * Questions components
+ */
+Vue.component('upload-question', __webpack_require__(57));
+
 var app = new Vue({
   el: '#app'
 });
@@ -1862,6 +1867,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -1873,6 +1885,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         title: "",
         code: "",
         questions: 0,
+        points: 1,
         duration: 0
       }
     };
@@ -2042,6 +2055,43 @@ var render = function() {
                       "label",
                       {
                         staticClass: "uk-form-label",
+                        attrs: { for: "points" }
+                      },
+                      [_vm._v("Points Per Question")]
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "uk-form-controls" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.course.points,
+                            expression: "course.points"
+                          }
+                        ],
+                        staticClass: "uk-input",
+                        attrs: { type: "number", name: "points", id: "points" },
+                        domProps: { value: _vm.course.points },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.course, "points", $event.target.value)
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("hr"),
+                  _vm._v(" "),
+                  _c("div", [
+                    _c(
+                      "label",
+                      {
+                        staticClass: "uk-form-label",
                         attrs: { for: "duration" }
                       },
                       [_vm._v("Duration")]
@@ -2129,6 +2179,314 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 50 */,
+/* 51 */,
+/* 52 */,
+/* 53 */,
+/* 54 */,
+/* 55 */,
+/* 56 */,
+/* 57 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(3)
+/* script */
+var __vue_script__ = __webpack_require__(58)
+/* template */
+var __vue_template__ = __webpack_require__(59)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/epanel/questions/upload.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-dfa095e8", Component.options)
+  } else {
+    hotAPI.reload("data-v-dfa095e8", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 58 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_uikit__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_uikit___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_uikit__);
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "UploadQuestion",
+  props: {
+    courses: Array
+  },
+  data: function data() {
+    return {
+      questions: {
+        course: 1,
+        file: ""
+      }
+    };
+  },
+  mounted: function mounted() {
+    console.log("Component mounted.");
+  },
+
+  methods: {
+    fileChange: function fileChange() {
+      this.questions.file = this.$refs.file.files[0];
+    },
+    upload: function upload(form) {
+      var formData = new FormData();
+      /*
+        *Add the form data we need to submit
+      */
+      Object.entries(form).forEach(function (_ref) {
+        var _ref2 = _slicedToArray(_ref, 2),
+            key = _ref2[0],
+            value = _ref2[1];
+
+        formData.append(key, value);
+      });
+
+      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post("/epanel/question", form).then(function (val) {
+        return val.json();
+      }).then(function (res) {
+        if (res.status == "success") {
+          console.log(res);
+        }
+      }).catch(function (error) {
+        __WEBPACK_IMPORTED_MODULE_1_uikit___default.a.notification("Unable to complete! Please try again");
+      });
+    }
+  }
+});
+
+/***/ }),
+/* 59 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "courses-container" }, [
+    _c("article", { staticClass: "uk-article" }, [
+      _c("section", { staticClass: "uk-section" }, [
+        _c(
+          "div",
+          {
+            staticClass: "uk-card uk-card-default uk-width-1-2@m uk-margin-auto"
+          },
+          [
+            _vm._m(0),
+            _vm._v(" "),
+            _c("div", { staticClass: "uk-card-body" }, [
+              _c(
+                "form",
+                {
+                  ref: "uploadQuestions",
+                  staticClass: "uk-form uk-form-horizontal",
+                  attrs: { id: "upload-question-form" }
+                },
+                [
+                  _c("div", [
+                    _c(
+                      "label",
+                      {
+                        staticClass: "uk-form-label",
+                        attrs: { for: "course" }
+                      },
+                      [_vm._v("Course")]
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "uk-form-controls" }, [
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.questions.course,
+                              expression: "questions.course"
+                            }
+                          ],
+                          staticClass: "uk-select",
+                          attrs: { name: "course", id: "course" },
+                          on: {
+                            change: function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.$set(
+                                _vm.questions,
+                                "course",
+                                $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              )
+                            }
+                          }
+                        },
+                        _vm._l(_vm.courses, function(course) {
+                          return _c(
+                            "option",
+                            {
+                              key: course.index,
+                              attrs: { name: course },
+                              domProps: { value: course.id }
+                            },
+                            [_vm._v(_vm._s(course.title))]
+                          )
+                        })
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("hr"),
+                  _vm._v(" "),
+                  _c("div", [
+                    _c(
+                      "label",
+                      { staticClass: "uk-form-label", attrs: { for: "file" } },
+                      [_vm._v("File")]
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "uk-form-controls" }, [
+                      _c("input", {
+                        ref: "uploadFile",
+                        staticClass: "uk-input",
+                        attrs: { type: "file", name: "file", id: "file" },
+                        on: {
+                          change: function($event) {
+                            _vm.fileChange()
+                          }
+                        }
+                      })
+                    ])
+                  ])
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "uk-card-footer" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "uk-button uk-button-primary",
+                  attrs: { form: "upload-question-form" },
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      _vm.upload(_vm.question)
+                    }
+                  }
+                },
+                [_vm._v("Create")]
+              )
+            ])
+          ]
+        )
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "uk-card-header" }, [
+      _c("h3", { staticClass: "uk-heading" }, [_vm._v("Upload Question")])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-dfa095e8", module.exports)
+  }
+}
 
 /***/ })
 ],[14]);

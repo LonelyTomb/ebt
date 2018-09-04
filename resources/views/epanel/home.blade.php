@@ -7,7 +7,7 @@
 <a class="uk-tile uk-tile-small uk-width-1-3@m uk-button uk-tile-secondary uk-padding-small uk-button-primary uk-margin-right" href="{{route('epanel.register.user')}}">Add New User</a>
 
 <a class="uk-tile uk-tile-small uk-width-1-3@m uk-button uk-tile-secondary uk-padding-small uk-button-primary uk-margin-right" href="{{route('courses.create')}}">Add New Course</a>
-<a class="uk-tile uk-tile-small uk-width-1-3@m uk-button uk-tile-secondary uk-padding-small uk-button-primary uk-margin-right">Upload Question List</a>
+<a class="uk-tile uk-tile-small uk-width-1-3@m uk-button uk-tile-secondary uk-padding-small uk-button-primary uk-margin-right" href="{{route('questions.create')}}">Upload Question List</a>
 <a class="uk-tile uk-tile-small uk-width-1-3@m uk-button uk-tile-secondary uk-padding-small uk-button-primary uk-margin-right">Input Question</a>
 </section>
 

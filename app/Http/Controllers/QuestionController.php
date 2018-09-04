@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
 use App\Models\Question;
 use Illuminate\Http\Request;
 
 class QuestionController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -24,7 +29,8 @@ class QuestionController extends Controller
      */
     public function create()
     {
-        //
+        $courses = Course::all();
+        return view('epanel.questions.upload', compact('courses'));
     }
 
     /**
@@ -35,7 +41,7 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**

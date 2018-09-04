@@ -31,6 +31,13 @@
 </div>
 <hr>
 <div>
+    <label for="points" class="uk-form-label">Points Per Question</label>
+    <div class="uk-form-controls">
+    <input type="number" name="points" id="points" class="uk-input" v-model="course.points">
+    </div>
+</div>
+<hr>
+<div>
     <label for="duration" class="uk-form-label">Duration</label>
     <div class="uk-form-controls">
     <input type="number" name="duration" id="duration" class="uk-input" v-model="course.duration">
@@ -58,6 +65,7 @@ export default {
         title: "",
         code: "",
         questions: 0,
+        points:1,
         duration: 0
       }
     };

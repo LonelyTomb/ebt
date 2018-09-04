@@ -33,6 +33,12 @@ Vue.component('register-component', require('./components/auth/register.vue'));
  */
 Vue.component('create-course', require('./components/epanel/courses/create.vue'));
 
+/**
+ * Questions components
+ */
+Vue.component('upload-question', require('./components/epanel/questions/upload.vue'));
+
+
 const app = new Vue({
     el: '#app'
 });

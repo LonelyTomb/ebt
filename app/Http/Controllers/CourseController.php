@@ -51,6 +51,7 @@ class CourseController extends Controller
         $course->title = $request->title;
         $course->code = $request->code;
         $course->questions = $request->questions;
+        $course->points = $request->points;
         $course->duration = $request->duration;
 
         $course->save();
