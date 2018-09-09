@@ -12,7 +12,7 @@ require('./bootstrap');
 
 // loads the Icon plugin
 UIkit.use(Icons);
-
+window.UIkit = UIkit;
 window.Vue = require('vue');
 
 /**
@@ -36,7 +36,8 @@ Vue.component('create-course', require('./components/epanel/courses/create.vue')
 /**
  * Questions components
  */
-Vue.component('upload-question', require('./components/epanel/questions/upload.vue'));
+Vue.component('upload-questions', require('./components/epanel/questions/upload.vue'));
+Vue.component('input-question', require('./components/epanel/questions/input.vue'));
 
 
 const app = new Vue({

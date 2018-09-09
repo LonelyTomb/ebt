@@ -55,8 +55,7 @@
 </template>
 
 <script>
-import axios from "axios";
-import UIkit from "uikit";
+
 export default {
   name: "Create-Course-Form",
   data() {
@@ -75,7 +74,7 @@ export default {
   },
   methods: {
     submit(form) {
-      axios
+      window.axios
         .post("/epanel/courses", form)
         .then(val => val.json())
         .then(res => {
@@ -84,7 +83,7 @@ export default {
           }
         })
         .catch(error => {
-          UIkit.notification("Unable to complete! Please try again");
+          window.UIkit.notification("Unable to complete! Please try again");
         });
     }
   }

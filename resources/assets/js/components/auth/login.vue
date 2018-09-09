@@ -52,13 +52,13 @@ export default {
   methods: {
     submit(form) {
       console.log(form);
-      axios
+      window.axios
         .post("/login", form)
         .then(() => {
           window.location.reload();
         })
         .catch(val => {
-          UIkit.notification("Incorrect Login Details");
+          window.UIkit.notification("Incorrect Login Details");
         });
     }
   }

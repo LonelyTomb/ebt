@@ -7,6 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class Script extends Model
 {
     /**
+     * All of the relationships to be touched.
+     *
+     * @var array
+     */
+    protected $touches = ['course', 'user'];
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
@@ -17,7 +24,7 @@ class Script extends Model
 
     public function course()
     {
-        return $this->belongsTo('App\Models\Script');
+        return $this->belongsTo('App\Models\Course');
     }
     public function user()
     {

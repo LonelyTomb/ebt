@@ -29,7 +29,7 @@
     <header class="uk-section uk-section-secondary uk-preserve-color uk-padding-remove uk-margin-remove">
             <nav class="uk-navbar-container uk-margin" uk-navbar>
                 <div class="uk-navbar-center uk-flex uk-flex-column">
-                    <a class="uk-navbar-item uk-logo" href="#">
+                <a class="uk-navbar-item uk-logo uk-hover-none" href="{{route('welcome')}}">
                         <h1 class="uk-heading-primary">EBT</h1>
                     </a>
                     @auth

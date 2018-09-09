@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\QuestionCreationRequest;
 use App\Models\Course;
 use App\Models\Question;
 use Illuminate\Http\Request;
@@ -11,6 +12,16 @@ class QuestionController extends Controller
     public function __construct()
     {
         $this->middleware('auth:admin');
+        $this->courses = Course::all();
+    }
+    /**
+     * Return Courses
+     *
+     * @return  \App\Models\Course
+     */
+    public function getCourses()
+    {
+        return $this->courses;
     }
     /**
      * Display a listing of the resource.
@@ -29,19 +40,36 @@ class QuestionController extends Controller
      */
     public function create()
     {
-        $courses = Course::all();
-        return view('epanel.questions.upload', compact('courses'));
+        return view('epanel.questions.input', ['courses' => $this->getCourses()]);
     }
-
+    /**
+     * Show the form for uploading resources.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function upload()
+    {
+        return view('epanel.questions.upload', ['courses' => $this->getCourses()]);
+    }
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  App\Http\Requests\QuestionCreationRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(QuestionCreationRequest $request)
     {
-
+        $validated = $request->validated();
+        $question = new Question();
+        $question->question = $validated['text'];
+        $question->option_a = $validated['a'];
+        $question->option_b = $validated['b'];
+        $question->option_c = $validated['c'];
+        $question->option_d = $validated['d'];
+        $question->answer = $validated['correct'];
+        $course = Course::find($validated['course']);
+        $course->questions()->save($question);
+        return ['status' => 'success', 'message' => 'Question Created'];
     }
 
     /**

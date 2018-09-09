@@ -16,30 +16,37 @@
     <script src="{{mix('js/vendor.js')}}" defer></script>
     <script src="{{mix('js/app.js')}}" defer></script>
     <!-- Fonts -->
-    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
-    {{-- <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css"> --}}
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com"> {{--
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css"> --}}
 
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <!-- Styles -->
-    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
-    @yield('styles')
+    <link href="{{ mix('css/app.css') }}" rel="stylesheet"> @yield('styles')
 </head>
 
 <body>
     <header class="uk-section uk-section-secondary uk-preserve-color uk-padding-remove uk-margin-remove">
-            <nav class="uk-navbar-container uk-margin" uk-navbar>
-                <div class="uk-navbar-center uk-flex uk-flex-column">
-                <a class="uk-navbar-item uk-logo" href="{{route('epanel')}}">
-                        <h1 class="uk-heading-primary">{{ config('app.name', 'Laravel') }}</h1>
-                    </a>
+        <nav class="uk-navbar-container uk-margin" uk-navbar>
+            <div class="uk-navbar-center uk-flex uk-flex-column">
+                <a class="uk-navbar-item uk-logo uk-hover-none" href="{{route('epanel')}}">
+                    <h1 class="uk-heading-primary">{{ config('app.name', 'Laravel') }}</h1>
+                </a>
+                <div class="uk-flex uk-flex-row uk-flex-1">
+                    {{-- @if (Route::currentRouteName() !== "epanel")
+                    <div class="navbar-left">
+                            <a href="{{url()->previous()}}" class="uk-button uk-button-danger uk-margin-right">Back</a>
+                        </div>
+                    @endif --}}
                     @auth('admin')
                     <div class="navbar-right">
-                            <a href="{{route('epanel.logout')}}" class="uk-button uk-button-danger">Logout</a>
+                        <a href="{{route('epanel.logout')}}" class="uk-button uk-button-danger">Logout</a>
                     </div>
                     @endauth
                 </div>
 
-            </nav>
+            </div>
+
+        </nav>
     </header>
     <main class="" id="app">
         @yield('content')

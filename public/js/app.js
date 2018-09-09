@@ -1,8 +1,6 @@
 webpackJsonp([1],[
 /* 0 */,
-/* 1 */,
-/* 2 */,
-/* 3 */
+/* 1 */
 /***/ (function(module, exports) {
 
 /* globals __VUE_SSR_CONTEXT__ */
@@ -111,6 +109,8 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
+/* 2 */,
+/* 3 */,
 /* 4 */,
 /* 5 */,
 /* 6 */,
@@ -125,7 +125,7 @@ module.exports = function normalizeComponent (
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(15);
-module.exports = __webpack_require__(49);
+module.exports = __webpack_require__(55);
 
 
 /***/ }),
@@ -134,7 +134,7 @@ module.exports = __webpack_require__(49);
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_uikit__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_uikit__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_uikit___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_uikit__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_uikit_dist_js_uikit_icons__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_uikit_dist_js_uikit_icons___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_uikit_dist_js_uikit_icons__);
@@ -151,7 +151,7 @@ __webpack_require__(18);
 
 // loads the Icon plugin
 __WEBPACK_IMPORTED_MODULE_0_uikit___default.a.use(__WEBPACK_IMPORTED_MODULE_1_uikit_dist_js_uikit_icons___default.a);
-
+window.UIkit = __WEBPACK_IMPORTED_MODULE_0_uikit___default.a;
 window.Vue = __webpack_require__(13);
 
 /**
@@ -175,7 +175,8 @@ Vue.component('create-course', __webpack_require__(46));
 /**
  * Questions components
  */
-Vue.component('upload-question', __webpack_require__(57));
+Vue.component('upload-questions', __webpack_require__(49));
+Vue.component('input-question', __webpack_require__(52));
 
 var app = new Vue({
   el: '#app'
@@ -360,7 +361,7 @@ var app = new Vue({
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 
-window.axios = __webpack_require__(1);
+window.axios = __webpack_require__(3);
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
@@ -418,7 +419,7 @@ if (token) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(3)
+var normalizeComponent = __webpack_require__(1)
 /* script */
 var __vue_script__ = __webpack_require__(38)
 /* template */
@@ -466,10 +467,6 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_uikit__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_uikit___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_uikit__);
 //
 //
 //
@@ -505,7 +502,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -524,10 +520,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   methods: {
     submit: function submit(form) {
-      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post("/epanel/login", form).then(function () {
+      window.axios.post("/epanel/login", form).then(function () {
         window.location.reload();
       }).catch(function (val) {
-        __WEBPACK_IMPORTED_MODULE_1_uikit___default.a.notification("Unable to login!");
+        window.UIkit.notification("Unable to login!");
       });
     }
   }
@@ -687,7 +683,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(3)
+var normalizeComponent = __webpack_require__(1)
 /* script */
 var __vue_script__ = __webpack_require__(41)
 /* template */
@@ -735,7 +731,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
 //
 //
@@ -792,10 +788,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   methods: {
     submit: function submit(form) {
       console.log(form);
-      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post("/login", form).then(function () {
+      window.axios.post("/login", form).then(function () {
         window.location.reload();
       }).catch(function (val) {
-        UIkit.notification("Incorrect Login Details");
+        window.UIkit.notification("Incorrect Login Details");
       });
     }
   }
@@ -955,7 +951,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(3)
+var normalizeComponent = __webpack_require__(1)
 /* script */
 var __vue_script__ = __webpack_require__(44)
 /* template */
@@ -1003,10 +999,6 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_uikit__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_uikit___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_uikit__);
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -1123,78 +1115,84 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-
-
+//
+//
 
 var genders = ["male", "female", "others"];
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "Register",
-  props: {
-    courses: Array
-  },
-  data: function data() {
-    var _user;
-
-    return {
-      genders: genders,
-      uploadPicture: false,
-      user: (_user = {
-        username: "",
-        surname: "",
-        firstname: "",
-        othernames: "",
-        email: "",
-        password: "",
-        password_confirmation: "",
-        gender: "",
-        courses: []
-      }, _defineProperty(_user, "password", ""), _defineProperty(_user, "picture", []), _user)
-    };
-  },
-  mounted: function mounted() {
-    console.log("Component mounted.");
-  },
-
-  computed: {},
-  methods: {
-    fileChange: function fileChange() {
-      this.user.picture = this.$refs.picture.files[0];
+    name: "Register",
+    props: {
+        courses: Array
     },
-    submit: function submit(form) {
-      var formData = new FormData();
-      /*
-        *Add the form data we need to submit
-      */
-      Object.entries(form).forEach(function (_ref) {
-        var _ref2 = _slicedToArray(_ref, 2),
-            key = _ref2[0],
-            value = _ref2[1];
+    data: function data() {
+        var _user;
 
-        formData.append(key, value);
-      });
+        return {
+            genders: genders,
+            uploadPicture: false,
+            user: (_user = {
+                username: "",
+                surname: "",
+                firstname: "",
+                othernames: "",
+                email: "",
+                password: "",
+                password_confirmation: "",
+                gender: "",
+                courses: []
+            }, _defineProperty(_user, "password", ""), _defineProperty(_user, "picture", []), _user)
+        };
+    },
+    mounted: function mounted() {
+        console.log("Component mounted.");
+    },
 
-      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post("/epanel/register/user", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data"
+    computed: {},
+    methods: {
+        toggleUpload: function toggleUpload() {
+            this.uploadPicture = !this.uploadPicture;
+            if (this.uploadPicture == false) {
+                this.question.picture = [];
+            }
+        },
+        fileChange: function fileChange() {
+            this.user.picture = this.$refs.picture.files[0];
+        },
+        submit: function submit(form) {
+            var formData = new FormData();
+            /*
+             *Add the form data we need to submit
+             */
+            Object.entries(form).forEach(function (_ref) {
+                var _ref2 = _slicedToArray(_ref, 2),
+                    key = _ref2[0],
+                    value = _ref2[1];
+
+                formData.append(key, value);
+            });
+
+            window.axios.post("/epanel/register/user", formData, {
+                headers: {
+                    "Content-Type": "multipart/form-data"
+                }
+            }).then(function (res) {
+                return res.json;
+            }).then(function (response) {
+                if (response.status === "success") {
+                    window.UIkit.notification(response.message);
+                    window.location.reload;
+                }
+            }).catch(function (val) {
+                //   if (response.status === "success") {
+                //     UIkit.notification(response.message);
+                //     window.location.reload;
+                //   } else {
+                //     UIkit.notification("Incorrect Login Details");
+                //   }
+            });
         }
-      }).then(function (res) {
-        return res.json();
-      }).then(function (response) {
-        if (response.status === "success") {
-          __WEBPACK_IMPORTED_MODULE_1_uikit___default.a.notification(response.message);
-          window.location.reload;
-        }
-      }).catch(function (val) {
-        //   if (response.status === "success") {
-        //     UIkit.notification(response.message);
-        //     window.location.reload;
-        //   } else {
-        //     UIkit.notification("Incorrect Login Details");
-        //   }
-      });
     }
-  }
 });
 
 /***/ }),
@@ -1440,8 +1438,10 @@ var render = function() {
                   _c("hr", { staticClass: "uk-divider-small" }),
                   _vm._v(" "),
                   _c("div", [
-                    _c("fieldset", [
-                      _c("legend", [_vm._v("Gender")]),
+                    _c("fieldset", { staticClass: "uk-fieldset" }, [
+                      _c("legend", { staticClass: "uk-legend" }, [
+                        _vm._v("Gender")
+                      ]),
                       _vm._v(" "),
                       _c(
                         "div",
@@ -1508,7 +1508,12 @@ var render = function() {
                                 staticClass: "uk-form-label uk-text-capitalize",
                                 attrs: { for: course.title }
                               },
-                              [_vm._v(_vm._s(course.title) + " ")]
+                              [
+                                _vm._v(
+                                  _vm._s(course.title) +
+                                    "\n                                            "
+                                )
+                              ]
                             ),
                             _vm._v(" "),
                             _c("div", { staticClass: "uk-form-controls" }, [
@@ -1678,7 +1683,7 @@ var render = function() {
                         domProps: { value: _vm.uploadPicture },
                         on: {
                           click: function($event) {
-                            _vm.uploadPicture = !_vm.uploadPicture
+                            _vm.toggleUpload()
                           }
                         }
                       })
@@ -1766,7 +1771,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(3)
+var normalizeComponent = __webpack_require__(1)
 /* script */
 var __vue_script__ = __webpack_require__(47)
 /* template */
@@ -1814,10 +1819,6 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_uikit__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_uikit___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_uikit__);
 //
 //
 //
@@ -1874,7 +1875,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1896,14 +1896,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   methods: {
     submit: function submit(form) {
-      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post("/epanel/courses", form).then(function (val) {
+      window.axios.post("/epanel/courses", form).then(function (val) {
         return val.json();
       }).then(function (res) {
         if (res.status == "success") {
           console.log(res);
         }
       }).catch(function (error) {
-        __WEBPACK_IMPORTED_MODULE_1_uikit___default.a.notification("Unable to complete! Please try again");
+        window.UIkit.notification("Unable to complete! Please try again");
       });
     }
   }
@@ -2176,27 +2176,14 @@ if (false) {
 
 /***/ }),
 /* 49 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 50 */,
-/* 51 */,
-/* 52 */,
-/* 53 */,
-/* 54 */,
-/* 55 */,
-/* 56 */,
-/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(3)
+var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(58)
+var __vue_script__ = __webpack_require__(50)
 /* template */
-var __vue_template__ = __webpack_require__(59)
+var __vue_template__ = __webpack_require__(51)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -2235,15 +2222,11 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 58 */
+/* 50 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_uikit__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_uikit___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_uikit__);
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
 //
@@ -2286,7 +2269,6 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 //
 
 
-
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "UploadQuestion",
   props: {
@@ -2321,21 +2303,21 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
         formData.append(key, value);
       });
 
-      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post("/epanel/question", form).then(function (val) {
+      window.axios.post("/epanel/question", form).then(function (val) {
         return val.json();
       }).then(function (res) {
         if (res.status == "success") {
           console.log(res);
         }
       }).catch(function (error) {
-        __WEBPACK_IMPORTED_MODULE_1_uikit___default.a.notification("Unable to complete! Please try again");
+        window.UIkit.notification("Unable to complete! Please try again");
       });
     }
   }
 });
 
 /***/ }),
-/* 59 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -2487,6 +2469,820 @@ if (false) {
     require("vue-hot-reload-api")      .rerender("data-v-dfa095e8", module.exports)
   }
 }
+
+/***/ }),
+/* 52 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(53)
+/* template */
+var __vue_template__ = __webpack_require__(54)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/epanel/questions/input.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-d7d363e2", Component.options)
+  } else {
+    hotAPI.reload("data-v-d7d363e2", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 53 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "UploadQuestion",
+  props: {
+    courses: Array
+  },
+  data: function data() {
+    return {
+      uploadPicture: false,
+      question: {
+        course: 1,
+        text: "",
+        a: "",
+        b: "",
+        c: "",
+        d: "",
+        answer: "",
+        picture: []
+      }
+    };
+  },
+  mounted: function mounted() {},
+
+  methods: {
+    toggleUpload: function toggleUpload() {
+      this.uploadPicture = !this.uploadPicture;
+      if (this.uploadPicture == false) {
+        this.question.picture = [];
+      }
+    },
+    pictureChange: function pictureChange() {
+      this.question.picture = this.$refs.picture.files[0];
+    },
+    upload: function upload(form) {
+      var formData = new FormData();
+      /*
+                 *Add the form data we need to submit
+                 */
+      Object.entries(form).forEach(function (_ref) {
+        var _ref2 = _slicedToArray(_ref, 2),
+            key = _ref2[0],
+            value = _ref2[1];
+
+        formData.append(key, value);
+      });
+
+      window.axios.post("/epanel/questions", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data"
+        }
+      }).then(function (res) {
+        console.log(res);
+        if (res.data.status == "success") {
+          UIkit.notification("" + res.data.message, "success");
+        }
+      }).catch(function (error) {
+        console.log(error);
+        UIkit.notification("Unable to complete! Please try again", "warning");
+      });
+    }
+  }
+});
+
+/***/ }),
+/* 54 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "courses-container" }, [
+    _c("article", { staticClass: "uk-article" }, [
+      _c("section", { staticClass: "uk-section" }, [
+        _c(
+          "div",
+          {
+            staticClass:
+              "uk-card uk-card-default uk-width-1-2@m uk-margin-auto uk-card-hover"
+          },
+          [
+            _vm._m(0),
+            _vm._v(" "),
+            _c("div", { staticClass: "uk-card-body" }, [
+              _c(
+                "form",
+                {
+                  ref: "uploadQuestions",
+                  staticClass: "uk-form uk-form-horizontal",
+                  attrs: { id: "upload-question-form" }
+                },
+                [
+                  _c("div", [
+                    _c(
+                      "label",
+                      {
+                        staticClass: "uk-form-label",
+                        attrs: { for: "course" }
+                      },
+                      [_vm._v("Course")]
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "uk-form-controls" }, [
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.question.course,
+                              expression: "question.course"
+                            }
+                          ],
+                          staticClass: "uk-select",
+                          attrs: { name: "course", id: "course" },
+                          on: {
+                            change: function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.$set(
+                                _vm.question,
+                                "course",
+                                $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              )
+                            }
+                          }
+                        },
+                        _vm._l(_vm.courses, function(course) {
+                          return _c(
+                            "option",
+                            {
+                              key: course.index,
+                              attrs: { name: course },
+                              domProps: { value: course.id }
+                            },
+                            [_vm._v(_vm._s(course.title))]
+                          )
+                        })
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("hr", { staticClass: "uk-divider" }),
+                  _vm._v(" "),
+                  _c("div", [
+                    _c(
+                      "label",
+                      {
+                        staticClass: "uk-form-label",
+                        attrs: { for: "question" }
+                      },
+                      [_vm._v("Question")]
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "uk-form-controls-text" }, [
+                      _c("textarea", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.question.text,
+                            expression: "question.text"
+                          }
+                        ],
+                        staticClass: "uk-textarea",
+                        attrs: {
+                          name: "question",
+                          id: "question",
+                          cols: "10",
+                          rows: "5"
+                        },
+                        domProps: { value: _vm.question.text },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.question, "text", $event.target.value)
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("hr", { staticClass: "uk-divider" }),
+                  _vm._v(" "),
+                  _c("div", [
+                    _c(
+                      "label",
+                      {
+                        staticClass: "uk-form-label",
+                        attrs: { for: "option-a" }
+                      },
+                      [_vm._v("Option A")]
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "uk-form-controls-text" }, [
+                      _c("textarea", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.question.a,
+                            expression: "question.a"
+                          }
+                        ],
+                        staticClass: "uk-textarea",
+                        attrs: {
+                          name: "optionA",
+                          id: "option-a",
+                          cols: "10",
+                          rows: "2"
+                        },
+                        domProps: { value: _vm.question.a },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.question, "a", $event.target.value)
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("hr", { staticClass: "uk-divider" }),
+                  _vm._v(" "),
+                  _c("div", [
+                    _c(
+                      "label",
+                      {
+                        staticClass: "uk-form-label",
+                        attrs: { for: "option-b" }
+                      },
+                      [_vm._v("Option B")]
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "uk-form-controls-text" }, [
+                      _c("textarea", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.question.b,
+                            expression: "question.b"
+                          }
+                        ],
+                        staticClass: "uk-textarea",
+                        attrs: {
+                          name: "optionB",
+                          id: "option-b",
+                          cols: "10",
+                          rows: "2"
+                        },
+                        domProps: { value: _vm.question.b },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.question, "b", $event.target.value)
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("hr", { staticClass: "uk-divider" }),
+                  _vm._v(" "),
+                  _c("div", [
+                    _c(
+                      "label",
+                      {
+                        staticClass: "uk-form-label",
+                        attrs: { for: "option-c" }
+                      },
+                      [_vm._v("Option C")]
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "uk-form-controls-text" }, [
+                      _c("textarea", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.question.c,
+                            expression: "question.c"
+                          }
+                        ],
+                        staticClass: "uk-textarea",
+                        attrs: {
+                          name: "optionC",
+                          id: "option-c",
+                          cols: "10",
+                          rows: "2"
+                        },
+                        domProps: { value: _vm.question.c },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.question, "c", $event.target.value)
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("hr", { staticClass: "uk-divider" }),
+                  _vm._v(" "),
+                  _c("div", [
+                    _c(
+                      "label",
+                      {
+                        staticClass: "uk-form-label",
+                        attrs: { for: "option-d" }
+                      },
+                      [_vm._v("Option D")]
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "uk-form-controls-text" }, [
+                      _c("textarea", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.question.d,
+                            expression: "question.d"
+                          }
+                        ],
+                        staticClass: "uk-textarea",
+                        attrs: {
+                          name: "optionD",
+                          id: "option-d",
+                          cols: "10",
+                          rows: "2"
+                        },
+                        domProps: { value: _vm.question.d },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.question, "d", $event.target.value)
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("hr", { staticClass: "uk-divider" }),
+                  _vm._v(" "),
+                  _c("div", [
+                    _c("fieldset", { staticClass: "uk-fieldset" }, [
+                      _c("legend", { staticClass: "uk-legend" }, [
+                        _vm._v(
+                          "\n                                    Correct Option\n                                "
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "uk-flex uk-flex-row uk-flex-wrap" },
+                        [
+                          _c(
+                            "div",
+                            { staticClass: "uk-flex uk-flex-row uk-flex-wrap" },
+                            [
+                              _c(
+                                "label",
+                                { attrs: { for: "correct-option-a" } },
+                                [_vm._v("Option A")]
+                              ),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "uk-form-controls" }, [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.question.correct,
+                                      expression: "question.correct"
+                                    }
+                                  ],
+                                  staticClass: "uk-radio",
+                                  attrs: {
+                                    type: "radio",
+                                    id: "correct-option-a",
+                                    name: "correct",
+                                    value: "a"
+                                  },
+                                  domProps: {
+                                    checked: _vm._q(_vm.question.correct, "a")
+                                  },
+                                  on: {
+                                    change: function($event) {
+                                      _vm.$set(_vm.question, "correct", "a")
+                                    }
+                                  }
+                                })
+                              ])
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            { staticClass: "uk-flex uk-flex-row uk-flex-wrap" },
+                            [
+                              _c(
+                                "label",
+                                { attrs: { for: "correct-option-b" } },
+                                [_vm._v("Option B")]
+                              ),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "uk-form-controls" }, [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.question.correct,
+                                      expression: "question.correct"
+                                    }
+                                  ],
+                                  staticClass: "uk-radio",
+                                  attrs: {
+                                    type: "radio",
+                                    id: "correct-option-b",
+                                    name: "correct",
+                                    value: "b"
+                                  },
+                                  domProps: {
+                                    checked: _vm._q(_vm.question.correct, "b")
+                                  },
+                                  on: {
+                                    change: function($event) {
+                                      _vm.$set(_vm.question, "correct", "b")
+                                    }
+                                  }
+                                })
+                              ])
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            { staticClass: "uk-flex uk-flex-row uk-flex-wrap" },
+                            [
+                              _c(
+                                "label",
+                                { attrs: { for: "correct-option-c" } },
+                                [_vm._v("Option C")]
+                              ),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "uk-form-controls" }, [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.question.correct,
+                                      expression: "question.correct"
+                                    }
+                                  ],
+                                  staticClass: "uk-radio",
+                                  attrs: {
+                                    type: "radio",
+                                    id: "correct-option-c",
+                                    name: "correct",
+                                    value: "c"
+                                  },
+                                  domProps: {
+                                    checked: _vm._q(_vm.question.correct, "c")
+                                  },
+                                  on: {
+                                    change: function($event) {
+                                      _vm.$set(_vm.question, "correct", "c")
+                                    }
+                                  }
+                                })
+                              ])
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            { staticClass: "uk-flex uk-flex-row uk-flex-wrap" },
+                            [
+                              _c(
+                                "label",
+                                { attrs: { for: "correct-option-d" } },
+                                [_vm._v("Option D")]
+                              ),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "uk-form-controls" }, [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.question.correct,
+                                      expression: "question.correct"
+                                    }
+                                  ],
+                                  staticClass: "uk-radio",
+                                  attrs: {
+                                    type: "radio",
+                                    id: "correct-option-d",
+                                    name: "correct",
+                                    value: "d"
+                                  },
+                                  domProps: {
+                                    checked: _vm._q(_vm.question.correct, "d")
+                                  },
+                                  on: {
+                                    change: function($event) {
+                                      _vm.$set(_vm.question, "correct", "d")
+                                    }
+                                  }
+                                })
+                              ])
+                            ]
+                          )
+                        ]
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("hr", { staticClass: "uk-divider" }),
+                  _vm._v(" "),
+                  _c("div", [
+                    _c(
+                      "label",
+                      {
+                        staticClass: "uk-form-label",
+                        attrs: { for: "upload" }
+                      },
+                      [_vm._v("Upload Picture")]
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "uk-form-controls" }, [
+                      _c("input", {
+                        staticClass: "uk-checkbox",
+                        attrs: { type: "checkbox", id: "upload" },
+                        domProps: { value: _vm.uploadPicture },
+                        on: {
+                          click: function($event) {
+                            _vm.toggleUpload()
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _vm.uploadPicture === true
+                      ? _c("div", [
+                          _c(
+                            "label",
+                            {
+                              staticClass: "uk-form-label",
+                              attrs: { for: "picture" }
+                            },
+                            [_vm._v("File")]
+                          ),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "uk-form-controls" }, [
+                            _c("input", {
+                              ref: "picture",
+                              staticClass: "uk-input",
+                              attrs: {
+                                type: "file",
+                                name: "picture",
+                                id: "picture"
+                              },
+                              on: {
+                                change: function($event) {
+                                  _vm.pictureChange()
+                                }
+                              }
+                            })
+                          ])
+                        ])
+                      : _vm._e()
+                  ])
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "uk-card-footer" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "uk-button uk-button-primary",
+                  attrs: { form: "upload-question-form" },
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      _vm.upload(_vm.question)
+                    }
+                  }
+                },
+                [_vm._v("Create")]
+              )
+            ])
+          ]
+        )
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "uk-card-header uk-card-primary" }, [
+      _c("h3", { staticClass: "uk-heading" }, [_vm._v("Upload Question")])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-d7d363e2", module.exports)
+  }
+}
+
+/***/ }),
+/* 55 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ })
 ],[14]);

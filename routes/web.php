@@ -45,6 +45,8 @@ Route::prefix('epanel')->group(
                 Route::post('/reset', 'Auth\AdminResetPasswordController@reset'); // step 4
             }
         );
+
+        Route::get('/questions/upload','QuestionController@upload')->name('questions.upload');
         Route::resources(
             [
                 'courses' => 'CourseController',

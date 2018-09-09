@@ -1,20 +1,46 @@
-@extends('epanel.master')
+@extends('epanel.master') @section('content')
 
-@section('content')
+<section class="uk-section uk-section-default uk-container uk-card uk-card-hover uk-card-default uk-margin-auto">
+    <div class="uk-card-header">
+        <h3 class="uk-card-title uk-text-center">Data Capture</h3>
+    </div>
+    <div class="uk-child-width-1-3@m uk-child-width-1-1@s uk-grid-margin uk-grid uk-card-body" uk-grid>
+        <div>
+            <a class="uk-tile uk-tile-small uk-button uk-tile-secondary uk-padding-small uk-button-primary uk-display-block" href="{{route('epanel.register.user')}}">Add New User</a>
+        </div>
+        <div>
+            <a class="uk-tile uk-tile-small uk-button uk-tile-secondary uk-padding-small uk-button-primary uk-display-block" href="{{route('questions.create')}}">Upload users List</a>
+        </div>
 
-<section class="uk-section uk-section-default uk-flex uk-flex-row uk-container">
-
-<a class="uk-tile uk-tile-small uk-width-1-3@m uk-button uk-tile-secondary uk-padding-small uk-button-primary uk-margin-right" href="{{route('epanel.register.user')}}">Add New User</a>
-
-<a class="uk-tile uk-tile-small uk-width-1-3@m uk-button uk-tile-secondary uk-padding-small uk-button-primary uk-margin-right" href="{{route('courses.create')}}">Add New Course</a>
-<a class="uk-tile uk-tile-small uk-width-1-3@m uk-button uk-tile-secondary uk-padding-small uk-button-primary uk-margin-right" href="{{route('questions.create')}}">Upload Question List</a>
-<a class="uk-tile uk-tile-small uk-width-1-3@m uk-button uk-tile-secondary uk-padding-small uk-button-primary uk-margin-right">Input Question</a>
+        <div>
+            <a class="uk-tile uk-tile-small uk-button uk-tile-secondary uk-padding-small uk-button-primary uk-display-block" href="{{route('courses.create')}}">Add New Course</a>
+        </div>
+        <div>
+            <a class="uk-tile uk-tile-small uk-button uk-tile-secondary uk-padding-small uk-button-primary uk-display-block" href="{{route('questions.upload')}}">Upload Question List</a>
+        </div>
+        <div>
+            <a class="uk-tile uk-tile-small uk-button uk-tile-secondary uk-padding-small uk-button-primary uk-display-block" href="{{route('questions.create')}}">Input Question</a>
+        </div>
+    </div>
 </section>
-
-<section class="uk-section uk-section-default uk-flex uk-flex-row uk-container">
-        <a class="uk-tile uk-tile-small uk-width-1-3@m uk-button uk-tile-secondary uk-padding-small uk-button-primary uk-margin-right">User Controls</a>
-        <a class="uk-tile uk-tile-small uk-width-1-3@m uk-button uk-tile-secondary uk-padding-small uk-button-primary uk-margin-right">Course Controls</a>
-        <a class="uk-tile uk-tile-small uk-width-1-3@m uk-button uk-tile-secondary uk-padding-small uk-button-primary uk-margin-right">Questions Controls</a>
-        <a class="uk-tile uk-tile-small uk-width-1-3@m uk-button uk-tile-secondary uk-padding-small uk-button-primary uk-margin-right">Input Question</a>
-        </section>
+<hr class="uk-divider-icon">
+<section class="uk-section uk-section-default uk-container uk-card uk-card-default uk-card-hover">
+    <div class="uk-card-header">
+        <h3 class="uk-card-title uk-text-center">Data Capture</h3>
+    </div>
+    <div class="uk-child-width-1-3@m uk-child-width-1-1@s uk-grid-margin uk-grid uk-card-body" uk-grid>
+        <div>
+            <a class="uk-tile uk-tile-small uk-button uk-tile-secondary uk-padding-small uk-button-primary uk-display-block">User Controls</a>
+        </div>
+        <div>
+            <a class="uk-tile uk-tile-small uk-button uk-tile-secondary uk-padding-small uk-button-primary uk-display-block">Course Controls</a>
+        </div>
+        <div>
+            <a class="uk-tile uk-tile-small uk-button uk-tile-secondary uk-padding-small uk-button-primary uk-display-block">Questions Controls</a>
+        </div>
+        <div>
+            <a class="uk-tile uk-tile-small uk-button uk-tile-secondary uk-padding-small uk-button-primary uk-display-block">Input Question</a>
+        </div>
+    </div>
+</section>
 @endsection

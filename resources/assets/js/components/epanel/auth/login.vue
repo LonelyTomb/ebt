@@ -34,8 +34,7 @@
 </template>
 
 <script>
-import axios from "axios";
-import UIkit from "uikit";
+
 export default {
   name: "Admin-Login",
   data() {
@@ -51,13 +50,13 @@ export default {
   },
   methods: {
     submit(form) {
-      axios
+      window.axios
         .post("/epanel/login", form)
         .then(() => {
           window.location.reload();
         })
         .catch(val => {
-          UIkit.notification("Unable to login!");
+          window.UIkit.notification("Unable to login!");
         });
     }
   }
