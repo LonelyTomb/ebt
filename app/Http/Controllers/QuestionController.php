@@ -51,6 +51,27 @@ class QuestionController extends Controller
     {
         return view('epanel.questions.upload', ['courses' => $this->getCourses()]);
     }
+
+    /**
+     * File Upload Function
+     *
+     * @param $file
+     * @param App\Models\Question $question
+     * @return void
+     */
+    public function uploadImage($file, Question $question)
+    {
+        if ($file->isValid()) {
+            $filename = "{$question->id}.{$file->extension()}";
+            $uploadPath = "courses/{$question->course->id}/{$question->id}";
+            $file->storeAs($uploadPath, $filename);
+            $question->picture = "$uploadPath/$filename";
+            $question->save();
+            return $question;
+        }
+        return;
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -69,6 +90,10 @@ class QuestionController extends Controller
         $question->answer = $validated['correct'];
         $course = Course::find($validated['course']);
         $course->questions()->save($question);
+
+        if ($request->hasFile('picture')) {
+            $this->uploadImage($request->picture, $question);
+        }
         return ['status' => 'success', 'message' => 'Question Created'];
     }
 
