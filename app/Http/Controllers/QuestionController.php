@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\QuestionCreationRequest;
 use App\Models\Course;
 use App\Models\Question;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 
 class QuestionController extends Controller
@@ -50,6 +51,15 @@ class QuestionController extends Controller
     public function upload()
     {
         return view('epanel.questions.upload', ['courses' => $this->getCourses()]);
+    }
+    /**
+     * Show the form for uploading resources.
+     * @param Collection $questions
+     * @return \Illuminate\Http\Response
+     */
+    public function uploadPreview(Collection $questions, Course $course)
+    {
+        return view('epanel.questions.upload', compact('questions', 'course'));
     }
 
     /**

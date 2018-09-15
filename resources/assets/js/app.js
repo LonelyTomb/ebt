@@ -37,6 +37,7 @@ Vue.component('create-course', require('./components/epanel/courses/create.vue')
  * Questions components
  */
 Vue.component('upload-questions', require('./components/epanel/questions/upload.vue'));
+Vue.component('preview-upload-questions', require('./components/epanel/questions/uploadPreview.vue'));
 Vue.component('input-question', require('./components/epanel/questions/input.vue'));
 
 

@@ -4,7 +4,7 @@
         <!-- <h2 class="">Register User</h2> -->
         <section class="uk-section">
             <div class="uk-card uk-card-default uk-width-1-2@m uk-margin-auto">
-                <div class="uk-card-header">
+                <div class="uk-card-header uk-card-primary">
                     <h3 class="uk-heading">Add New User</h3>
                 </div>
                 <div class="uk-card-body">
