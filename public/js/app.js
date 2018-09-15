@@ -2512,7 +2512,7 @@ var render = function() {
                           }
                         }
                       },
-                      [_vm._v("Create")]
+                      [_vm._v("Preview")]
                     )
                   ])
                 ]
@@ -3424,6 +3424,33 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: "Upload-Preview",
@@ -3445,11 +3472,80 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", {
-    staticClass: "uk-card uk-card-default uk-width-2-3@m uk-margin-auto"
-  })
+  return _c(
+    "div",
+    { staticClass: "uk-card uk-card-default uk-container uk-margin-auto" },
+    [
+      _c("div", { staticClass: "uk-card-header" }),
+      _vm._v(" "),
+      _c("div", { staticClass: "uk-card-body" }, [
+        _c("div", { staticClass: "uk-overflow-auto" }, [
+          _c(
+            "table",
+            {
+              staticClass:
+                "uk-table uk-table-responsive uk-table-striped uk-table-hover"
+            },
+            [
+              _c("thead", [
+                _c(
+                  "tr",
+                  [
+                    _c("th"),
+                    _vm._v(" "),
+                    _vm._l(_vm.questions[0], function(param, key) {
+                      return _c("th", [
+                        _vm._v(" " + _vm._s(key.replace(/_/, " ")))
+                      ])
+                    })
+                  ],
+                  2
+                )
+              ]),
+              _vm._v(" "),
+              _c(
+                "tbody",
+                _vm._l(_vm.questions, function(question, key) {
+                  return _c("tr", [
+                    _c("td", [_vm._v(_vm._s(key))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(question.question))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(question.option_a))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(question.option_b))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(question.option_c))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(question.option_d))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(question.answer))])
+                  ])
+                })
+              )
+            ]
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div")
+    ]
+  )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "uk-card-footer" }, [
+      _c("div", { staticClass: "uk-button uk-button-primary" }, [
+        _vm._v("Save")
+      ])
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {

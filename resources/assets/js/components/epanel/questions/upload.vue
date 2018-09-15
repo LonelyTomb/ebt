@@ -29,7 +29,7 @@
                     </form>
                 </div>
                 <div class="uk-card-footer">
-                    <button class="uk-button uk-button-primary" form="upload-question-form" @click.prevent="upload(questions)">Create</button>
+                    <button class="uk-button uk-button-primary" form="upload-question-form" @click.prevent="upload(questions)">Preview</button>
                 </div>
             </div>
             <!-- Upload Questions Preview -->
