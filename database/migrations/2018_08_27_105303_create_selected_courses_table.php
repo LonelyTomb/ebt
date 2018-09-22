@@ -15,8 +15,8 @@ class CreateSelectedCoursesTable extends Migration
     {
         Schema::create('selected_courses', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id');
-            $table->integer('course_id');
+            $table->integer('user_id')->index('user_id');
+            $table->integer('course_id')->index('course_id');
             $table->timestamps();
         });
     }

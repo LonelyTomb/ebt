@@ -106,7 +106,30 @@ class QuestionController extends Controller
         }
         return ['status' => 'success', 'message' => 'Question Created'];
     }
+    /**
+     * Mass Save Questions to Database
+     *
+     * @param Array $collection
+     *
+     */
+    public function bulkUpload(Request $request)
+    {
 
+        $course = Course::find($request->course);
+        $count = 0;
+        foreach ($request->questions as $key => $questionRow) {
+            $question = new Question();
+            $question->question = $questionRow['question'];
+            $question->option_a = $questionRow['option_a'];
+            $question->option_b = $questionRow['option_b'];
+            $question->option_c = $questionRow['option_c'];
+            $question->option_d = $questionRow['option_d'];
+            $question->answer = $questionRow['answer'];
+            $course->questions()->save($question);
+            $count++;
+        }
+        return ['status' => 'success', 'count' => $count];
+    }
     /**
      * Display the specified resource.
      *

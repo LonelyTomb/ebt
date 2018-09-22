@@ -12,7 +12,7 @@
                     </thead>
                     <tbody>
                         <tr v-for="(question,key) in questions">
-                            <td>{{key}}</td>
+                            <td>{{key + 1}}</td>
                             <td>{{question.question}}</td>
                             <td>{{question.option_a}}</td>
                             <td>{{question.option_b}}</td>
@@ -25,24 +25,51 @@
             </div>
         </div>
         <div class="uk-card-footer">
-            <div class="uk-button uk-button-primary">Save</div>
+            <button class="uk-button uk-button-primary" @click="save()">Save</button>
+            <slot></slot>
+
         </div>
         <div></div>
     </div>
 </template>
 <script>
-    export default {
-        name: "Upload-Preview",
-        props: {
-            questions: Array
-        },
-        data() {
-            return {
 
-            }
-        },
-        methods: {
-
-        }
+export default {
+  name: "Upload-Preview",
+  props: {
+    questions: Array,
+    course: Number
+  },
+  data() {
+    return {};
+  },
+  methods: {
+    closeModal() {
+      window.UIkit.modal(document.querySelector(".uk-modal")).hide();
+    },
+    save() {
+      window.UIkit.modal.alert("Saving to Database. Please Wait");
+      window.axios
+        .post("/epanel/questions/save", {
+          course: this.course,
+          questions: this.questions
+        })
+        .then(res => {
+          this.closeModal();
+          window.UIkit.notification(
+            `${res.data.status}, ${res.data.count} questions saved`,
+            "success"
+          );
+          window.location.replace('/epanel/');
+        })
+        .catch(err => {
+          this.closeModal();
+          window.UIkit.notification(
+            "Unable to complete! Please try again",
+            "danger"
+          );
+        });
     }
+  }
+};
 </script>

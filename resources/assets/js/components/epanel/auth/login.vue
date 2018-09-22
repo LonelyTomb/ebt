@@ -68,7 +68,7 @@ export default {
         .catch(val => {
           this.loading = false;
           this.errors = val.response.data.errors;
-          window.UIkit.notification("Unable to login!");
+          window.UIkit.notification("Unable to login!","danger");
         });
     }
   }

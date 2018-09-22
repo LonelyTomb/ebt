@@ -11,7 +11,6 @@
                 <div class="uk-card-body">
                     <form class="uk-form uk-form-horizontal" id="upload-question-form" ref="uploadQuestions">
                         <div>
-                            click to upload
                             <label for="course" class="uk-form-label">Course</label>
                             <div class="uk-form-controls">
 
@@ -42,11 +41,13 @@
                     </form>
                 </div>
                 <div class="uk-card-footer">
-                    <button class="uk-button uk-button-primary" form="upload-question-form" @click.prevent="upload(questions)">Preview</button>
+                    <button class="uk-button uk-button-primary" form="upload-question-form" @click.prevent="upload(questions)" :disabled="disabled">Preview</button>
                 </div>
             </div>
             <!-- Upload Questions Preview -->
-            <upload-preview :questions="processedList" v-else></upload-preview>
+            <upload-preview :questions="processedList" :course="questions.course" v-else>
+                <button class="uk-button uk-button-danger" @click="cancel()">Cancel</button>
+            </upload-preview>
         </section>
     </article>
 </div>
@@ -69,19 +70,27 @@ export default {
         course: 1,
         list: []
       },
-      processedList: []
+      processedList: [],
+      disabled: true
     };
   },
   mounted() {
     console.log("Component mounted.");
   },
   methods: {
+    toggleSave() {
+      this.disabled = !this.disabled;
+    },
     resetInput() {
       this.questions.list = [];
+      this.toggleSave();
     },
     fileChange() {
       this.questions.list = this.$refs.list.files[0];
-      console.log(this.questions.list);
+      this.toggleSave();
+    },
+    cancel() {
+      this.processedList = [];
     },
     upload(form) {
       var bar = document.getElementById("js-progressbar");
@@ -102,7 +111,7 @@ export default {
           this.processedList = res.data;
         })
         .catch(error => {
-          window.UIkit.notification("Unable to complete! Please try again");
+          window.UIkit.notification("Unable to complete! Please try again","danger");
         });
     }
   }

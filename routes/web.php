@@ -49,6 +49,7 @@ Route::prefix('epanel')->group(
         Route::get('/questions/upload', 'QuestionController@upload')->name('questions.upload');
         Route::get('/questions/upload/preview', 'QuestionController@uploadPreview')->name('questions.upload.preview');
         Route::post('/questions/parse', 'API\BulkUploadParseController@parseQuestions');
+        Route::post('/questions/save', 'QuestionController@bulkUpload');
 
         Route::resources(
             [

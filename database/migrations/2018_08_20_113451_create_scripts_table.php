@@ -15,8 +15,8 @@ class CreateScriptsTable extends Migration
     {
         Schema::create('scripts', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id');
-            $table->integer('course_id');
+            $table->integer('user_id')->index('user_id');
+            $table->integer('course_id')->index('course_id');
             $table->text('questions_list');
             $table->text('answers_list');
             $table->integer('time');

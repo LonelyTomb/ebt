@@ -58,7 +58,7 @@ export default {
           window.location.reload();
         })
         .catch(val => {
-          window.UIkit.notification("Incorrect Login Details");
+          window.UIkit.notification("Incorrect Login Details","danger");
         });
     }
   }
