@@ -25,29 +25,19 @@
 </section>
                     <hr>
 
-                    <form class="uk-form uk-form-horizontal" id="upload-question-form" ref="uploadQuestions">
-                        <div>
-                            <label for="course" class="uk-form-label">Course</label>
-                            <div class="uk-form-controls">
-
-                                <select name="course" id="course" v-model="questions.course" class="uk-select">
-                                    <option v-for="course in courses" :key="course.index" :value="course.id" :name="course">{{course.title}}</option>
-                                </select>
-                            </div>
-                        </div>
-                        <hr>
+                    <form class="uk-form uk-form-horizontal" id="bulk-register-form" ref="bulkRegisterForm">
                         <div>
                             <div class="js-upload uk-placeholder uk-text-center" ref="dropZone">
-                                <div v-if="this.questions.list.length == 0">
+                                <div v-if="this.users.length == 0">
                                 <span uk-icon="icon: cloud-upload"></span>
                                 <span class="uk-text-middle">Drop File or</span>
                                 <div uk-form-custom>
-                                    <input type="file" name="list" id="list" class="uk-input" ref="list" @change="fileChange()">
+                                    <input type="file" name="users" id="users" class="uk-input" ref="users" @change="fileChange()">
                                     <span class="uk-link">click here to upload</span>
                                 </div>
                                 </div>
                                 <div v-else class="file-selected uk-tile uk-tile-primary uk-padding-small">
-                                <span>{{this.questions.list.name}}</span>
+                                <span>{{this.users.name}}</span>
                                 <button class="uk-close-large" type="button" uk-close @click="resetInput()"></button>
                             </div>
                             </div>
@@ -61,38 +51,33 @@
                 </div>
             </div>
             <!-- Upload Questions Preview -->
-            <upload-preview :questions="processedList" :course="questions.course" v-else>
+            <bulk-upload-preview :questions="processedList" v-else>
                 <button class="uk-button uk-button-danger" @click="cancel()">Cancel</button>
-            </upload-preview>
+            </bulk-upload-preview>
         </section>
     </article>
 </div>
 </template>
 
 <script>
-import uploadPreview from "./uploadPreview.vue";
+import bulkRegisterPreview from "./bulkRegisterPreview.vue";
 const format = [
-  "question",
-  "option_a",
-  "option_b",
-  "option_c",
-  "option_d",
-  "answer"
+  "surname",
+  "firstname",
+  "othernames",
+  "username",
+  "email",
+  "gender"
 ];
 export default {
-  name: "UploadQuestion",
+  name: "bulkRegisterUsers",
   components: {
-    "upload-preview": uploadPreview
+    "bulk-upload-preview": bulkRegisterPreview
   },
-  props: {
-    courses: Array
-  },
+  props: {},
   data() {
     return {
-      questions: {
-        course: 1,
-        list: []
-      },
+      users: [],
       format,
       processedList: [],
       disabled: true
@@ -130,7 +115,7 @@ export default {
         Capture the files from the drop event and add them to our local files
         array.
       */
-     this.questions.list = e.dataTransfer.files[0];
+     this.users = e.dataTransfer.files[0];
      this.toggleSave();
     }.bind(this));
   },
@@ -139,11 +124,11 @@ export default {
       this.disabled = !this.disabled;
     },
     resetInput() {
-      this.questions.list = [];
+      this.users = [];
       this.toggleSave();
     },
     fileChange() {
-      this.questions.list = this.$refs.list.files[0];
+      this.users = this.$refs.users.files[0];
       this.toggleSave();
     },
     cancel() {
@@ -159,7 +144,7 @@ export default {
         formData.append(key, value);
       });
       window.axios
-        .post("/epanel/questions/parse", formData, {
+        .post("/epanel/register/users", formData, {
           headers: {
             "Content-Type": "multipart/form-data"
           }

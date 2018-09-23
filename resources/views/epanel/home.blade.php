@@ -9,7 +9,7 @@
             <a class="uk-tile uk-tile-small uk-button uk-tile-secondary uk-padding-small uk-button-primary uk-display-block" href="{{route('epanel.register.user')}}">Add New User</a>
         </div>
         <div>
-            <a class="uk-tile uk-tile-small uk-button uk-tile-secondary uk-padding-small uk-button-primary uk-display-block" href="{{route('questions.create')}}">Upload users List</a>
+            <a class="uk-tile uk-tile-small uk-button uk-tile-secondary uk-padding-small uk-button-primary uk-display-block" href="{{route('epanel.register.users')}}">Upload users List</a>
         </div>
 
         <div>

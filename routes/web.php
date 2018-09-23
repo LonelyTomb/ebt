@@ -29,10 +29,16 @@ Route::prefix('epanel')->group(
 
         Route::get('/register/admin', 'Auth\AdminRegisterController@showRegistrationForm')
             ->name('epanel.register.admin');
+        //Register One User
         Route::get('/register/user', 'Auth\RegisterController@showRegistrationForm')
             ->name('epanel.register.user');
         Route::post('/register/user', 'Auth\RegisterController@register')
             ->name('epanel.registerProcess.user');
+        //Register Multiple User
+        Route::get('/register/users', 'Auth\RegisterController@showRegistrationUploadForm')
+            ->name('epanel.register.users');
+        Route::post('/register/users', 'Auth\RegisterController@register')
+            ->name('epanel.registerProcess.users');
 
         /**
          * Reset Admin Password

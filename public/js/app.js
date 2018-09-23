@@ -166,6 +166,7 @@ window.Vue = __webpack_require__(13);
 Vue.component('admin-login-component', __webpack_require__(37));
 Vue.component('login-component', __webpack_require__(40));
 Vue.component('register-component', __webpack_require__(43));
+Vue.component('bulk-register-component', __webpack_require__(70));
 
 /**
  * Courses components
@@ -2722,9 +2723,25 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
-
+var format = ["question", "option_a", "option_b", "option_c", "option_d", "answer"];
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "UploadQuestion",
   components: {
@@ -2739,12 +2756,32 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
         course: 1,
         list: []
       },
+      format: format,
       processedList: [],
       disabled: true
     };
   },
   mounted: function mounted() {
     console.log("Component mounted.");
+    ["drag", "dragstart", "dragend", "dragover", "dragenter", "dragleave", "drop"].forEach(function (evt) {
+      /*
+      For each event add an event listener that prevents the default action
+      (opening the file in the browser) and stop the propagation of the event (so
+      no other elements open the file in the browser)
+      */
+      this.$refs.dropZone.addEventListener(evt, function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }.bind(this), false);
+    }.bind(this));
+    this.$refs.dropZone.addEventListener('drop', function (e) {
+      /*
+        Capture the files from the drop event and add them to our local files
+        array.
+      */
+      this.questions.list = e.dataTransfer.files[0];
+      this.toggleSave();
+    }.bind(this));
   },
 
   methods: {
@@ -3038,6 +3075,42 @@ var render = function() {
                   _vm._v(" "),
                   _c("div", { staticClass: "uk-card-body" }, [
                     _c(
+                      "section",
+                      {
+                        staticClass:
+                          "uk-tile-muted uk-tile uk-tile-xsmall uk-padding-small"
+                      },
+                      [
+                        _c(
+                          "small",
+                          { staticClass: "uk-padding-remove uk-margin-small" },
+                          [
+                            _vm._v(
+                              "\n                            Document must be in excel format and must have the below format as the first row in the excel sheet\n                        "
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "table",
+                          { staticClass: "uk-table uk-table-responsive" },
+                          [
+                            _c("thead", [
+                              _c(
+                                "tr",
+                                _vm._l(_vm.format, function(heading) {
+                                  return _c("th", [_vm._v(_vm._s(heading))])
+                                })
+                              )
+                            ])
+                          ]
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("hr"),
+                    _vm._v(" "),
+                    _c(
                       "form",
                       {
                         ref: "uploadQuestions",
@@ -3111,6 +3184,7 @@ var render = function() {
                           _c(
                             "div",
                             {
+                              ref: "dropZone",
                               staticClass:
                                 "js-upload uk-placeholder uk-text-center"
                             },
@@ -3432,6 +3506,26 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "UploadQuestion",
@@ -3456,6 +3550,9 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
   mounted: function mounted() {},
 
   methods: {
+    resetPicture: function resetPicture() {
+      this.question.picture = [];
+    },
     toggleUpload: function toggleUpload() {
       this.uploadPicture = !this.uploadPicture;
       if (this.uploadPicture == false) {
@@ -3610,7 +3707,8 @@ var render = function() {
                           name: "question",
                           id: "question",
                           cols: "10",
-                          rows: "5"
+                          rows: "5",
+                          required: ""
                         },
                         domProps: { value: _vm.question.text },
                         on: {
@@ -3998,28 +4096,92 @@ var render = function() {
                     _vm._v(" "),
                     _vm.uploadPicture === true
                       ? _c("div", [
-                          _c(
-                            "label",
-                            {
-                              staticClass: "uk-form-label",
-                              attrs: { for: "picture" }
-                            },
-                            [_vm._v("File")]
-                          ),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "uk-form-controls" }, [
-                            _c("input", {
-                              ref: "picture",
-                              staticClass: "uk-input",
-                              attrs: {
-                                type: "file",
-                                name: "picture",
-                                id: "picture"
+                          _c("div", [
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "js-upload uk-placeholder uk-text-center"
                               },
-                              on: {
-                                change: function($event) {
-                                  _vm.pictureChange()
-                                }
+                              [
+                                this.question.picture.length == 0
+                                  ? _c("div", [
+                                      _c("span", {
+                                        attrs: {
+                                          "uk-icon": "icon: cloud-upload"
+                                        }
+                                      }),
+                                      _vm._v(" "),
+                                      _c(
+                                        "span",
+                                        { staticClass: "uk-text-middle" },
+                                        [_vm._v("Drop File or")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        { attrs: { "uk-form-custom": "" } },
+                                        [
+                                          _c("input", {
+                                            ref: "picture",
+                                            staticClass: "uk-input",
+                                            attrs: {
+                                              type: "file",
+                                              name: "picture",
+                                              id: "picture"
+                                            },
+                                            on: {
+                                              change: function($event) {
+                                                _vm.pictureChange()
+                                              }
+                                            }
+                                          }),
+                                          _vm._v(" "),
+                                          _c(
+                                            "span",
+                                            { staticClass: "uk-link" },
+                                            [_vm._v("click here to upload")]
+                                          )
+                                        ]
+                                      )
+                                    ])
+                                  : _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "file-selected uk-tile uk-tile-primary uk-padding-small"
+                                      },
+                                      [
+                                        _c("span", [
+                                          _vm._v(
+                                            _vm._s(this.question.picture.name)
+                                          )
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("button", {
+                                          staticClass: "uk-close-large",
+                                          attrs: {
+                                            type: "button",
+                                            "uk-close": ""
+                                          },
+                                          on: {
+                                            click: function($event) {
+                                              _vm.resetPicture()
+                                            }
+                                          }
+                                        })
+                                      ]
+                                    )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c("progress", {
+                              staticClass: "uk-progress",
+                              attrs: {
+                                id: "js-progressbar",
+                                value: "0",
+                                max: "100",
+                                hidden: ""
                               }
                             })
                           ])
@@ -4076,6 +4238,509 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 64 */,
+/* 65 */,
+/* 66 */,
+/* 67 */,
+/* 68 */,
+/* 69 */,
+/* 70 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(73)
+}
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(71)
+/* template */
+var __vue_template__ = __webpack_require__(75)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-9f877056"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/auth/bulkRegister.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-9f877056", Component.options)
+  } else {
+    hotAPI.reload("data-v-9f877056", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 71 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__bulkRegisterPreview_vue__ = __webpack_require__(76);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__bulkRegisterPreview_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__bulkRegisterPreview_vue__);
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+var format = ["surname", "firstname", "othernames", "username", "email", "gender"];
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "bulkRegisterUsers",
+  components: {
+    "bulk-upload-preview": __WEBPACK_IMPORTED_MODULE_0__bulkRegisterPreview_vue___default.a
+  },
+  props: {},
+  data: function data() {
+    return {
+      users: [],
+      format: format,
+      processedList: [],
+      disabled: true
+    };
+  },
+  mounted: function mounted() {
+    console.log("Component mounted.");
+    ["drag", "dragstart", "dragend", "dragover", "dragenter", "dragleave", "drop"].forEach(function (evt) {
+      /*
+      For each event add an event listener that prevents the default action
+      (opening the file in the browser) and stop the propagation of the event (so
+      no other elements open the file in the browser)
+      */
+      this.$refs.dropZone.addEventListener(evt, function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }.bind(this), false);
+    }.bind(this));
+    this.$refs.dropZone.addEventListener('drop', function (e) {
+      /*
+        Capture the files from the drop event and add them to our local files
+        array.
+      */
+      this.users = e.dataTransfer.files[0];
+      this.toggleSave();
+    }.bind(this));
+  },
+
+  methods: {
+    toggleSave: function toggleSave() {
+      this.disabled = !this.disabled;
+    },
+    resetInput: function resetInput() {
+      this.users = [];
+      this.toggleSave();
+    },
+    fileChange: function fileChange() {
+      this.users = this.$refs.users.files[0];
+      this.toggleSave();
+    },
+    cancel: function cancel() {
+      this.processedList = [];
+    },
+    upload: function upload(form) {
+      var _this = this;
+
+      var bar = document.getElementById("js-progressbar");
+      var formData = new FormData();
+      /*
+          *Add the form data we need to submit
+      */
+      Object.entries(form).forEach(function (_ref) {
+        var _ref2 = _slicedToArray(_ref, 2),
+            key = _ref2[0],
+            value = _ref2[1];
+
+        formData.append(key, value);
+      });
+      window.axios.post("/epanel/register/users", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data"
+        }
+      }).then(function (res) {
+        _this.processedList = res.data;
+      }).catch(function (error) {
+        window.UIkit.notification("Unable to complete! Please try again", "danger");
+      });
+    }
+  }
+});
+
+/***/ }),
+/* 72 */,
+/* 73 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(74);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(53)("1a3b7844", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-9f877056\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/sass-loader/lib/loader.js!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./bulkRegister.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-9f877056\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/sass-loader/lib/loader.js!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./bulkRegister.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 74 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(52)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.uk-form-custom[data-v-9f877056]:hover {\n  cursor: pointer !important;\n}\n.uk-close-large[data-v-9f877056] {\n  position: absolute;\n  right: 4%;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 75 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "courses-container" }, [
+    _c("article", { staticClass: "uk-article" }, [
+      _c(
+        "section",
+        { staticClass: "uk-section" },
+        [
+          _vm.processedList.length == 0
+            ? _c(
+                "div",
+                {
+                  staticClass:
+                    "uk-card uk-card-default uk-width-1-2@m uk-margin-auto"
+                },
+                [
+                  _vm._m(0),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "uk-card-body" }, [
+                    _c(
+                      "section",
+                      {
+                        staticClass:
+                          "uk-tile-muted uk-tile uk-tile-xsmall uk-padding-small"
+                      },
+                      [
+                        _c(
+                          "small",
+                          { staticClass: "uk-padding-remove uk-margin-small" },
+                          [
+                            _vm._v(
+                              "\n                            Document must be in excel format and must have the below format as the first row in the excel sheet\n                        "
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "table",
+                          { staticClass: "uk-table uk-table-responsive" },
+                          [
+                            _c("thead", [
+                              _c(
+                                "tr",
+                                _vm._l(_vm.format, function(heading) {
+                                  return _c("th", [_vm._v(_vm._s(heading))])
+                                })
+                              )
+                            ])
+                          ]
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("hr"),
+                    _vm._v(" "),
+                    _c(
+                      "form",
+                      {
+                        ref: "bulkRegisterForm",
+                        staticClass: "uk-form uk-form-horizontal",
+                        attrs: { id: "bulk-register-form" }
+                      },
+                      [
+                        _c("div", [
+                          _c(
+                            "div",
+                            {
+                              ref: "dropZone",
+                              staticClass:
+                                "js-upload uk-placeholder uk-text-center"
+                            },
+                            [
+                              this.users.length == 0
+                                ? _c("div", [
+                                    _c("span", {
+                                      attrs: { "uk-icon": "icon: cloud-upload" }
+                                    }),
+                                    _vm._v(" "),
+                                    _c(
+                                      "span",
+                                      { staticClass: "uk-text-middle" },
+                                      [_vm._v("Drop File or")]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "div",
+                                      { attrs: { "uk-form-custom": "" } },
+                                      [
+                                        _c("input", {
+                                          ref: "users",
+                                          staticClass: "uk-input",
+                                          attrs: {
+                                            type: "file",
+                                            name: "users",
+                                            id: "users"
+                                          },
+                                          on: {
+                                            change: function($event) {
+                                              _vm.fileChange()
+                                            }
+                                          }
+                                        }),
+                                        _vm._v(" "),
+                                        _c("span", { staticClass: "uk-link" }, [
+                                          _vm._v("click here to upload")
+                                        ])
+                                      ]
+                                    )
+                                  ])
+                                : _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "file-selected uk-tile uk-tile-primary uk-padding-small"
+                                    },
+                                    [
+                                      _c("span", [
+                                        _vm._v(_vm._s(this.users.name))
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("button", {
+                                        staticClass: "uk-close-large",
+                                        attrs: {
+                                          type: "button",
+                                          "uk-close": ""
+                                        },
+                                        on: {
+                                          click: function($event) {
+                                            _vm.resetInput()
+                                          }
+                                        }
+                                      })
+                                    ]
+                                  )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c("progress", {
+                            staticClass: "uk-progress",
+                            attrs: {
+                              id: "js-progressbar",
+                              value: "0",
+                              max: "100",
+                              hidden: ""
+                            }
+                          })
+                        ])
+                      ]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "uk-card-footer" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "uk-button uk-button-primary",
+                        attrs: {
+                          form: "upload-question-form",
+                          disabled: _vm.disabled
+                        },
+                        on: {
+                          click: function($event) {
+                            $event.preventDefault()
+                            _vm.upload(_vm.questions)
+                          }
+                        }
+                      },
+                      [_vm._v("Preview")]
+                    )
+                  ])
+                ]
+              )
+            : _c(
+                "bulk-upload-preview",
+                { attrs: { questions: _vm.processedList } },
+                [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "uk-button uk-button-danger",
+                      on: {
+                        click: function($event) {
+                          _vm.cancel()
+                        }
+                      }
+                    },
+                    [_vm._v("Cancel")]
+                  )
+                ]
+              )
+        ],
+        1
+      )
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "uk-card-header" }, [
+      _c("h3", { staticClass: "uk-heading" }, [_vm._v("Upload Question")])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-9f877056", module.exports)
+  }
+}
+
+/***/ }),
+/* 76 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = null
+/* template */
+var __vue_template__ = null
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/auth/bulkRegisterPreview.vue"
+
+module.exports = Component.exports
+
 
 /***/ })
 ],[14]);

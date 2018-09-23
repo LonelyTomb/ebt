@@ -55,6 +55,16 @@ class RegisterController extends Controller
         return view('auth.register', compact('courses'));
     }
     /**
+     * Show the application registration upload form.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showRegistrationUploadForm()
+    {
+
+        return view('auth.bulkRegister');
+    }
+    /**
      * Get a validator for an incoming registration request.
      *
      * @param  Illuminate\Http\Request  $request
@@ -136,6 +146,11 @@ class RegisterController extends Controller
 
         // ?: redirect($this->redirectPath());
         return ['status' => 'success', 'message' => 'Registeration Successful'];
+    }
+
+    public function bulkRegister(Request $request)
+    {
+
     }
     /**
      * Get the guard to be used during registration.

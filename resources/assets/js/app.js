@@ -27,6 +27,7 @@ window.Vue = require('vue');
 Vue.component('admin-login-component', require('./components/epanel/auth/login.vue'));
 Vue.component('login-component', require('./components/auth/login.vue'));
 Vue.component('register-component', require('./components/auth/register.vue'));
+Vue.component('bulk-register-component', require('./components/auth/bulkRegister.vue'));
 
 /**
  * Courses components
