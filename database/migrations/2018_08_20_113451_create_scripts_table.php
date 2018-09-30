@@ -19,6 +19,7 @@ class CreateScriptsTable extends Migration
             $table->integer('course_id')->index('course_id');
             $table->text('questions_list');
             $table->text('answers_list');
+            $table->integer('score');
             $table->integer('time');
             $table->timestamps();
         });

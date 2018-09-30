@@ -23,23 +23,32 @@ window.Vue = require('vue');
 
 /**
  * Logon components
- */
+ **/
+
 Vue.component('admin-login-component', require('./components/epanel/auth/login.vue'));
 Vue.component('login-component', require('./components/auth/login.vue'));
 Vue.component('register-component', require('./components/auth/register.vue'));
 Vue.component('bulk-register-component', require('./components/auth/bulkRegister.vue'));
+Vue.component('bulk-register-preview-component', require('./components/auth/bulkRegisterPreview.vue'));
 
 /**
  * Courses components
- */
+ **/
+
 Vue.component('create-course', require('./components/epanel/courses/create.vue'));
 
 /**
  * Questions components
- */
+ **/
+
 Vue.component('upload-questions', require('./components/epanel/questions/upload.vue'));
 // Vue.component('preview-upload-questions', require('./components/epanel/questions/uploadPreview.vue'));
 Vue.component('input-question', require('./components/epanel/questions/input.vue'));
+
+/**
+ * User Components
+ * */
+Vue.component('home-component', require('./components/user/home.vue'));
 
 
 const app = new Vue({

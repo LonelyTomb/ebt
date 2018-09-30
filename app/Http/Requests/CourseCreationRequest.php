@@ -28,6 +28,8 @@ class CourseCreationRequest extends FormRequest
             'code' => 'required|string',
             'questions' => 'required|integer',
             'duration' => 'required|integer',
+            'startTime'=>'nullable|date',
+            'stopTime'=>'nullable|date'
         ];
     }
 }

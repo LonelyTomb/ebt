@@ -12,7 +12,7 @@ class Course extends Model
      * @var array
      */
     protected $fillable = [
-        'title', 'code', 'questions', 'duration', 'status','points'
+        'title', 'code', 'questions', 'duration', 'status','points','alwaysAvailable','start_time','stop_time'
     ];
 
      /**

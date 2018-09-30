@@ -158,8 +158,9 @@ export default {
       Object.entries(form).forEach(([key, value]) => {
         formData.append(key, value);
       });
+
       window.axios
-        .post("/epanel/questions/parse", formData, {
+        .post("/epanel/files/parse", formData, {
           headers: {
             "Content-Type": "multipart/form-data"
           }

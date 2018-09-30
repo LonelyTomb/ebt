@@ -22,6 +22,9 @@ class CreateCoursesTable extends Migration
             $table->integer('duration');
             $table->integer('points');
             $table->boolean('status')->default(1);
+            $table->boolean('alwaysAvailable')->default(1);
+            $table->timestamp('start_time')->nullable();
+            $table->timestamp('stop_time')->nullable();
             $table->timestamps();
         });
     }

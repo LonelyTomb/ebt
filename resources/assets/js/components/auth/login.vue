@@ -3,8 +3,8 @@
     <article class="uk-article">
         <!-- <h2 class="">Admin Login</h2> -->
         <section class="uk-section uk-section-default">
-<div class="uk-card uk-card-default uk-width-1-2@m uk-margin-auto">
-<div class="uk-card-header">
+<div class="uk-card uk-card-default uk-width-1-2@m uk-margin-auto uk-box-shadow-large">
+<div class="uk-card-header uk-card-secondary">
     <h3 class="uk-heading">Login</h3>
 </div>
 <div class="uk-card-body">

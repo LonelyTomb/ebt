@@ -18,7 +18,7 @@ class BulkUploadParseController extends Controller
 
     }
 
-    public function parseQuestions(Request $request)
+    public function parseFile(Request $request)
     {
         if ($request->hasFile('list')) {
             if ($request->file('list')->isValid()) {

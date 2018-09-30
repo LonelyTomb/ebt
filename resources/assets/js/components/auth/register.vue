@@ -2,8 +2,8 @@
 <div class="register-container">
     <article class="uk-article uk-background-muted">
         <!-- <h2 class="">Register User</h2> -->
-        <section class="uk-section">
-            <div class="uk-card uk-card-default uk-width-1-2@m uk-margin-auto">
+        <section class="uk-section uk-container-small uk-container">
+            <div class="uk-card uk-card-default uk-margin-auto">
                 <div class="uk-card-header uk-card-primary">
                     <h3 class="uk-heading">Add New User</h3>
                 </div>
@@ -103,7 +103,7 @@
                         <hr class="uk-divider-small">
                     </form>
                 </div>
-                <div class="uk-card-footer">
+                <div class="uk-card-footer uk-card-secondary">
                     <button class="uk-button uk-button-primary" form="login-form" @click.prevent="submit(user)" type="submit">Register</button>
                 </div>
             </div>

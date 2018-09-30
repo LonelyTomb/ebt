@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CourseCreationRequest;
 use App\Models\Course;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
@@ -53,6 +54,11 @@ class CourseController extends Controller
         $course->questions = $request->questions;
         $course->points = $request->points;
         $course->duration = $request->duration;
+        $course->alwaysAvailable = $request->alwaysAvailable;
+        if(!$request->alwaysAvailable){
+            $course->start_time = new Carbon($request->startTime);
+            $course->stop_time = new Carbon($request->stopTime);
+        }
 
         $course->save();
         return ['status' => 'success'];
