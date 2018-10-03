@@ -37,7 +37,7 @@ Route::prefix('epanel')->group(
         //Register Multiple User
         Route::get('/register/users', 'Auth\RegisterController@showRegistrationUploadForm')
             ->name('epanel.register.users');
-        Route::post('/register/users', 'Auth\RegisterController@register')
+        Route::post('/register/users', 'Auth\RegisterController@bulkRegister')
             ->name('epanel.registerProcess.users');
 
         /**

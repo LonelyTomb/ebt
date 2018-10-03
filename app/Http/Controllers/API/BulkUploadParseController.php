@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Rap2hpoutre\FastExcel\FastExcel;
 
+use Illuminate\Pagination\LengthAwarePaginator;
+
 class BulkUploadParseController extends Controller
 {
     /**
@@ -18,13 +20,20 @@ class BulkUploadParseController extends Controller
 
     }
 
+    /**
+     * Process Uploaded Excel Sheet
+     *
+     * @param Request $request input tag name must be 'list'
+     * @return void
+     */
     public function parseFile(Request $request)
     {
         if ($request->hasFile('list')) {
             if ($request->file('list')->isValid()) {
                 $path = $request->file('list')->getRealPath();
                 $collection = (new FastExcel)->import($path);
-                return $collection;
+                // $pagination = new LengthAwarePaginator($collection,$collection->count(),5);
+                return ['collection' => $collection->chunk(10)];
             }
         }
     }

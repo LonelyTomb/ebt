@@ -129,6 +129,7 @@ class RegisterController extends Controller
         }
         return $user;
     }
+
     /**
      * Handle a registration request for the application.
      *
@@ -148,10 +149,30 @@ class RegisterController extends Controller
         return ['status' => 'success', 'message' => 'Registeration Successful'];
     }
 
-    public function bulkRegister(Request $request)
-    {
+    /**
+     * Handle bulk registration requests for the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function bulkRegister(Request $requests){
 
+        $count = 0;
+        foreach($requests->users as $request){
+            $user = new User();
+            $user->surname = $request['surname'];
+            $user->firstname = $request['firstname'];
+            $user->othernames = $request['othernames'];
+            $user->username = $request['username'];
+            $user->gender = $request['gender'];
+            $user->email = $request['email'];
+            $user->password = Hash::make($request['surname']);
+            $user->save();
+            $count++;
+        }
+        return ['status' => 'success', 'message' => 'Bulk Registeration Successful','count'=>$count];
     }
+
     /**
      * Get the guard to be used during registration.
      *

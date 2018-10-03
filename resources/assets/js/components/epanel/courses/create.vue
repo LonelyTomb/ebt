@@ -69,7 +69,7 @@
                         </div>
                     </form>
                 </div>
-                <div class="uk-card-footer">
+                <div class="uk-card-footer uk-card-secondary">
                     <button class="uk-button uk-button-primary uk-box-shadow-hover-medium" form="course-creation-form" @click.prevent="submit(course)">Create</button>
                 </div>
             </div>

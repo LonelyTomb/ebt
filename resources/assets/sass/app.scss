@@ -1,5 +1,5 @@
 $global-primary-background: #29398C;
-$global-secondary-background: #201E27;
+$global-secondary-background: #201e27;
 $global-danger-background: #782228;
 $global-warning-background: #89215C;
 $global-success-background: #37FFA6;
@@ -9,11 +9,11 @@ $global-success-background: #37FFA6;
 // 4. Import UIkit.
 @import "~uikit/src/scss/uikit-theme.scss";
 div>a:hover:not(.uk-hover-none) {
-    box-shadow: 0 14px 25px rgba(0, 0, 0, 0.16);
+    box-shadow: 0 14px 25px rgba($global-secondary-background, 0.16);
 }
 
 .uk-notification {
-    box-shadow: 0 14px 25px rgba(0, 0, 0, 0.16);
+    box-shadow: 0 14px 25px rgba($global-secondary-background, 0.16);
 }
 
 body {

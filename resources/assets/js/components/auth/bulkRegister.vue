@@ -157,7 +157,7 @@
                         }
                     })
                     .then(res => {
-                        this.processedList = res.data;
+                        this.processedList = res.data.collection;
                     })
                     .catch(error => {
                         window.UIkit.notification(

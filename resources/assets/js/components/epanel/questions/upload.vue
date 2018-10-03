@@ -5,8 +5,8 @@
         <section class="uk-section">
             <!-- Form View -->
             <div class="uk-card uk-card-default uk-width-1-2@m uk-margin-auto" v-if="processedList.length == 0">
-                <div class="uk-card-header">
-                    <h3 class="uk-heading">Upload Question</h3>
+                <div class="uk-card-header uk-card-primary">
+                    <h3 class="uk-heading">Upload Questions</h3>
                 </div>
                 <div class="uk-card-body">
 
@@ -15,7 +15,7 @@
                             Document must be in excel format and must have the below format as the first row in the excel sheet
                         </small>
 
-                        <table class="uk-table uk-table-responsive">
+                        <table class="uk-table uk-table-responsive uk-table-small uk-background-secondary">
                             <thead>
                                 <tr>
                                 <th v-for="heading in format">{{heading}}</th>
@@ -56,7 +56,7 @@
                         </div>
                     </form>
                 </div>
-                <div class="uk-card-footer">
+                <div class="uk-card-footer uk-card-secondary">
                     <button class="uk-button uk-button-primary" form="upload-question-form" @click.prevent="upload(questions)" :disabled="disabled">Preview</button>
                 </div>
             </div>
@@ -166,7 +166,7 @@ export default {
           }
         })
         .then(res => {
-          this.processedList = res.data;
+          this.processedList = res.data.collection;
         })
         .catch(error => {
           window.UIkit.notification(

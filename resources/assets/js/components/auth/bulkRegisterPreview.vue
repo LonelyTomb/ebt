@@ -7,12 +7,12 @@
                     <thead>
                         <tr>
                             <th></th>
-                            <th v-for="(param,key) in users[0]"> {{key.replace(/_/,' ')}}</th>
+                            <th v-for="(param,key) in users[0][0]"> {{key.replace(/_/,' ')}}</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="(user,key) in users">
-                            <td>{{key + 1}}</td>
+                        <tr v-for="(user,key) in chunkedResult()">
+                            <td>{{Number(key) + 1}}</td>
                             <td>{{user.surname}}</td>
                             <td>{{user.firstname}}</td>
                             <td>{{user.othernames}}</td>
@@ -22,6 +22,16 @@
                         </tr>
                     </tbody>
                 </table>
+            </div>
+            <div>
+            <ul class="uk-pagination">
+                    <li v-if="index !== 0">
+                        <a class="uk-button uk-button-link" @click.prevent="index-=1"><span class="uk-margin-small-right" uk-pagination-previous ></span> Previous</a>
+                        </li>
+                     <li class="uk-margin-auto-left" v-if="index < users.length-1">
+                         <a @click.prevent="++index" class="uk-button uk-button-link">Next <span class="uk-margin-small-left" uk-pagination-next></span></a>
+                     </li>
+                </ul>
             </div>
         </div>
         <div class="uk-card-footer uk-card-secondary">
@@ -40,16 +50,21 @@ export default {
     users: Array
   },
   data() {
-    return {};
+    return {
+        index:0
+    };
   },
   methods: {
+      chunkedResult() {
+      return this.users[this.index];
+    },
     closeModal() {
       window.UIkit.modal(document.querySelector(".uk-modal")).hide();
     },
     save() {
       window.UIkit.modal.alert("Saving to Database. Please Wait");
       window.axios
-        .post("/epanel/users/save", {
+        .post("/epanel/register/users", {
           users: this.users
         })
         .then(res => {

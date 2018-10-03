@@ -2424,7 +2424,7 @@ select.uk-form-width-xsmall {
  */
 
 .uk-button-secondary {
-  background-color: #201E27;
+  background-color: #201e27;
   color: #fff;
   border: 1px solid transparent;
 }
@@ -2765,7 +2765,7 @@ select.uk-form-width-xsmall {
  */
 
 .uk-section-secondary {
-  background: #201E27;
+  background: #201e27;
 }
 
 /* Overlap modifier
@@ -3436,7 +3436,7 @@ select.uk-form-width-xsmall {
  */
 
 .uk-tile-secondary {
-  background: #201E27;
+  background: #201e27;
 }
 
 /* ========================================================================
@@ -3616,7 +3616,7 @@ select.uk-form-width-xsmall {
  */
 
 .uk-card-secondary {
-  background: #201E27;
+  background: #201e27;
   color: #fff;
   -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
           box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
@@ -3627,7 +3627,7 @@ select.uk-form-width-xsmall {
 }
 
 .uk-card-secondary.uk-card-hover:hover {
-  background-color: #201E27;
+  background-color: #201e27;
   -webkit-box-shadow: 0 14px 25px rgba(0, 0, 0, 0.16);
           box-shadow: 0 14px 25px rgba(0, 0, 0, 0.16);
 }
@@ -3929,7 +3929,7 @@ select.uk-form-width-xsmall {
 
 .uk-marker {
   padding: 5px;
-  background: #201E27;
+  background: #201e27;
   color: #fff;
   border-radius: 500px;
 }
@@ -7058,7 +7058,7 @@ ul.uk-nav-sub {
           box-sizing: border-box;
   width: 270px;
   padding: 20px 20px;
-  background: #201E27;
+  background: #201e27;
   /* 3 */
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
@@ -9950,7 +9950,7 @@ iframe.uk-cover {
 }
 
 .uk-background-secondary {
-  background-color: #201E27;
+  background-color: #201e27;
 }
 
 /* Size
@@ -15183,13 +15183,13 @@ iframe.uk-cover {
 }
 
 div > a:hover:not(.uk-hover-none) {
-  -webkit-box-shadow: 0 14px 25px rgba(0, 0, 0, 0.16);
-          box-shadow: 0 14px 25px rgba(0, 0, 0, 0.16);
+  -webkit-box-shadow: 0 14px 25px rgba(32, 30, 39, 0.16);
+          box-shadow: 0 14px 25px rgba(32, 30, 39, 0.16);
 }
 
 .uk-notification {
-  -webkit-box-shadow: 0 14px 25px rgba(0, 0, 0, 0.16);
-          box-shadow: 0 14px 25px rgba(0, 0, 0, 0.16);
+  -webkit-box-shadow: 0 14px 25px rgba(32, 30, 39, 0.16);
+          box-shadow: 0 14px 25px rgba(32, 30, 39, 0.16);
 }
 
 body {
