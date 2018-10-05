@@ -26,11 +26,11 @@
 <hr class="uk-divider-icon">
 <section class="uk-section uk-section-default uk-container uk-card uk-card-default uk-card-hover">
     <div class="uk-card-header">
-        <h3 class="uk-card-title uk-text-center">Data Capture</h3>
+        <h3 class="uk-card-title uk-text-center">Data Management</h3>
     </div>
     <div class="uk-child-width-1-3@m uk-child-width-1-1@s uk-grid-margin uk-grid uk-card-body" uk-grid>
         <div>
-            <a class="uk-tile uk-tile-small uk-button uk-tile-secondary uk-padding-small uk-button-primary uk-display-block">User Controls</a>
+        <a href="{{route('users.index')}}" class="uk-tile uk-tile-small uk-button uk-tile-secondary uk-padding-small uk-button-primary uk-display-block">User Controls</a>
         </div>
         <div>
             <a class="uk-tile uk-tile-small uk-button uk-tile-secondary uk-padding-small uk-button-primary uk-display-block">Course Controls</a>

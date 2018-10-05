@@ -12,21 +12,31 @@
  */
 Auth::routes();
 
+/**
+ * Home
+ */
 Route::get('/', 'HomeController@index')->name('welcome');
 Route::get('/home', 'HomeController@home')->name('home');
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::prefix('epanel')->group(
     function () {
+        /**
+         * Admin Home
+         */
         Route::get('/', 'AdminController@index')->name('epanel');
-
+        /**
+         * Admin Logon
+         */
         Route::get('/login', 'Auth\AdminLoginController@showLoginForm')
             ->name('epanel.login');
         Route::post('/login', 'Auth\AdminLoginController@login')
             ->name('epanel.processLogin');
         Route::get('/logout', 'Auth\AdminLoginController@logout')
             ->name('epanel.logout');
-
+        /**
+         * User Registrations
+         */
         Route::get('/register/admin', 'Auth\AdminRegisterController@showRegistrationForm')
             ->name('epanel.register.admin');
         //Register One User
@@ -52,13 +62,26 @@ Route::prefix('epanel')->group(
             }
         );
 
-        Route::get('/questions/upload', 'QuestionController@upload')->name('questions.upload');
-        Route::get('/questions/upload/preview', 'QuestionController@uploadPreview')->name('questions.upload.preview');
-
+        /**
+         * File Upload Parsing
+         */
         Route::post('/files/parse', 'API\BulkUploadParseController@parseFile');
 
+        /**
+         * Questions Management
+         */
+        Route::get('/questions/upload', 'QuestionController@upload')->name('questions.upload');
+        Route::get('/questions/upload/preview', 'QuestionController@uploadPreview')->name('questions.upload.preview');
         Route::post('/questions/save', 'QuestionController@bulkUpload');
 
+
+        /**
+         * User Management
+         */
+        Route::get('/users/index','AdminController@listUsers')->name('users.index');
+        /**
+         * Route Resources
+         */
         Route::resources(
             [
                 'courses' => 'CourseController',

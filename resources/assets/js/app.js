@@ -46,6 +46,11 @@ Vue.component('upload-questions', require('./components/epanel/questions/upload.
 Vue.component('input-question', require('./components/epanel/questions/input.vue'));
 
 /**
+ * User Management Components
+ */
+Vue.component('user-controls-component', require('./components/epanel/users/userControls.vue'))
+
+/**
  * User Components
  * */
 Vue.component('home-component', require('./components/user/home.vue'));
