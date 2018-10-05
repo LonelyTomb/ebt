@@ -5447,7 +5447,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -5503,21 +5503,46 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "UserControls",
   props: {
-    users: Array
+    usersList: Array
   },
   data: function data() {
     return {
-      index: 0
+      num: 0,
+      users: this.usersList,
+      selectedUsers: [],
+      searchTerm: "",
+      searchAttrs: ["surname", "firstname", "othernames", "username"]
     };
   },
+  mounted: function mounted() {},
 
   methods: {
     chunkedResult: function chunkedResult() {
-      return this.users[this.index];
+      return this.users[this.num];
+    },
+    filterUsers: function filterUsers() {
+      var _this = this;
+
+      this.searchTerm = this.searchTerm.toLowerCase();
+      //If search is empty return unmodified array
+      if (this.searchTerm == "") {
+        this.users = this.usersList;
+        return;
+      }
+      //Return filtered array
+      this.users = this.usersList.map(function (userChunk) {
+        return Object.values(userChunk).filter(function (user) {
+          return _this.searchAttrs.some(function (search) {
+            return user[search].toLowerCase().includes(_this.searchTerm) || user.gender === _this.searchTerm;
+          });
+        });
+      });
     }
   }
 });
@@ -5532,7 +5557,34 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("section", { staticClass: "uk-container uk-section" }, [
     _c("div", { staticClass: "uk-card uk-card-default" }, [
-      _c("div", { staticClass: "uk-card-header" }),
+      _c("div", { staticClass: "uk-card-header" }, [
+        _c("div", { staticClass: "uk-search uk-search-default" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.searchTerm,
+                expression: "searchTerm"
+              }
+            ],
+            staticClass: "uk-search-input uk-search-toggle",
+            attrs: { type: "search", placeholder: "Search" },
+            domProps: { value: _vm.searchTerm },
+            on: {
+              keyup: function($event) {
+                _vm.filterUsers()
+              },
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.searchTerm = $event.target.value
+              }
+            }
+          })
+        ])
+      ]),
       _vm._v(" "),
       _c("div", { staticClass: "uk-card-body" }, [
         _c("div", { staticClass: "uk-overflow-auto" }, [
@@ -5568,16 +5620,51 @@ var render = function() {
                     [
                       _c("td", [
                         _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.selectedUsers,
+                              expression: "selectedUsers"
+                            }
+                          ],
                           staticClass: "uk-checkbox",
                           attrs: { type: "checkbox", name: "", id: "" },
-                          domProps: { value: user.id }
+                          domProps: {
+                            value: user.id,
+                            checked: Array.isArray(_vm.selectedUsers)
+                              ? _vm._i(_vm.selectedUsers, user.id) > -1
+                              : _vm.selectedUsers
+                          },
+                          on: {
+                            change: function($event) {
+                              var $$a = _vm.selectedUsers,
+                                $$el = $event.target,
+                                $$c = $$el.checked ? true : false
+                              if (Array.isArray($$a)) {
+                                var $$v = user.id,
+                                  $$i = _vm._i($$a, $$v)
+                                if ($$el.checked) {
+                                  $$i < 0 &&
+                                    (_vm.selectedUsers = $$a.concat([$$v]))
+                                } else {
+                                  $$i > -1 &&
+                                    (_vm.selectedUsers = $$a
+                                      .slice(0, $$i)
+                                      .concat($$a.slice($$i + 1)))
+                                }
+                              } else {
+                                _vm.selectedUsers = $$c
+                              }
+                            }
+                          }
                         })
                       ]),
                       _vm._v(" "),
                       _c("td", [
                         _vm._v(
                           "\n                                " +
-                            _vm._s(index + 1) +
+                            _vm._s(Number(index) + 1) +
                             "\n                            "
                         )
                       ]),
@@ -5599,7 +5686,7 @@ var render = function() {
       _vm._v(" "),
       _c("div", { staticClass: "uk-card-footer" }, [
         _c("ul", { staticClass: "uk-pagination" }, [
-          _vm.index !== 0
+          _vm.num !== 0
             ? _c("li", [
                 _c(
                   "a",
@@ -5608,7 +5695,7 @@ var render = function() {
                     on: {
                       click: function($event) {
                         $event.preventDefault()
-                        _vm.index -= 1
+                        _vm.num -= 1
                       }
                     }
                   },
@@ -5623,7 +5710,7 @@ var render = function() {
               ])
             : _vm._e(),
           _vm._v(" "),
-          _vm.index < _vm.users.length - 1
+          _vm.num < _vm.users.length - 1
             ? _c("li", { staticClass: "uk-margin-auto-left" }, [
                 _c(
                   "a",
@@ -5632,7 +5719,7 @@ var render = function() {
                     on: {
                       click: function($event) {
                         $event.preventDefault()
-                        ++_vm.index
+                        ++_vm.num
                       }
                     }
                   },
