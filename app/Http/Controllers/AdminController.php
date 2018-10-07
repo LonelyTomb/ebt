@@ -21,14 +21,14 @@ class AdminController extends Controller
     /**
      * Format Users List
      *
-     * @param integer $limit
+     *
      * @return \Illuminate\Support\Collection
      */
-    public function getUsers(int $limit = 4): \Illuminate\Support\Collection
+    public function getUsers(): \Illuminate\Support\Collection
     {
         return $this->users->transform(function ($user, $key) {
             return collect($user)->except(['picture', 'login_time', 'logout_time', 'created_at', 'updated_at'])->all();
-        })->chunk($limit);
+        });
     }
 
     /**

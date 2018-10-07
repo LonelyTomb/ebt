@@ -2611,13 +2611,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
   data: function data() {
     return {
-      index: 0
+      offset: 0,
+      limit: 6
     };
   },
 
   methods: {
     chunkedResult: function chunkedResult() {
-      return this.users[this.index];
+      if (this.offset == 0) {
+        return this.users.slice(this.offset, this.limit);
+      } else {
+        return this.users.slice(this.limit * this.offset, this.limit * (this.offset + 1));
+      }
     },
     closeModal: function closeModal() {
       window.UIkit.modal(document.querySelector(".uk-modal")).hide();
@@ -2669,7 +2674,7 @@ var render = function() {
                   [
                     _c("th"),
                     _vm._v(" "),
-                    _vm._l(_vm.users[0][0], function(param, key) {
+                    _vm._l(_vm.users[0], function(param, key) {
                       return _c("th", [
                         _vm._v(" " + _vm._s(key.replace(/_/, " ")))
                       ])
@@ -2681,9 +2686,11 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "tbody",
-                _vm._l(_vm.chunkedResult(), function(user, key) {
+                _vm._l(_vm.chunkedResult(), function(user, index) {
                   return _c("tr", [
-                    _c("td", [_vm._v(_vm._s(Number(key) + 1))]),
+                    _c("td", [
+                      _vm._v(_vm._s(Number(index) + _vm.offset * _vm.limit + 1))
+                    ]),
                     _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(user.surname))]),
                     _vm._v(" "),
@@ -2703,9 +2710,9 @@ var render = function() {
           )
         ]),
         _vm._v(" "),
-        _c("div", [
+        _c("div", { staticClass: "uk-tile uk-tile-xsmall" }, [
           _c("ul", { staticClass: "uk-pagination" }, [
-            _vm.index !== 0
+            _vm.offset !== 0
               ? _c("li", [
                   _c(
                     "a",
@@ -2714,7 +2721,7 @@ var render = function() {
                       on: {
                         click: function($event) {
                           $event.preventDefault()
-                          _vm.index -= 1
+                          _vm.offset -= 1
                         }
                       }
                     },
@@ -2729,7 +2736,7 @@ var render = function() {
                 ])
               : _vm._e(),
             _vm._v(" "),
-            _vm.index < _vm.users.length - 1
+            !(_vm.chunkedResult().length < _vm.limit)
               ? _c("li", { staticClass: "uk-margin-auto-left" }, [
                   _c(
                     "a",
@@ -2738,7 +2745,7 @@ var render = function() {
                       on: {
                         click: function($event) {
                           $event.preventDefault()
-                          ++_vm.index
+                          ++_vm.offset
                         }
                       }
                     },
@@ -3988,13 +3995,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
   data: function data() {
     return {
-      index: 0
+      offset: 0,
+      limit: 6
     };
   },
 
   methods: {
     chunkedResult: function chunkedResult() {
-      return this.questions[this.index];
+      if (this.offset == 0) {
+        return this.questions.slice(this.offset, this.limit);
+      } else {
+        return this.questions.slice(this.limit * this.offset, this.limit * (this.offset + 1));
+      }
     },
     closeModal: function closeModal() {
       window.UIkit.modal(document.querySelector(".uk-modal")).hide();
@@ -4047,7 +4059,7 @@ var render = function() {
                   [
                     _c("th"),
                     _vm._v(" "),
-                    _vm._l(_vm.questions[0][0], function(param, key) {
+                    _vm._l(_vm.questions[0], function(param, key) {
                       return _c("th", [
                         _vm._v(" " + _vm._s(key.replace(/_/, " ")))
                       ])
@@ -4059,9 +4071,11 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "tbody",
-                _vm._l(_vm.chunkedResult(), function(question, key) {
+                _vm._l(_vm.chunkedResult(), function(question, index) {
                   return _c("tr", [
-                    _c("td", [_vm._v(_vm._s(Number(key) + 1))]),
+                    _c("td", [
+                      _vm._v(_vm._s(Number(index) + _vm.offset * _vm.limit + 1))
+                    ]),
                     _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(question.question))]),
                     _vm._v(" "),
@@ -4081,9 +4095,9 @@ var render = function() {
           )
         ]),
         _vm._v(" "),
-        _c("div", [
+        _c("div", { staticClass: "uk-tile uk-tile-xsmall" }, [
           _c("ul", { staticClass: "uk-pagination" }, [
-            _vm.index !== 0
+            _vm.offset !== 0
               ? _c("li", [
                   _c(
                     "a",
@@ -4092,7 +4106,7 @@ var render = function() {
                       on: {
                         click: function($event) {
                           $event.preventDefault()
-                          _vm.index -= 1
+                          _vm.offset -= 1
                         }
                       }
                     },
@@ -4107,7 +4121,7 @@ var render = function() {
                 ])
               : _vm._e(),
             _vm._v(" "),
-            _vm.index < _vm.questions.length - 1
+            !(_vm.chunkedResult().length < _vm.limit)
               ? _c("li", { staticClass: "uk-margin-auto-left" }, [
                   _c(
                     "a",
@@ -4116,7 +4130,7 @@ var render = function() {
                       on: {
                         click: function($event) {
                           $event.preventDefault()
-                          ++_vm.index
+                          ++_vm.offset
                         }
                       }
                     },
@@ -5447,7 +5461,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -5504,7 +5518,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "UserControls",
@@ -5513,7 +5526,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
   data: function data() {
     return {
-      num: 0,
+      offset: 0,
+      limit: 4,
       users: this.usersList,
       selectedUsers: [],
       searchTerm: "",
@@ -5524,11 +5538,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   methods: {
     chunkedResult: function chunkedResult() {
-      return this.users[this.num];
+      if (this.offset == 0) {
+        return this.users.slice(this.offset, this.limit);
+      } else {
+        return this.users.slice(this.limit * this.offset, this.limit * (this.offset + 1));
+      }
     },
     filterUsers: function filterUsers() {
       var _this = this;
 
+      this.offset = 0;
       this.searchTerm = this.searchTerm.toLowerCase();
       //If search is empty return unmodified array
       if (this.searchTerm == "") {
@@ -5536,11 +5555,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return;
       }
       //Return filtered array
-      this.users = this.usersList.map(function (userChunk) {
-        return Object.values(userChunk).filter(function (user) {
-          return _this.searchAttrs.some(function (search) {
-            return user[search].toLowerCase().includes(_this.searchTerm) || user.gender === _this.searchTerm;
-          });
+      this.users = this.usersList.filter(function (user) {
+        return _this.searchAttrs.some(function (search) {
+          return user[search].toLowerCase().includes(_this.searchTerm) || user.gender.startsWith(_this.searchTerm);
         });
       });
     }
@@ -5557,34 +5574,49 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("section", { staticClass: "uk-container uk-section" }, [
     _c("div", { staticClass: "uk-card uk-card-default" }, [
-      _c("div", { staticClass: "uk-card-header" }, [
-        _c("div", { staticClass: "uk-search uk-search-default" }, [
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.searchTerm,
-                expression: "searchTerm"
-              }
-            ],
-            staticClass: "uk-search-input uk-search-toggle",
-            attrs: { type: "search", placeholder: "Search" },
-            domProps: { value: _vm.searchTerm },
-            on: {
-              keyup: function($event) {
-                _vm.filterUsers()
-              },
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
+      _c(
+        "div",
+        { staticClass: "uk-card-header uk-flex-row uk-flex uk-flex-between" },
+        [
+          _c("div", { staticClass: "uk-search uk-search-default" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.searchTerm,
+                  expression: "searchTerm"
                 }
-                _vm.searchTerm = $event.target.value
+              ],
+              staticClass: "uk-search-input uk-search-toggle",
+              attrs: { type: "search", placeholder: "Search" },
+              domProps: { value: _vm.searchTerm },
+              on: {
+                keyup: function($event) {
+                  _vm.filterUsers()
+                },
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.searchTerm = $event.target.value
+                }
               }
-            }
-          })
-        ])
-      ]),
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", [
+            _c(
+              "button",
+              {
+                staticClass: "uk-button uk-button-secondary",
+                attrs: { disabled: _vm.selectedUsers.length == 0 }
+              },
+              [_vm._v("Register with Course")]
+            )
+          ])
+        ]
+      ),
       _vm._v(" "),
       _c("div", { staticClass: "uk-card-body" }, [
         _c("div", { staticClass: "uk-overflow-auto" }, [
@@ -5602,7 +5634,7 @@ var render = function() {
                   _vm._v(" "),
                   _c("th", [_vm._v("No.")]),
                   _vm._v(" "),
-                  _vm._l(_vm.users[0][0], function(param, key) {
+                  _vm._l(_vm.users[0], function(param, key) {
                     return key != "id"
                       ? _c("th", [_vm._v(" " + _vm._s(key.replace(/_/, " ")))])
                       : _vm._e()
@@ -5663,13 +5695,11 @@ var render = function() {
                       _vm._v(" "),
                       _c("td", [
                         _vm._v(
-                          "\n                                " +
-                            _vm._s(Number(index) + 1) +
-                            "\n                            "
+                          _vm._s(Number(index) + _vm.offset * _vm.limit + 1)
                         )
                       ]),
                       _vm._v(" "),
-                      _vm._l(Object.keys(_vm.users[0][0]), function(param) {
+                      _vm._l(Object.keys(_vm.users[0]), function(param) {
                         return param != "id"
                           ? _c("td", [_vm._v(" " + _vm._s(user[param]))])
                           : _vm._e()
@@ -5684,9 +5714,9 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "uk-card-footer" }, [
+      _c("div", { staticClass: "uk-tile uk-tile-xsmall" }, [
         _c("ul", { staticClass: "uk-pagination" }, [
-          _vm.num !== 0
+          _vm.offset !== 0
             ? _c("li", [
                 _c(
                   "a",
@@ -5695,7 +5725,7 @@ var render = function() {
                     on: {
                       click: function($event) {
                         $event.preventDefault()
-                        _vm.num -= 1
+                        _vm.offset -= 1
                       }
                     }
                   },
@@ -5710,7 +5740,8 @@ var render = function() {
               ])
             : _vm._e(),
           _vm._v(" "),
-          _vm.num < _vm.users.length - 1
+          _vm.chunkedResult().length !== _vm.users.length &&
+          _vm.chunkedResult().length + _vm.limit * _vm.offset < _vm.users.length
             ? _c("li", { staticClass: "uk-margin-auto-left" }, [
                 _c(
                   "a",
@@ -5719,7 +5750,7 @@ var render = function() {
                     on: {
                       click: function($event) {
                         $event.preventDefault()
-                        ++_vm.num
+                        ++_vm.offset
                       }
                     }
                   },

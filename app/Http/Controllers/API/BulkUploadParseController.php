@@ -33,7 +33,7 @@ class BulkUploadParseController extends Controller
                 $path = $request->file('list')->getRealPath();
                 $collection = (new FastExcel)->import($path);
                 // $pagination = new LengthAwarePaginator($collection,$collection->count(),5);
-                return ['collection' => $collection->chunk(10)];
+                return ['collection' => $collection];
             }
         }
     }

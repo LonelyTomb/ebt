@@ -1,12 +1,11 @@
 <template>
-    <section class="uk-container uk-section">
-        <div class="uk-card uk-card-default">
+ <div class="uk-card uk-card-default">
             <div class="uk-card-header uk-flex-row uk-flex uk-flex-between">
                 <div class="uk-search uk-search-default">
-                <input type="search" class="uk-search-input uk-search-toggle" placeholder="Search" v-model="searchTerm" @keyup="filterUsers()">
+                <input type="search" class="uk-search-input uk-search-toggle" placeholder="Search" v-model="searchTerm" @keyup="filterItems()">
                 </div>
                 <div>
-                    <button class="uk-button uk-button-secondary" :disabled="selectedUsers.length == 0">Register with Course</button>
+                    <button class="uk-button uk-button-secondary" :disabled="selectedItems.length == 0">Register with Course</button>
                 </div>
             </div>
             <div class="uk-card-body">
@@ -15,15 +14,15 @@
                         <thead>
                             <th></th>
                             <th>No.</th>
-                            <th v-for="(param,key) in users[0]" v-if="key != 'id'"> {{key.replace(/_/,' ')}}</th>
+                            <th v-for="{name} in titles"> {{name}}</th>
                         </thead>
                         <tbody>
-                            <tr v-for="(user,index) in chunkedResult()" :key="user.id">
+                            <tr v-for="(item,index) in chunkedResult()" :key="item.id">
                                 <td>
-                                    <input type="checkbox" name="" id="" class="uk-checkbox" :value="user.id" v-model="selectedUsers">
+                                    <input type="checkbox" name="" id="" class="uk-checkbox" :value="item.id" v-model="selectedItems">
                                 </td>
                                 <td>{{Number(index) + (offset*limit) + 1}}</td>
-                                <td v-for="(param) in Object.keys(users[0])" v-if="param != 'id'"> {{user[param]}}</td>
+                                <td v-for="{prop} in titles"> {{item[prop]}}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -34,58 +33,78 @@
                     <li v-if="offset !== 0">
                         <a class="uk-button uk-button-link" @click.prevent="offset-=1"><span class="uk-margin-small-right" uk-pagination-previous ></span> Previous</a>
                         </li>
-                     <li class="uk-margin-auto-left" v-if="chunkedResult().length !== users.length && ((chunkedResult().length + (limit * offset)) < users.length)">
+                     <li class="uk-margin-auto-left" v-if="chunkedResult().length !== items.length && ((chunkedResult().length + (limit * offset)) < items.length)">
                          <a @click.prevent="++offset" class="uk-button uk-button-link">Next <span class="uk-margin-small-left" uk-pagination-next></span></a>
                      </li>
                 </ul>
             </div>
 
         </div>
-    </section>
 </template>
 
 <script>
 export default {
-  name: "UserControls",
+  name: "dataTable",
   props: {
-    usersList: Array
+    itemList: {
+      type: Array,
+      default: function() {
+        return [];
+      }
+    },
+    searchAttrs: {
+      type: Array,
+      default: function() {
+        return [];
+      }
+    },
+    titles: {
+      type: Array,
+      default: function() {
+        return [
+          {
+            prop: "",
+            name: ""
+          }
+        ];
+      }
+    }
   },
   data() {
     return {
       offset: 0,
       limit: 4,
-      users: this.usersList,
-      selectedUsers: [],
-      searchTerm: "",
-      searchAttrs: ["surname", "firstname", "othernames", "username"]
+      items: this.itemList,
+      selectedItems: [],
+      searchTerm: ""
     };
   },
   mounted() {},
   methods: {
     chunkedResult() {
       if (this.offset == 0) {
-        return this.users.slice(this.offset, this.limit);
+        return this.items.slice(this.offset, this.limit);
       } else {
-        return this.users.slice(
+        return this.items.slice(
           this.limit * this.offset,
           this.limit * (this.offset + 1)
         );
       }
     },
-    filterUsers() {
+    filterItems() {
       this.offset = 0;
       this.searchTerm = this.searchTerm.toLowerCase();
       //If search is empty return unmodified array
       if (this.searchTerm == "") {
-        this.users = this.usersList;
+        this.items = this.itemList;
         return;
       }
       //Return filtered array
-      this.users = this.usersList.filter(user =>
+      this.items = this.itemList.filter(item =>
         this.searchAttrs.some(
           search =>
-            user[search].toLowerCase().includes(this.searchTerm) ||
-            user.gender.startsWith(this.searchTerm)
+            item[search].toLowerCase().includes(this.searchTerm) ||
+            item.gender.startsWith(this.searchTerm)
         )
       );
     }
