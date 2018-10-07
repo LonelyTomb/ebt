@@ -5,7 +5,7 @@
                 <input type="search" class="uk-search-input uk-search-toggle" placeholder="Search" v-model="searchTerm" @keyup="filterItems()">
                 </div>
                 <div>
-                    <button class="uk-button uk-button-secondary" :disabled="selectedItems.length == 0" @click="$emit('selected-items',selectedItems)">Register with Course</button>
+                    <button class="uk-button uk-button-secondary" :disabled="selectedItems.length == 0" >Register with Course</button>
                 </div>
             </div>
             <div class="uk-card-body">
@@ -19,7 +19,7 @@
                         <tbody>
                             <tr v-for="(item,index) in chunkedResult()" :key="item.id">
                                 <td>
-                                    <input type="checkbox" name="" id="" class="uk-checkbox" :value="item.id" v-model="selectedItems">
+                                    <input type="checkbox" name="" id="" class="uk-checkbox" :value="item.id" v-model="selectedItems" @change="$emit('selected',selectedItems)">
                                 </td>
                                 <td>{{Number(index) + (offset*limit) + 1}}</td>
                                 <td v-for="{prop} in titles"> {{item[prop]}}</td>
@@ -45,6 +45,10 @@
 <script>
 export default {
   name: "dataTable",
+  model: {
+    prop: 'checked',
+    event: 'change'
+  },
   props: {
     itemList: {
       type: Array,
@@ -75,8 +79,8 @@ export default {
       offset: 0,
       limit: 4,
       items: this.itemList,
-      selectedItems: [],
-      searchTerm: ""
+      searchTerm: "",
+      selectedItems:[]
     };
   },
   mounted() {},

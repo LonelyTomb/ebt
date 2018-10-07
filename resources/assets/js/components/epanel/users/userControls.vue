@@ -1,6 +1,6 @@
 <template>
     <section class="uk-container uk-section">
-<data-table :titles="titles" :searchAttrs="searchAttrs" :itemList="usersList" v-on:selected-items="selectedItems"></data-table>
+<data-table :titles="titles" :searchAttrs="searchAttrs" :itemList="usersList" @selected="selectedItems"></data-table>
     </section>
 </template>
 
