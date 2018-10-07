@@ -1,1 +1,1 @@
-An automated system for managing Comuter based Tests using laravel and Vue
+An automated system for managing Computer based Tests using laravel and Vue
