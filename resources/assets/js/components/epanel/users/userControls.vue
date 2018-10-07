@@ -1,94 +1,61 @@
 <template>
     <section class="uk-container uk-section">
-        <div class="uk-card uk-card-default">
-            <div class="uk-card-header uk-flex-row uk-flex uk-flex-between">
-                <div class="uk-search uk-search-default">
-                <input type="search" class="uk-search-input uk-search-toggle" placeholder="Search" v-model="searchTerm" @keyup="filterUsers()">
-                </div>
-                <div>
-                    <button class="uk-button uk-button-secondary" :disabled="selectedUsers.length == 0">Register with Course</button>
-                </div>
-            </div>
-            <div class="uk-card-body">
-                <div class="uk-overflow-auto">
-                    <table class="uk-table uk-table-hover uk-table-striped uk-table-responsive">
-                        <thead>
-                            <th></th>
-                            <th>No.</th>
-                            <th v-for="(param,key) in users[0]" v-if="key != 'id'"> {{key.replace(/_/,' ')}}</th>
-                        </thead>
-                        <tbody>
-                            <tr v-for="(user,index) in chunkedResult()" :key="user.id">
-                                <td>
-                                    <input type="checkbox" name="" id="" class="uk-checkbox" :value="user.id" v-model="selectedUsers">
-                                </td>
-                                <td>{{Number(index) + (offset*limit) + 1}}</td>
-                                <td v-for="(param) in Object.keys(users[0])" v-if="param != 'id'"> {{user[param]}}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-               <div class="uk-tile uk-tile-xsmall">
-            <ul class="uk-pagination">
-                    <li v-if="offset !== 0">
-                        <a class="uk-button uk-button-link" @click.prevent="offset-=1"><span class="uk-margin-small-right" uk-pagination-previous ></span> Previous</a>
-                        </li>
-                     <li class="uk-margin-auto-left" v-if="chunkedResult().length !== users.length && ((chunkedResult().length + (limit * offset)) < users.length)">
-                         <a @click.prevent="++offset" class="uk-button uk-button-link">Next <span class="uk-margin-small-left" uk-pagination-next></span></a>
-                     </li>
-                </ul>
-            </div>
-
-        </div>
+<data-table :titles="titles" :searchAttrs="searchAttrs" :itemList="usersList" v-on:selected-items="selectedItems"></data-table>
     </section>
 </template>
 
 <script>
+import dataTable from "./../../dataTable";
+
+const titles = [
+  {
+    prop: "username",
+    name: "Username"
+  },
+  {
+    prop: "surname",
+    name: "Surname"
+  },
+  {
+    prop: "firstname",
+    name: "Firstname"
+  },
+  {
+    prop: "othernames",
+    name: "Othernames"
+  },
+  {
+    prop: "email",
+    name: "Email"
+  },
+  {
+    prop: "gender",
+    name: "Gender"
+  },
+  {
+    prop: "status",
+    name: "Status"
+  }
+];
 export default {
   name: "UserControls",
+  components: {
+    "data-table": dataTable
+  },
   props: {
     usersList: Array
   },
   data() {
     return {
-      offset: 0,
-      limit: 4,
-      users: this.usersList,
-      selectedUsers: [],
-      searchTerm: "",
-      searchAttrs: ["surname", "firstname", "othernames", "username"]
+      searchAttrs: ["surname", "firstname", "othernames", "username"],
+      titles
     };
   },
   mounted() {},
   methods: {
-    chunkedResult() {
-      if (this.offset == 0) {
-        return this.users.slice(this.offset, this.limit);
-      } else {
-        return this.users.slice(
-          this.limit * this.offset,
-          this.limit * (this.offset + 1)
-        );
+      selectedItems(select){
+          console.log(select);
       }
-    },
-    filterUsers() {
-      this.offset = 0;
-      this.searchTerm = this.searchTerm.toLowerCase();
-      //If search is empty return unmodified array
-      if (this.searchTerm == "") {
-        this.users = this.usersList;
-        return;
-      }
-      //Return filtered array
-      this.users = this.usersList.filter(user =>
-        this.searchAttrs.some(
-          search =>
-            user[search].toLowerCase().includes(this.searchTerm) ||
-            user.gender.startsWith(this.searchTerm)
-        )
-      );
-    }
   }
 };
 </script>

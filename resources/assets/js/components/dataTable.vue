@@ -5,7 +5,7 @@
                 <input type="search" class="uk-search-input uk-search-toggle" placeholder="Search" v-model="searchTerm" @keyup="filterItems()">
                 </div>
                 <div>
-                    <button class="uk-button uk-button-secondary" :disabled="selectedItems.length == 0">Register with Course</button>
+                    <button class="uk-button uk-button-secondary" :disabled="selectedItems.length == 0" @click="$emit('selected-items',selectedItems)">Register with Course</button>
                 </div>
             </div>
             <div class="uk-card-body">
