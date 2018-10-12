@@ -2,10 +2,7 @@
  <div class="uk-card uk-card-default">
             <div class="uk-card-header uk-flex-row uk-flex uk-flex-between">
                 <div class="uk-search uk-search-default">
-                <input type="search" class="uk-search-input uk-search-toggle" placeholder="Search" v-model="searchTerm" @keyup="filterItems()">
-                </div>
-                <div>
-                    <button class="uk-button uk-button-secondary" :disabled="selectedItems.length == 0" >Register with Course</button>
+                <input type="search" class="uk-search-input uk-search-toggle" placeholder="Search" v-model="searchTerm" @keyup="filterData()">
                 </div>
             </div>
             <div class="uk-card-body">
@@ -18,8 +15,8 @@
                         </thead>
                         <tbody>
                             <tr v-for="(item,index) in chunkedResult()" :key="item.id">
-                                <td>
-                                    <input type="checkbox" name="" id="" class="uk-checkbox" :value="item.id" v-model="selectedItems" @change="$emit('selected',selectedItems)">
+                                <td v-if="checkboxFilter == true">
+                                    <input type="checkbox" name="checkbox-filter" id="checkbox-filter" class="uk-checkbox" :value="item.id" v-model="selected" @change="$emit('selected-change',selected)">
                                 </td>
                                 <td>{{Number(index) + (offset*limit) + 1}}</td>
                                 <td v-for="{prop} in titles"> {{item[prop]}}</td>
@@ -28,7 +25,7 @@
                     </table>
                 </div>
             </div>
-               <div class="uk-tile uk-tile-xsmall">
+               <div class="uk-tile uk-tile-xsmall uk-tile-muted uk-padding-small">
             <ul class="uk-pagination">
                     <li v-if="offset !== 0">
                         <a class="uk-button uk-button-link" @click.prevent="offset-=1"><span class="uk-margin-small-right" uk-pagination-previous ></span> Previous</a>
@@ -46,10 +43,14 @@
 export default {
   name: "dataTable",
   model: {
-    prop: 'checked',
-    event: 'change'
+    prop: "checked",
+    event: "change"
   },
   props: {
+    checkboxFilter: {
+      type: Boolean,
+      default: true
+    },
     itemList: {
       type: Array,
       default: function() {
@@ -80,10 +81,12 @@ export default {
       limit: 4,
       items: this.itemList,
       searchTerm: "",
-      selectedItems:[]
+      selected: []
     };
   },
-  mounted() {},
+  mounted() {
+    this.$emit("selected", []);
+  },
   methods: {
     chunkedResult() {
       if (this.offset == 0) {
@@ -95,7 +98,7 @@ export default {
         );
       }
     },
-    filterItems() {
+    filterData() {
       this.offset = 0;
       this.searchTerm = this.searchTerm.toLowerCase();
       //If search is empty return unmodified array

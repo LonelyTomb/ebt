@@ -5461,7 +5461,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -5474,6 +5474,11 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dataTable__ = __webpack_require__(75);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dataTable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__dataTable__);
+//
+//
+//
+//
+//
 //
 //
 //
@@ -5516,14 +5521,16 @@ var titles = [{
   data: function data() {
     return {
       searchAttrs: ["surname", "firstname", "othernames", "username"],
+      selectedItems: [],
       titles: titles
     };
   },
   mounted: function mounted() {},
 
   methods: {
-    selectedItems: function selectedItems(select) {
-      console.log(select);
+    handleSelected: function handleSelected(select) {
+      this.selectedItems = select;
+      return select;
     }
   }
 });
@@ -5614,7 +5621,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -5666,17 +5673,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "dataTable",
   model: {
-    prop: 'checked',
-    event: 'change'
+    prop: "checked",
+    event: "change"
   },
   props: {
+    checkboxFilter: {
+      type: Boolean,
+      default: true
+    },
     itemList: {
       type: Array,
       default: function _default() {
@@ -5705,10 +5713,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       limit: 4,
       items: this.itemList,
       searchTerm: "",
-      selectedItems: []
+      selected: []
     };
   },
-  mounted: function mounted() {},
+  mounted: function mounted() {
+    this.$emit("selected", []);
+  },
 
   methods: {
     chunkedResult: function chunkedResult() {
@@ -5718,7 +5728,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return this.items.slice(this.limit * this.offset, this.limit * (this.offset + 1));
       }
     },
-    filterItems: function filterItems() {
+    filterData: function filterData() {
       var _this = this;
 
       this.offset = 0;
@@ -5766,7 +5776,7 @@ var render = function() {
             domProps: { value: _vm.searchTerm },
             on: {
               keyup: function($event) {
-                _vm.filterItems()
+                _vm.filterData()
               },
               input: function($event) {
                 if ($event.target.composing) {
@@ -5776,17 +5786,6 @@ var render = function() {
               }
             }
           })
-        ]),
-        _vm._v(" "),
-        _c("div", [
-          _c(
-            "button",
-            {
-              staticClass: "uk-button uk-button-secondary",
-              attrs: { disabled: _vm.selectedItems.length == 0 }
-            },
-            [_vm._v("Register with Course")]
-          )
         ])
       ]
     ),
@@ -5822,53 +5821,59 @@ var render = function() {
                   "tr",
                   { key: item.id },
                   [
-                    _c("td", [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.selectedItems,
-                            expression: "selectedItems"
-                          }
-                        ],
-                        staticClass: "uk-checkbox",
-                        attrs: { type: "checkbox", name: "", id: "" },
-                        domProps: {
-                          value: item.id,
-                          checked: Array.isArray(_vm.selectedItems)
-                            ? _vm._i(_vm.selectedItems, item.id) > -1
-                            : _vm.selectedItems
-                        },
-                        on: {
-                          change: [
-                            function($event) {
-                              var $$a = _vm.selectedItems,
-                                $$el = $event.target,
-                                $$c = $$el.checked ? true : false
-                              if (Array.isArray($$a)) {
-                                var $$v = item.id,
-                                  $$i = _vm._i($$a, $$v)
-                                if ($$el.checked) {
-                                  $$i < 0 &&
-                                    (_vm.selectedItems = $$a.concat([$$v]))
-                                } else {
-                                  $$i > -1 &&
-                                    (_vm.selectedItems = $$a
-                                      .slice(0, $$i)
-                                      .concat($$a.slice($$i + 1)))
-                                }
-                              } else {
-                                _vm.selectedItems = $$c
+                    _vm.checkboxFilter == true
+                      ? _c("td", [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.selected,
+                                expression: "selected"
                               }
+                            ],
+                            staticClass: "uk-checkbox",
+                            attrs: {
+                              type: "checkbox",
+                              name: "checkbox-filter",
+                              id: "checkbox-filter"
                             },
-                            function($event) {
-                              _vm.$emit("selected", _vm.selectedItems)
+                            domProps: {
+                              value: item.id,
+                              checked: Array.isArray(_vm.selected)
+                                ? _vm._i(_vm.selected, item.id) > -1
+                                : _vm.selected
+                            },
+                            on: {
+                              change: [
+                                function($event) {
+                                  var $$a = _vm.selected,
+                                    $$el = $event.target,
+                                    $$c = $$el.checked ? true : false
+                                  if (Array.isArray($$a)) {
+                                    var $$v = item.id,
+                                      $$i = _vm._i($$a, $$v)
+                                    if ($$el.checked) {
+                                      $$i < 0 &&
+                                        (_vm.selected = $$a.concat([$$v]))
+                                    } else {
+                                      $$i > -1 &&
+                                        (_vm.selected = $$a
+                                          .slice(0, $$i)
+                                          .concat($$a.slice($$i + 1)))
+                                    }
+                                  } else {
+                                    _vm.selected = $$c
+                                  }
+                                },
+                                function($event) {
+                                  _vm.$emit("selected-change", _vm.selected)
+                                }
+                              ]
                             }
-                          ]
-                        }
-                      })
-                    ]),
+                          })
+                        ])
+                      : _vm._e(),
                     _vm._v(" "),
                     _c("td", [
                       _vm._v(_vm._s(Number(index) + _vm.offset * _vm.limit + 1))
@@ -5888,58 +5893,62 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "uk-tile uk-tile-xsmall" }, [
-      _c("ul", { staticClass: "uk-pagination" }, [
-        _vm.offset !== 0
-          ? _c("li", [
-              _c(
-                "a",
-                {
-                  staticClass: "uk-button uk-button-link",
-                  on: {
-                    click: function($event) {
-                      $event.preventDefault()
-                      _vm.offset -= 1
+    _c(
+      "div",
+      { staticClass: "uk-tile uk-tile-xsmall uk-tile-muted uk-padding-small" },
+      [
+        _c("ul", { staticClass: "uk-pagination" }, [
+          _vm.offset !== 0
+            ? _c("li", [
+                _c(
+                  "a",
+                  {
+                    staticClass: "uk-button uk-button-link",
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        _vm.offset -= 1
+                      }
                     }
-                  }
-                },
-                [
-                  _c("span", {
-                    staticClass: "uk-margin-small-right",
-                    attrs: { "uk-pagination-previous": "" }
-                  }),
-                  _vm._v(" Previous")
-                ]
-              )
-            ])
-          : _vm._e(),
-        _vm._v(" "),
-        _vm.chunkedResult().length !== _vm.items.length &&
-        _vm.chunkedResult().length + _vm.limit * _vm.offset < _vm.items.length
-          ? _c("li", { staticClass: "uk-margin-auto-left" }, [
-              _c(
-                "a",
-                {
-                  staticClass: "uk-button uk-button-link",
-                  on: {
-                    click: function($event) {
-                      $event.preventDefault()
-                      ++_vm.offset
+                  },
+                  [
+                    _c("span", {
+                      staticClass: "uk-margin-small-right",
+                      attrs: { "uk-pagination-previous": "" }
+                    }),
+                    _vm._v(" Previous")
+                  ]
+                )
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.chunkedResult().length !== _vm.items.length &&
+          _vm.chunkedResult().length + _vm.limit * _vm.offset < _vm.items.length
+            ? _c("li", { staticClass: "uk-margin-auto-left" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "uk-button uk-button-link",
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        ++_vm.offset
+                      }
                     }
-                  }
-                },
-                [
-                  _vm._v("Next "),
-                  _c("span", {
-                    staticClass: "uk-margin-small-left",
-                    attrs: { "uk-pagination-next": "" }
-                  })
-                ]
-              )
-            ])
-          : _vm._e()
-      ])
-    ])
+                  },
+                  [
+                    _vm._v("Next "),
+                    _c("span", {
+                      staticClass: "uk-margin-small-left",
+                      attrs: { "uk-pagination-next": "" }
+                    })
+                  ]
+                )
+              ])
+            : _vm._e()
+        ])
+      ]
+    )
   ])
 }
 var staticRenderFns = []
@@ -5968,10 +5977,23 @@ var render = function() {
         attrs: {
           titles: _vm.titles,
           searchAttrs: _vm.searchAttrs,
-          itemList: _vm.usersList
+          itemList: _vm.usersList,
+          "checkbox-filter": true
         },
-        on: { selected: _vm.selectedItems }
-      })
+        on: { "selected-change": _vm.handleSelected }
+      }),
+      _vm._v(" "),
+      _c("div", { staticClass: "uk-tile tk-tile-secondary uk-tile-xsmall" }, [
+        _vm.selectedItems.length === 1
+          ? _c("button", { staticClass: "uk-button uk-button-primary" }, [
+              _vm._v("Update User Data")
+            ])
+          : _vm.selectedItems.length > 1
+            ? _c("button", { staticClass: "uk-button uk-button-secondary" }, [
+                _vm._v("Register Courses")
+              ])
+            : _vm._e()
+      ])
     ],
     1
   )

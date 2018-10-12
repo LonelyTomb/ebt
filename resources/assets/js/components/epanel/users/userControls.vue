@@ -1,6 +1,11 @@
 <template>
     <section class="uk-container uk-section">
-<data-table :titles="titles" :searchAttrs="searchAttrs" :itemList="usersList" @selected="selectedItems"></data-table>
+        <data-table :titles="titles" :searchAttrs="searchAttrs" :itemList="usersList" :checkbox-filter="true" @selected-change="handleSelected"></data-table>
+        <div class="uk-tile tk-tile-secondary uk-tile-xsmall">
+             <button class="uk-button uk-button-primary" v-if="selectedItems.length === 1">Update User Data</button>
+            <button class="uk-button uk-button-secondary" v-else-if="selectedItems.length > 1">Register Courses</button>
+
+        </div>
     </section>
 </template>
 
@@ -48,14 +53,16 @@ export default {
   data() {
     return {
       searchAttrs: ["surname", "firstname", "othernames", "username"],
+      selectedItems: [],
       titles
     };
   },
   mounted() {},
   methods: {
-      selectedItems(select){
-          console.log(select);
-      }
+    handleSelected(select) {
+      this.selectedItems = select;
+      return select;
+    }
   }
 };
 </script>
