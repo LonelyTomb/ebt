@@ -1,48 +1,74 @@
 <template>
-<div class="admin-login-container">
-    <article class="uk-article">
-        <!-- <h2 class="">Admin Login</h2> -->
-        <section class="uk-section">
-            <div class="uk-card uk-card-default uk-width-1-2@m uk-margin-auto">
-                <div class="uk-card-header">
-                    <h3 class="uk-heading">Admin Epanel Login</h3>
-                </div>
-                <div class="uk-card-body">
-                    <form action="" class="uk-form uk-form-horizontal" id="admin-login-form" ref="details">
-                        <div>
-                            <label for="email" class="uk-form-label">Email</label>
-                            <div class="uk-form-controls">
-                                <input type="email" name="email" id="email" class="uk-input" v-model="details.email">
-                                <small class="uk-text-warning" v-if="errors.email">{{errors.email[0]}}</small>
-                            </div>
-                        </div>
-                        <hr class="uk-divider-icon">
-                        <div>
-                            <label for="password" class="uk-form-label">Password</label>
-                            <div class="uk-form-controls">
-                                <input type="password" name="password" id="password" class="uk-input" v-model="details.password">
-                                <small class="uk-text-warning" v-if="errors.password">{{errors.password[0]}}</small>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="uk-card-footer">
-                    <button class="uk-button uk-button-primary" form="admin-login-form" @click.prevent="submit(details)">Login</button>
-                        <transition name="loading">
-                            <p v-if="loading === true" class="uk-alert uk-alert-success uk-display-inline uk-animation-slide-bottom uk-animation-toggle">
-                                Loading
-                            </p>
-                        </transition>
-                </div>
-            </div>
-        </section>
-    </article>
-</div>
+  <v-app>
+    <v-toolbar>
+      <v-toolbar-title class="text-md-center" align-center justify-center>EBT</v-toolbar-title>
+    </v-toolbar>
+    <v-content>
+      <v-container fluid fill-height>
+        <v-layout align-center justify-center>
+          <v-flex xs12 sm8 md4>
+            <v-card class="elevation-4">
+              <v-toolbar dark color="primary">
+                <v-toolbar-title class>Login Form</v-toolbar-title>
+                <v-spacer></v-spacer>
+              </v-toolbar>
+              <v-card-text>
+                <v-alert
+                  :value="true"
+                  type="error"
+                  v-if="errors.password || errors.email"
+                  dismissible
+                  transition="scale-transition"
+                >
+                  <span v-if="errors.email">{{errors.email[0]}}</span>
+                  <span v-if="errors.password">{{errors.password[0]}}</span>
+                </v-alert>
+                <v-form id="admin-login-form" ref="details">
+                  <v-text-field
+                    prepend-icon="email"
+                    name="email"
+                    label="Email"
+                    type="email"
+                    v-model="details.email"
+                  ></v-text-field>
+                  <v-text-field
+                    id="password"
+                    prepend-icon="lock"
+                    name="password"
+                    label="Password"
+                    type="password"
+                    v-model="details.password"
+                  ></v-text-field>
+                </v-form>
+              </v-card-text>
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn
+                  color="primary"
+                  form="admin-login-form"
+                  @click.prevent="submit(details)"
+                >Login</v-btn>
+                <v-spacer></v-spacer>
+              </v-card-actions>
+              <transition name="loading">
+                <v-progress-linear :indeterminate="true" v-if="loading === true"></v-progress-linear>
+              </transition>
+            </v-card>
+          </v-flex>
+        </v-layout>
+      </v-container>
+    </v-content>
+    <footer-component></footer-component>
+  </v-app>
 </template>
 
 <script>
+import footer from "./../layouts/footer";
 export default {
   name: "Admin-Login",
+  components: {
+    "footer-component": footer
+  },
   data() {
     return {
       loading: false,
@@ -53,9 +79,7 @@ export default {
       }
     };
   },
-  mounted() {
-    console.log("Component mounted.");
-  },
+  mounted() {},
   methods: {
     submit(form) {
       this.loading = true;
@@ -68,7 +92,6 @@ export default {
         .catch(val => {
           this.loading = false;
           this.errors = val.response.data.errors;
-          window.UIkit.notification("Unable to login!","danger");
         });
     }
   }

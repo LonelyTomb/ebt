@@ -1,6 +1,3 @@
-import UIkit from 'uikit';
-import Icons from 'uikit/dist/js/uikit-icons';
-
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -8,12 +5,16 @@ import Icons from 'uikit/dist/js/uikit-icons';
  */
 
 require('./bootstrap');
-
+import WebFontLoader from 'webfontloader';
 
 // loads the Icon plugin
-UIkit.use(Icons);
-window.UIkit = UIkit;
 window.Vue = require('vue');
+window.Vuetify = require('vuetify');
+Vue.use(Vuetify);
+
+import 'vuetify/dist/vuetify.min.css';
+
+import store from './store';
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -21,41 +22,79 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-/**
- * Logon components
- **/
-
-Vue.component('admin-login-component', require('./components/epanel/auth/login.vue'));
-Vue.component('login-component', require('./components/auth/login.vue'));
-Vue.component('register-component', require('./components/auth/register.vue'));
-Vue.component('bulk-register-component', require('./components/auth/bulkRegister.vue'));
-Vue.component('bulk-register-preview-component', require('./components/auth/bulkRegisterPreview.vue'));
-
-/**
- * Courses components
- **/
-
-Vue.component('create-course', require('./components/epanel/courses/create.vue'));
-
-/**
- * Questions components
- **/
-
-Vue.component('upload-questions', require('./components/epanel/questions/upload.vue'));
-// Vue.component('preview-upload-questions', require('./components/epanel/questions/uploadPreview.vue'));
-Vue.component('input-question', require('./components/epanel/questions/input.vue'));
-
-/**
- * User Management Components
- */
-Vue.component('user-controls-component', require('./components/epanel/users/userControls.vue'))
-
-/**
- * User Components
- * */
-Vue.component('home-component', require('./components/user/home.vue'));
-
-
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    store,
+    components: {
+        /**
+         * Logon components
+         **/
+        'admin-login': () => ({
+            component: import ('./components/epanel/auth/login.vue' /*webpackChunkName: "epanel/auth/admin-login" */ )
+        }),
+        'login': () => ({
+            component: import ('./components/auth/login.vue' /*webpackChunkName: "auth/login"*/ )
+        }),
+        'register': () => ({
+            component: import ('./components/auth/register.vue' /*webpackChunkName: "auth/register"*/ )
+        }),
+        'bulk-register': () => ({
+            component: import ('./components/auth/bulkRegister.vue' /*webpackChunkName: "auth/bulkRegister"*/ )
+        }),
+        'bulk-register-preview': () => ({
+            component: import ('./components/auth/bulkRegisterPreview.vue' /*webpackChunkName: "auth/bulkRegisterPreview"*/ )
+        }),
+
+        /**
+         * Admin Home Page
+         */
+        'epanel-home': () => ({
+            component: import ('./components/epanel/home.vue' /*webpackChunkName: "epanel/home"*/ )
+        }),
+        /**
+         * Courses components
+         **/
+        'create-course': () => ({
+            component: import ('./components/epanel/courses/create.vue' /*webpackChunkName: "epanel/courses/create" */ )
+        }),
+        /**
+         * Questions components
+         **/
+        'upload-questions': () => ({
+            component: import ('./components/epanel/questions/upload.vue' /*webpackChunkName: "epanel/questions/upload" */ )
+        }),
+        'input-question': () => ({
+            component: import ('./components/epanel/questions/input.vue' /*webpackChunkName: "epanel/questions/input" */ )
+        }),
+        /**
+         * User Management Components
+         */
+        'user-controls': () => ({
+            component: import ('./components/epanel/users/userControls.vue' /*webpackChunkName: "epanel/user/userUpload" */ )
+        }),
+        /**
+         * User Components
+         * */
+        'home': () => ({
+            component: import ('./components/user/home.vue' /*webpackChunkName: "epanel/user/home" */ )
+        })
+    },
+    mounted() {
+        WebFontLoader.load({
+            google: {
+                families: ['Roboto:500,900']
+            },
+            active: this.setFontLoaded
+        })
+    },
+    data() {
+        return {
+
+        }
+    },
+    methods: {
+        setFontLoaded() {
+            this.$emit('font-loaded')
+        }
+    }
 });

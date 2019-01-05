@@ -5,5 +5,5 @@ User Management
 
 @section('content')
 
-<user-controls-component :users-list="{{$users}}"></user-controls-component>
+<user-controls :users-list="{{$users}}"></user-controls>
 @endsection

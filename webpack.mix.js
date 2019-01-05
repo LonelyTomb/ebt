@@ -12,8 +12,14 @@ let mix = require('laravel-mix');
  */
 
 mix.js('resources/assets/js/app.js', 'public/js')
-    .extract(["uikit", "vue", "axios"])
-    .sass('resources/assets/sass/app.scss', 'public/css');
+    .extract(["vue", "axios", "vuetify"])
+    .sass('resources/assets/sass/app.scss', 'public/css')
+    .webpackConfig({
+        output: {
+            publicPath: '/',
+            chunkFilename: 'js/[name].js',
+        },
+    });
 
 if (mix.inProduction()) {
     mix.version()

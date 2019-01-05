@@ -3,6 +3,6 @@
 Login
 @endsection
 @section('content')
-<admin-login-component>
-</admin-login-component>
+<admin-login>
+</admin-login>
 @endsection

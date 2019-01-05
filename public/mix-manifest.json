@@ -1,6 +1,17 @@
 {
+    "/js/epanel/user/userUpload.js": "/js/epanel/user/userUpload.js",
+    "/js/epanel/questions/upload.js": "/js/epanel/questions/upload.js",
+    "/js/auth/bulkRegister.js": "/js/auth/bulkRegister.js",
+    "/js/epanel/user/home.js": "/js/epanel/user/home.js",
+    "/js/epanel/questions/input.js": "/js/epanel/questions/input.js",
+    "/js/epanel/courses/create.js": "/js/epanel/courses/create.js",
+    "/js/epanel/auth/admin-login.js": "/js/epanel/auth/admin-login.js",
+    "/js/auth/register.js": "/js/auth/register.js",
+    "/js/auth/login.js": "/js/auth/login.js",
+    "/js/auth/bulkRegisterPreview.js": "/js/auth/bulkRegisterPreview.js",
+    "/js/vendor.js": "/js/vendor.js",
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
-    "/js/vendor.js": "/js/vendor.js",
-    "/js/manifest.js": "/js/manifest.js"
+    "/js/manifest.js": "/js/manifest.js",
+    "/js/epanel/home.js": "/js/epanel/home.js"
 }

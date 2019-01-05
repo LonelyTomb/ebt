@@ -37,7 +37,7 @@
 import axios from "axios";
 
 export default {
-  name: "Login",
+  name: "admin-login",
   data() {
     return {
       details: {
