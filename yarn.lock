@@ -5701,6 +5701,11 @@ vue-hot-reload-api@^2.2.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/vue-hot-reload-api/-/vue-hot-reload-api-2.3.0.tgz#97976142405d13d8efae154749e88c4e358cf926"
 
+vue-laroute@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/vue-laroute/-/vue-laroute-0.2.0.tgz#8a29325b6f41edbeb829033f7e0ea317f162eef6"
+  integrity sha512-+RtbufPGCEvdbQzf2iZgS+7QSDcU/5oOVZLPa89YQQosobe2u3N4KTQqcUaTcI19w/flqvKcfu9rmoOae7qY2g==
+
 vue-loader@^13.7.1:
   version "13.7.2"
   resolved "https://registry.yarnpkg.com/vue-loader/-/vue-loader-13.7.2.tgz#f633f6393e905ffd730400f03c99353618c08fe8"

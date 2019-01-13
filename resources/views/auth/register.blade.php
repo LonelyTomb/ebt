@@ -1,9 +1,7 @@
 @extends('epanel.master')
-
-@section('title')
-Register User
+@section('title') Register User
 @endsection
 
 @section('content')
-<register-component :courses="{{$courses}}"></register-component>
+<register :courses="{{$courses}}"></register>
 @endsection

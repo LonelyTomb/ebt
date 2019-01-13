@@ -15,7 +15,7 @@
         <v-list-tile
           v-for="subLink in link.subLinks"
           :key="subLink.title"
-          v-html="route('{{subLink.link}}')"
+          :href="$routes.route(subLink.link)"
         >
           <v-list-tile-content>
             <v-list-tile-title>{{subLink.title}}</v-list-tile-title>
@@ -40,43 +40,36 @@ export default {
               link: "epanel.register.user"
             },
             {
-              title: "Upload users List",
+              title: "Upload Users List",
               link: "epanel.register.users"
+            },
+            {
+              title: "Upload Questions List",
+              link: "epanel.questions.upload"
+            },
+            {
+              title: "Add New Course",
+              link: "epanel.courses.create"
+            },
+            {
+              title: "Input Question",
+              link: "epanel.questions.create"
             }
           ]
         },
         {
-          title: "Data Capture",
+          title: "Data Management",
           subLinks: [
             {
-              title: "Add New User",
-              link: "epanel.register.user"
-            },
-            {
-              title: "Upload users List",
-              link: "epanel.register.users"
-            }
-          ]
-        },
-        {
-          title: "Data Capture",
-          subLinks: [
-            {
-              title: "Add New User",
-              link: "epanel.register.user"
-            },
-            {
-              title: "Upload users List",
-              link: "epanel.register.users"
+              title: "User Controls",
+              link: "epanel.users.index"
             }
           ]
         }
       ]
     };
   },
-  mounted() {
-    console.log(this.$store.state.drawer);
-  }
+  mounted() {}
 };
 </script>
 

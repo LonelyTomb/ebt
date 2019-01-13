@@ -1,14 +1,15 @@
 <template>
   <v-app>
-    <header-component></header-component>
-    <v-toolbar color="red" dense fixed clipped-left app>
-      <v-toolbar-side-icon @click="$store.commit('toggleDrawer')"></v-toolbar-side-icon>
-      <v-icon class="mx-3">fa-youtube</v-icon>
-      <v-toolbar-title class="mr-5 align-center">
-        <span class="title">EBT</span>
-      </v-toolbar-title>
-      <v-spacer></v-spacer>
-    </v-toolbar>
+    <!-- <header-component></header-component> -->
+    <v-content>
+      <v-container>
+        <v-layout>
+          <v-layout align-center justify-center>
+            <v-flex></v-flex>
+          </v-layout>
+        </v-layout>
+      </v-container>
+    </v-content>
   </v-app>
 </template>
 

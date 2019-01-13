@@ -1,14 +1,14 @@
-webpackJsonp([2,9],{
+webpackJsonp([5,12],{
 
-/***/ 44:
+/***/ 48:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(54)
+var normalizeComponent = __webpack_require__(60)
 /* script */
-var __vue_script__ = __webpack_require__(57)
+var __vue_script__ = __webpack_require__(67)
 /* template */
-var __vue_template__ = __webpack_require__(58)
+var __vue_template__ = __webpack_require__(68)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -48,19 +48,19 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 48:
+/***/ 53:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(65)
+  __webpack_require__(84)
 }
-var normalizeComponent = __webpack_require__(54)
+var normalizeComponent = __webpack_require__(60)
 /* script */
-var __vue_script__ = __webpack_require__(67)
+var __vue_script__ = __webpack_require__(86)
 /* template */
-var __vue_template__ = __webpack_require__(68)
+var __vue_template__ = __webpack_require__(87)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -100,7 +100,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 54:
+/***/ 60:
 /***/ (function(module, exports) {
 
 /* globals __VUE_SSR_CONTEXT__ */
@@ -210,7 +210,7 @@ module.exports = function normalizeComponent (
 
 /***/ }),
 
-/***/ 55:
+/***/ 61:
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -229,7 +229,7 @@ if (typeof DEBUG !== 'undefined' && DEBUG) {
   ) }
 }
 
-var listToStyles = __webpack_require__(56)
+var listToStyles = __webpack_require__(62)
 
 /*
 type StyleObject = {
@@ -439,7 +439,7 @@ function applyToTag (styleElement, obj) {
 
 /***/ }),
 
-/***/ 56:
+/***/ 62:
 /***/ (function(module, exports) {
 
 /**
@@ -473,7 +473,7 @@ module.exports = function listToStyles (parentId, list) {
 
 /***/ }),
 
-/***/ 57:
+/***/ 67:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -567,7 +567,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 58:
+/***/ 68:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -722,17 +722,17 @@ if (false) {
 
 /***/ }),
 
-/***/ 65:
+/***/ 84:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(66);
+var content = __webpack_require__(85);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(55)("1a3b7844", content, false, {});
+var update = __webpack_require__(61)("1a3b7844", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -749,7 +749,7 @@ if(false) {
 
 /***/ }),
 
-/***/ 66:
+/***/ 85:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(12)(false);
@@ -764,12 +764,12 @@ exports.push([module.i, "\n.uk-form-custom[data-v-9f877056]:hover {\n  cursor: p
 
 /***/ }),
 
-/***/ 67:
+/***/ 86:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__bulkRegisterPreview_vue__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__bulkRegisterPreview_vue__ = __webpack_require__(48);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__bulkRegisterPreview_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__bulkRegisterPreview_vue__);
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
@@ -923,7 +923,7 @@ var format = ["surname", "firstname", "othernames", "username", "email", "gender
 
 /***/ }),
 
-/***/ 68:
+/***/ 87:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {

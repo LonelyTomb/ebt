@@ -8,9 +8,7 @@
     <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons' rel="stylesheet">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
     <title>
-
 
 
 
@@ -30,7 +28,19 @@
 
 <body>
     <div class="" id="app">
-        @yield('content')
+        <v-app>
+            @auth('admin')
+            <epanel-header></epanel-header>
+
+            @endauth
+            <v-content>
+                @yield('content')
+
+            </v-content>
+            @auth
+            <epanel-footer></epanel-footer>
+            @endauth
+        </v-app>
     </div>
 
 </body>

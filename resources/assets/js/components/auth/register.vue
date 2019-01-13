@@ -1,143 +1,203 @@
 <template>
-<div class="register-container">
-    <article class="uk-article uk-background-muted">
-        <!-- <h2 class="">Register User</h2> -->
-        <section class="uk-section uk-container-small uk-container">
-            <div class="uk-card uk-card-default uk-margin-auto">
-                <div class="uk-card-header uk-card-primary">
-                    <h3 class="uk-heading">Add New User</h3>
-                </div>
-                <div class="uk-card-body">
-                    <form action="" class="uk-form uk-form-horizontal" id="register-form" ref="user" enctype="multipart/form-data" name="myForm">
-                        <div>
-                            <label for="username" class="uk-form-label">Username: </label>
-                            <div class="uk-form-controls">
-                                <input type="text" name="username" id="username" class="uk-input" v-model="user.username">
-                                <small class="uk-text-warning" v-if="errors.username">{{errors.username[0]}}</small>
-                            </div>
-                        </div>
-                        <hr class="uk-divider-small">
-                        <div>
-                            <label for="surname" class="uk-form-label">Surname: </label>
-                            <div class="uk-form-controls">
-                                <input type="text" name="surname" id="surname" class="uk-input" v-model="user.surname" required>
-
-                                <small class="uk-text-warning" v-if="errors.surname">{{errors.surname[0]}}</small>
-                            </div>
-                        </div>
-                        <hr class="uk-divider-small">
-                        <div>
-                            <label for="firstname" class="uk-form-label">First Name: </label>
-                            <div class="uk-form-controls">
-                                <input type="text" name="firstname" id="firstname" class="uk-input" v-model="user.firstname" required>
-                                <small class="uk-text-warning" v-if="errors.firstname">{{errors.firstname[0]}}</small>
-                            </div>
-                        </div>
-                        <hr class="uk-divider-small">
-                        <div>
-                            <label for="othernames" class="uk-form-label">Other Names: </label>
-                            <div class="uk-form-controls">
-                                <input type="text" name="othernames" id="othernames" class="uk-input" v-model="user.othernames">
-                                <small class="uk-text-warning" v-if="errors.othernames">{{errors.othernames[0]}}</small>
-                            </div>
-                        </div>
-                        <hr class="uk-divider-small">
-                        <div>
-                            <label for="email" class="uk-form-label">Email: </label>
-                            <div class="uk-form-controls">
-                                <input type="email" name="email" id="email" class="uk-input" v-model="user.email" required>
-                                <small class="uk-text-warning" v-if="errors.email">{{errors.email[0]}}</small>
-                            </div>
-                        </div>
-                        <hr class="uk-divider-small">
-                        <div>
-                            <fieldset class="uk-fieldset">
-                                <legend class="uk-legend">Gender</legend>
-                                <div class="uk-flex uk-flex-column">
-                                    <div v-for="gender in genders" :key="gender.index">
-                                        <label :for="gender" class="uk-form-label uk-text-capitalize">{{gender}} </label>
-                                        <div class="uk-form-controls">
-                                            <input type="radio" name="gender" :id="gender" class="uk-radio" v-model="user.gender" :value="gender" required>
-                                        </div>
-                                    </div>
-                                    <small class="uk-text-warning" v-if="errors.gender">{{errors.gender[0]}}</small>
-                                </div>
-                            </fieldset>
-                        </div>
-                        <hr class="uk-divider-small">
-                        <div>
-                            <fieldset>
-                                <legend>Courses</legend>
-                                <div class="uk-flex uk-flex-column">
-                                    <div v-for="course in courses" :key="course.index">
-                                        <label :for="course.title" class="uk-form-label uk-text-capitalize">{{course.title}}
-                                            </label>
-                                        <div class="uk-form-controls">
-                                            <input type="checkbox" name="courses" :id="course.title" class="uk-checkbox" v-model="user.courses" :value="course.id">
-                                        </div>
-                                    </div>
-                                </div>
-                            </fieldset>
-                        </div>
-                        <hr class="uk-divider-small">
-                        <div>
-                            <label for="password" class="uk-form-label">Password: </label>
-                            <div class="uk-form-controls">
-                                <input type="password" name="password" id="password" class="uk-input" v-model="user.password" required>
-                                <small class="uk-text-warning" v-if="errors.password">{{errors.password[0]}}</small>
-                            </div>
-                        </div>
-                        <hr class="uk-divider-small">
-                        <div>
-                            <label for="password_confirmation" class="uk-form-label">Confirm Password: </label>
-                            <div class="uk-form-controls">
-                                <input type="password" name="password_confirmation" id="password_confirmation" class="uk-input" v-model="user.password_confirmation"
-                                    required>
-                            </div>
-                        </div>
-                        <hr class="uk-divider-small">
-                        <div>
-                            <label for="upload" class="uk-form-label">Upload Picture</label>
-                            <div class="uk-form-controls">
-                                <input type="checkbox" :value="uploadPicture" class="uk-checkbox" id="upload" @click="toggleUpload()">
-                            </div>
-                            <div v-if="uploadPicture === true">
-                                <label for="Picture" class="uk-form-label">Picture: </label>
-                                <div class="uk-form-controls">
-                                    <input type="file" name="picture" id="picture" class="" accept="image/*" @change="fileChange()" ref="picture">
-                                </div>
-                            </div>
-                        </div>
-                        <hr class="uk-divider-small">
-                    </form>
-                </div>
-                <div class="uk-card-footer uk-card-secondary">
-                    <button class="uk-button uk-button-primary" form="login-form" @click.prevent="submit(user)" type="submit">Register</button>
-                    <transition name="loading">
-                            <p v-if="loading === true" class="uk-alert uk-alert-success uk-display-inline uk-animation-slide-bottom uk-animation-toggle">
-                                Loading
-                            </p>
-                        </transition>
-                </div>
-            </div>
-        </section>
-    </article>
-</div>
+  <v-container align-center>
+    <v-layout>
+      <v-flex xs11 md8>
+        <v-card class="mx-auto">
+          <v-toolbar :card="true">
+            <v-toolbar-title>Add New User</v-toolbar-title>
+          </v-toolbar>
+          <v-card-text>
+            <v-form id="register-form" ref="user" enctype="multipart/form-data" name="myForm">
+              <v-container>
+                <v-layout row>
+                  <v-flex sm4>
+                    <v-subheader>Enter Username</v-subheader>
+                  </v-flex>
+                  <v-flex sm8>
+                    <v-text-field
+                      label="Username"
+                      placeholder="Username"
+                      solo
+                      v-model="user.username"
+                    ></v-text-field>
+                  </v-flex>
+                </v-layout>
+                <v-layout row>
+                  <v-flex sm4>
+                    <v-subheader>Enter Surname</v-subheader>
+                  </v-flex>
+                  <v-flex sm8>
+                    <v-text-field label="Surname" placeholder="Surname" solo v-model="user.surname"></v-text-field>
+                  </v-flex>
+                </v-layout>
+                <v-layout row>
+                  <v-flex sm4>
+                    <v-subheader>Enter Firstname</v-subheader>
+                  </v-flex>
+                  <v-flex sm8>
+                    <v-text-field
+                      label="Firstname"
+                      placeholder="Firstname"
+                      solo
+                      v-model="user.firstname"
+                    ></v-text-field>
+                  </v-flex>
+                </v-layout>
+                <v-layout row>
+                  <v-flex sm4>
+                    <v-subheader>Enter Othernames</v-subheader>
+                  </v-flex>
+                  <v-flex sm8>
+                    <v-text-field
+                      label="Othernames"
+                      placeholder="Othernames"
+                      solo
+                      v-model="user.othernames"
+                    ></v-text-field>
+                  </v-flex>
+                </v-layout>
+                <v-layout row>
+                  <v-flex sm4>
+                    <v-subheader>Enter Email</v-subheader>
+                  </v-flex>
+                  <v-flex sm8>
+                    <v-text-field label="Email" placeholder="Email" solo v-model="user.email"></v-text-field>
+                  </v-flex>
+                </v-layout>
+                <v-layout row>
+                  <v-flex sm4>
+                    <v-subheader>Select Gender</v-subheader>
+                  </v-flex>
+                  <v-flex sm8>
+                    <v-radio-group v-model="user.gender" row>
+                      <v-radio
+                        v-for="gender in genders"
+                        :key="gender"
+                        :label="gender"
+                        :value="gender"
+                      ></v-radio>
+                    </v-radio-group>
+                  </v-flex>
+                </v-layout>
+                <v-layout row>
+                  <v-flex sm4>
+                    <v-subheader>Register Courses</v-subheader>
+                  </v-flex>
+                  <v-flex sm8>
+                    <v-select
+                      solo
+                      :items="courses"
+                      label="Register Courses"
+                      item-text="title"
+                      item-value="id"
+                      multiple
+                      v-model="user.courses"
+                    >
+                      <v-list-tile slot="prepend-item" ripple @click="toggle">
+                        <v-list-tile-action>
+                          <v-icon
+                            :color="user.courses.length > 0 ? 'indigo darken-4' : ''"
+                          >{{ icon }}</v-icon>
+                        </v-list-tile-action>
+                        <v-list-tile-title>Select All</v-list-tile-title>
+                      </v-list-tile>
+                    </v-select>
+                  </v-flex>
+                </v-layout>
+                <v-layout>
+                  <v-flex sm4>
+                    <v-subheader>Password</v-subheader>
+                  </v-flex>
+                  <v-flex sm8>
+                    <v-text-field
+                      solo
+                      v-model="user.password"
+                      label="Password"
+                      hint="At least six characters"
+                      :append-icon="show ? 'visibility_off' : 'visibility'"
+                      :type="show ? 'text':'password'"
+                      counter
+                      @click:append="show = !show"
+                    ></v-text-field>
+                  </v-flex>
+                </v-layout>
+                <v-layout>
+                  <v-flex sm4>
+                    <v-subheader>Confirm Password</v-subheader>
+                  </v-flex>
+                  <v-flex sm8>
+                    <v-text-field
+                      solo
+                      v-model="user.password_confirmation"
+                      label="Confirm Password"
+                      hint="At least six characters"
+                      :append-icon="show_pwd ? 'visibility_off' : 'visibility'"
+                      :type="show_pwd ? 'text':'password'"
+                      counter
+                      @click:append="show_pwd = !show_pwd"
+                    ></v-text-field>
+                  </v-flex>
+                </v-layout>
+                <v-layout>
+                  <v-flex sm4>
+                    <v-subheader>Upload Picture</v-subheader>
+                  </v-flex>
+                  <v-flex sm8>
+                    <v-switch
+                      label="Upload Picture"
+                      v-model="uploadPicture"
+                      @change="toggleUpload()"
+                    ></v-switch>
+                  </v-flex>
+                </v-layout>
+                <v-layout v-if="uploadPicture == true">
+                  <v-flex>
+                    <uploadWidget formid="user" @uploads="handleUpload"></uploadWidget>
+                  </v-flex>
+                </v-layout>
+              </v-container>
+            </v-form>
+          </v-card-text>
+          <v-card-actions>
+            <v-container>
+              <v-layout class="text-xs-center">
+                <v-flex>
+                  <v-btn color="info" @click="submit(user)" block>Submit</v-btn>
+                </v-flex>
+              </v-layout>
+            </v-container>
+          </v-card-actions>
+          <transition name="loading">
+            <v-progress-linear :indeterminate="true" v-if="loading === true"></v-progress-linear>
+          </transition>
+        </v-card>
+      </v-flex>
+    </v-layout>
+    <v-snackbar :top="true" color="success" v-model="snackbar">Success</v-snackbar>
+  </v-container>
 </template>
 
 <script>
+import uploadWidget from "./../uploadWidget";
 let genders = ["male", "female", "others"];
 
 export default {
   name: "Register",
+  components: {
+    uploadWidget
+  },
   props: {
     courses: Array
   },
   data() {
     return {
       genders,
+      valid: true,
+      show: false,
+      show_pwd: false,
       uploadPicture: false,
       loading: false,
+      snackbar: false,
       errors: {},
       user: {
         username: "",
@@ -157,23 +217,43 @@ export default {
   mounted() {
     console.log("Component mounted.");
   },
-  computed: {},
+  computed: {
+    allCourses() {
+      return this.user.courses.length === this.courses.length;
+    },
+    someCourses() {
+      return this.user.courses.length > 0 && !this.allCourses;
+    },
+    icon() {
+      if (this.allCourses) return "remove";
+      if (this.someCourses) return "add";
+      return "select_all";
+    }
+  },
   methods: {
+    toggle() {
+      this.$nextTick(() => {
+        if (this.allCourses) {
+          this.user.courses = [];
+        } else {
+          this.user.courses = this.courses.slice();
+        }
+      });
+    },
     toggleUpload() {
-      this.uploadPicture = !this.uploadPicture;
       if (this.uploadPicture == false) {
-        this.question.picture = [];
+        this.user.picture = [];
       }
     },
-    fileChange() {
-      this.user.picture = this.$refs.picture.files[0];
+    handleUpload(files) {
+      this.user.picture = files;
     },
     submit(form) {
       this.loading = true;
       let formData = new FormData();
       /*
-                 *Add the form data we need to submit
-                 */
+       *Add the form data we need to submit
+       */
       Object.entries(form).forEach(([key, value]) => {
         formData.append(key, value);
       });
@@ -184,13 +264,12 @@ export default {
             "Content-Type": "multipart/form-data"
           }
         })
-        .then(res => res.json)
         .then(response => {
-          if (response.status === "success") {
-            this.loading = true;
+          if (response.data.status === "success") {
+            this.loading = false;
             this.errors = {};
-            window.UIkit.notification(response.message);
-            window.location.reload;
+            this.snackbar = true;
+            // window.location.reload;
           }
         })
         .catch(val => {

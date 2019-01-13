@@ -6,21 +6,31 @@
 
 require('./bootstrap');
 import WebFontLoader from 'webfontloader';
+import 'vuetify/dist/vuetify.min.css';
+import store from './store';
+import VueLaroute from 'vue-laroute';
+import routes from './../../../public/js/laroute';
 
-// loads the Icon plugin
 window.Vue = require('vue');
 window.Vuetify = require('vuetify');
-Vue.use(Vuetify);
 
-import 'vuetify/dist/vuetify.min.css';
-
-import store from './store';
-
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
+Vue.use(Vuetify, {
+    theme: {
+        primary: '#3f51b5',
+        secondary: '#b0bec5',
+        accent: '#8c9eff',
+        error: '#b71c1c'
+    }
+});
+Vue.use(VueLaroute, {
+        routes,
+        accessor: '$routes'
+    })
+    /**
+     * Next, we will create a fresh Vue application instance and attach it to
+     * the page. Then, you may begin adding components to this application
+     * or customize the JavaScript scaffolding to fit your unique needs.
+     */
 
 const app = new Vue({
     el: '#app',
@@ -50,6 +60,12 @@ const app = new Vue({
          */
         'epanel-home': () => ({
             component: import ('./components/epanel/home.vue' /*webpackChunkName: "epanel/home"*/ )
+        }),
+        'epanel-header': () => ({
+            component: import ('./components/epanel/layouts/header.vue' /*webpackChunkName: "epanel/layouts/header"*/ )
+        }),
+        'epanel-footer': () => ({
+            component: import ('./components/epanel/layouts/footer.vue' /*webpackChunkName: "epanel/layouts/footer"*/ )
         }),
         /**
          * Courses components

@@ -1,11 +1,56 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a20a74a2ba8d406c7045dbaa71464097",
+    "content-hash": "0539fc99cb4000c8defba826f76c916f",
     "packages": [
+        {
+            "name": "axn/laravel-laroute",
+            "version": "1.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/AXN-Informatique/laravel-laroute.git",
+                "reference": "37e0d850505ba25082593b983057c2869687c21e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/AXN-Informatique/laravel-laroute/zipball/37e0d850505ba25082593b983057c2869687c21e",
+                "reference": "37e0d850505ba25082593b983057c2869687c21e",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "5.4.*|5.5.*|5.6.*|5.7.*",
+                "lord/laroute": "^2.4"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Axn\\Laroute\\ServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Axn\\Laroute\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "AXN Informatique",
+                    "email": "developpement@axn.fr"
+                }
+            ],
+            "description": "Extend aaronlord/laroute package.",
+            "homepage": "https://github.com/AXN-Informatique/laravel-laroute",
+            "time": "2018-09-07T07:18:05+00:00"
+        },
         {
             "name": "box/spout",
             "version": "v2.7.3",
@@ -806,6 +851,57 @@
                 "storage"
             ],
             "time": "2018-09-14T15:30:29+00:00"
+        },
+        {
+            "name": "lord/laroute",
+            "version": "2.4.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/aaronlord/laroute.git",
+                "reference": "7242310f02ebc3f3d6a94b00db95ad0978b1802b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/aaronlord/laroute/zipball/7242310f02ebc3f3d6a94b00db95ad0978b1802b",
+                "reference": "7242310f02ebc3f3d6a94b00db95ad0978b1802b",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/config": "5.0.*|5.1.*|5.2.*|5.3.*|5.4.*|5.5.*|5.6.*|5.7.*",
+                "illuminate/console": "5.0.*|5.1.*|5.2.*|5.3.*|5.4.*|5.5.*|5.6.*|5.7.*",
+                "illuminate/filesystem": "5.0.*|5.1.*|5.2.*|5.3.*|5.4.*|5.5.*|5.6.*|5.7.*",
+                "illuminate/routing": "5.0.*|5.1.*|5.2.*|5.3.*|5.4.*|5.5.*|5.6.*|5.7.*",
+                "illuminate/support": "5.0.*|5.1.*|5.2.*|5.3.*|5.4.*|5.5.*|5.6.*|5.7.*",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "dev-master",
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Lord\\Laroute\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Aaron Lord",
+                    "email": "hello@aaronlord.is"
+                }
+            ],
+            "description": "Access Laravels URL/Route helper functions, from JavaScript.",
+            "keywords": [
+                "javascript",
+                "laravel",
+                "routes",
+                "routing"
+            ],
+            "time": "2018-09-11T00:19:41+00:00"
         },
         {
             "name": "monolog/monolog",
