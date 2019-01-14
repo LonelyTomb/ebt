@@ -10,15 +10,15 @@
         "fideloper/proxy": "^4.0",
         "laravel/framework": "5.7.*",
         "laravel/tinker": "^1.0",
-        "rap2hpoutre/fast-excel": "^0.9.0",
-        "vlucas/phpdotenv": "^3.1"
+        "rap2hpoutre/fast-excel": "^0.9.0"
     },
     "require-dev": {
-        "filp/whoops": "^2.0",
-        "fzaninotto/faker": "^1.4",
-        "mockery/mockery": "^1.0",
-        "nunomaduro/collision": "^2.0",
-        "phpunit/phpunit": "^7.0"
+        "vlucas/phpdotenv": "~2.5.2",
+        "filp/whoops": "~2.0",
+        "fzaninotto/faker": "~1.4",
+        "mockery/mockery": "~1.0",
+        "nunomaduro/collision": "~2.0",
+        "phpunit/phpunit": "~7.0"
     },
     "autoload": {
         "classmap": [
