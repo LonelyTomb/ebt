@@ -1,263 +1,4 @@
-webpackJsonp([10],{
-
-/***/ 117:
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(118)
-}
-var normalizeComponent = __webpack_require__(60)
-/* script */
-var __vue_script__ = __webpack_require__(120)
-/* template */
-var __vue_template__ = __webpack_require__(121)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/components/uploadWidget.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-6740fa88", Component.options)
-  } else {
-    hotAPI.reload("data-v-6740fa88", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-
-/***/ 118:
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(119);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(61)("64c2cb0f", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-6740fa88\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./uploadWidget.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-6740fa88\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./uploadWidget.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-
-/***/ 119:
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(12)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.js-upload {\n  margin-bottom: 20px;\n  padding: 30px 30px;\n  background: transparent;\n  border: 1px dashed #e5e5e5;\n  text-align: center;\n}\n.custom-input {\n  display: inline-block;\n  position: relative;\n  max-width: 100%;\n  vertical-align: middle;\n}\n.custom-file-input {\n  position: absolute;\n  top: 0;\n  z-index: 1;\n  width: 100%;\n  height: 100%;\n  left: 0;\n  -webkit-appearance: none;\n  opacity: 0;\n  cursor: pointer;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-
-/***/ 120:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  name: "uploadWidget",
-  props: {
-    formid: String
-  },
-  data: function data() {
-    return {
-      uploads: []
-    };
-  },
-  mounted: function mounted() {
-    this.$emit("uploads", []);
-    [("drag", "dragstart", "dragend", "dragover", "dragenter", "dragleave", "drop")].forEach(function (evt) {
-      /*
-      For each event add an event listener that prevents the default action
-      (opening the file in the browser) and stop the propagation of the event (so
-      no other elements open the file in the browser)
-      */
-      this.$refs.dropZone.addEventListener(evt, function (e) {
-        e.preventDefault();
-        e.stopPropagation();
-      }.bind(this), false);
-    }.bind(this));
-    this.$refs.dropZone.addEventListener("drop", function (e) {
-      /*
-      Capture the files from the drop event and add them to our local files
-      array.
-      */
-      this.uploads = e.dataTransfer.files[0];
-      this.$emit("uploads", e.dataTransfer.files[0]);
-    }.bind(this));
-  },
-
-  methods: {
-    resetInput: function resetInput() {
-      this.uploads = [];
-      this.$emit("uploads", []);
-    },
-    fileChange: function fileChange() {
-      this.uploads = this.$refs.uploads.files[0];
-      this.$emit("uploads", this.$refs.uploads.files[0]);
-    }
-  }
-});
-
-/***/ }),
-
-/***/ 121:
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", { ref: "dropZone", staticClass: "js-upload" }, [
-      this.uploads.length == 0
-        ? _c(
-            "div",
-            [
-              _c("v-icon", [_vm._v("cloud_upload")]),
-              _vm._v(" "),
-              _c("span", { staticClass: "uk-text-middle" }, [
-                _vm._v("Drop File or")
-              ]),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "custom-input" },
-                [
-                  _c("input", {
-                    ref: "uploads",
-                    staticClass: "custom-file-input",
-                    attrs: {
-                      type: "file",
-                      name: "uploads",
-                      id: "uploads",
-                      form: _vm.formid
-                    },
-                    on: {
-                      change: function($event) {
-                        _vm.fileChange()
-                      }
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("v-btn", { attrs: { flat: "", color: "info" } }, [
-                    _vm._v("click here to upload")
-                  ])
-                ],
-                1
-              )
-            ],
-            1
-          )
-        : _c(
-            "div",
-            { staticClass: "file-selected" },
-            [
-              _c("span", [_vm._v(_vm._s(this.uploads.name))]),
-              _vm._v(" "),
-              _c(
-                "v-btn",
-                {
-                  attrs: { color: "warning", round: "" },
-                  on: {
-                    click: function($event) {
-                      _vm.resetInput()
-                    }
-                  }
-                },
-                [_vm._v("Cancel")]
-              )
-            ],
-            1
-          )
-    ])
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-6740fa88", module.exports)
-  }
-}
-
-/***/ }),
+webpackJsonp([5],{
 
 /***/ 52:
 /***/ (function(module, exports, __webpack_require__) {
@@ -267,7 +8,7 @@ var normalizeComponent = __webpack_require__(60)
 /* script */
 var __vue_script__ = __webpack_require__(82)
 /* template */
-var __vue_template__ = __webpack_require__(83)
+var __vue_template__ = __webpack_require__(88)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -685,7 +426,7 @@ module.exports = function listToStyles (parentId, list) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__uploadWidget__ = __webpack_require__(117);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__uploadWidget__ = __webpack_require__(83);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__uploadWidget___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__uploadWidget__);
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
@@ -982,6 +723,265 @@ var genders = ["male", "female", "others"];
 /***/ }),
 
 /***/ 83:
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(84)
+}
+var normalizeComponent = __webpack_require__(60)
+/* script */
+var __vue_script__ = __webpack_require__(86)
+/* template */
+var __vue_template__ = __webpack_require__(87)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/uploadWidget.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-6740fa88", Component.options)
+  } else {
+    hotAPI.reload("data-v-6740fa88", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ 84:
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(85);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(61)("64c2cb0f", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-6740fa88\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./uploadWidget.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-6740fa88\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./uploadWidget.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ 85:
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(12)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.js-upload {\n  margin-bottom: 20px;\n  padding: 30px 30px;\n  background: transparent;\n  border: 1px dashed #e5e5e5;\n  text-align: center;\n}\n.custom-input {\n  display: inline-block;\n  position: relative;\n  max-width: 100%;\n  vertical-align: middle;\n}\n.custom-file-input {\n  position: absolute;\n  top: 0;\n  z-index: 1;\n  width: 100%;\n  height: 100%;\n  left: 0;\n  -webkit-appearance: none;\n  opacity: 0;\n  cursor: pointer;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ 86:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "uploadWidget",
+  props: {
+    formid: String
+  },
+  data: function data() {
+    return {
+      uploads: []
+    };
+  },
+  mounted: function mounted() {
+    this.$emit("uploads", []);
+    [("drag", "dragstart", "dragend", "dragover", "dragenter", "dragleave", "drop")].forEach(function (evt) {
+      /*
+      For each event add an event listener that prevents the default action
+      (opening the file in the browser) and stop the propagation of the event (so
+      no other elements open the file in the browser)
+      */
+      this.$refs.dropZone.addEventListener(evt, function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }.bind(this), false);
+    }.bind(this));
+    this.$refs.dropZone.addEventListener("drop", function (e) {
+      /*
+      Capture the files from the drop event and add them to our local files
+      array.
+      */
+      this.uploads = e.dataTransfer.files[0];
+      this.$emit("uploads", e.dataTransfer.files[0]);
+    }.bind(this));
+  },
+
+  methods: {
+    resetInput: function resetInput() {
+      this.uploads = [];
+      this.$emit("uploads", []);
+    },
+    fileChange: function fileChange() {
+      this.uploads = this.$refs.uploads.files[0];
+      this.$emit("uploads", this.$refs.uploads.files[0]);
+    }
+  }
+});
+
+/***/ }),
+
+/***/ 87:
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { ref: "dropZone", staticClass: "js-upload" }, [
+      this.uploads.length == 0
+        ? _c(
+            "div",
+            [
+              _c("v-icon", [_vm._v("cloud_upload")]),
+              _vm._v(" "),
+              _c("span", { staticClass: "uk-text-middle" }, [
+                _vm._v("Drop File or")
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "custom-input" },
+                [
+                  _c("input", {
+                    ref: "uploads",
+                    staticClass: "custom-file-input",
+                    attrs: {
+                      type: "file",
+                      name: "uploads",
+                      id: "uploads",
+                      form: _vm.formid
+                    },
+                    on: {
+                      change: function($event) {
+                        _vm.fileChange()
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("v-btn", { attrs: { flat: "", color: "info" } }, [
+                    _vm._v("click here to upload")
+                  ])
+                ],
+                1
+              )
+            ],
+            1
+          )
+        : _c(
+            "div",
+            { staticClass: "file-selected" },
+            [
+              _c("span", [_vm._v(_vm._s(this.uploads.name))]),
+              _vm._v(" "),
+              _c(
+                "v-btn",
+                {
+                  attrs: { color: "warning", round: "" },
+                  on: {
+                    click: function($event) {
+                      _vm.resetInput()
+                    }
+                  }
+                },
+                [_vm._v("Cancel")]
+              )
+            ],
+            1
+          )
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-6740fa88", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ 88:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {

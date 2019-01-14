@@ -168,12 +168,12 @@ var app = new Vue({
         },
         'register': function register() {
             return {
-                component: __webpack_require__.e/* import() */(10).then(__webpack_require__.bind(null, 52))
+                component: __webpack_require__.e/* import() */(5).then(__webpack_require__.bind(null, 52))
             };
         },
         'bulk-register': function bulkRegister() {
             return {
-                component: __webpack_require__.e/* import() */(5).then(__webpack_require__.bind(null, 53))
+                component: __webpack_require__.e/* import() */(6).then(__webpack_require__.bind(null, 53))
             };
         },
         'bulk-register-preview': function bulkRegisterPreview() {
@@ -197,7 +197,7 @@ var app = new Vue({
         },
         'epanel-footer': function epanelFooter() {
             return {
-                component: __webpack_require__.e/* import() */(7).then(__webpack_require__.bind(null, 47))
+                component: __webpack_require__.e/* import() */(8).then(__webpack_require__.bind(null, 47))
             };
         },
         /**
@@ -205,7 +205,7 @@ var app = new Vue({
          **/
         'create-course': function createCourse() {
             return {
-                component: __webpack_require__.e/* import() */(9).then(__webpack_require__.bind(null, 55))
+                component: __webpack_require__.e/* import() */(10).then(__webpack_require__.bind(null, 55))
             };
         },
         /**
@@ -218,7 +218,7 @@ var app = new Vue({
         },
         'input-question': function inputQuestion() {
             return {
-                component: __webpack_require__.e/* import() */(8).then(__webpack_require__.bind(null, 57))
+                component: __webpack_require__.e/* import() */(9).then(__webpack_require__.bind(null, 57))
             };
         },
         /**
@@ -234,7 +234,7 @@ var app = new Vue({
          * */
         'home': function home() {
             return {
-                component: __webpack_require__.e/* import() */(6).then(__webpack_require__.bind(null, 59))
+                component: __webpack_require__.e/* import() */(7).then(__webpack_require__.bind(null, 59))
             };
         }
     },

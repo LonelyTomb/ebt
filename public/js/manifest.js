@@ -91,7 +91,7 @@
 /******/ 		if (__webpack_require__.nc) {
 /******/ 			script.setAttribute("nonce", __webpack_require__.nc);
 /******/ 		}
-/******/ 		script.src = __webpack_require__.p + "js/" + ({"0":"epanel/home","1":"epanel/layouts/header","2":"epanel/user/userUpload","3":"epanel/questions/upload","4":"epanel/auth/admin-login","5":"auth/bulkRegister","6":"epanel/user/home","7":"epanel/layouts/footer","8":"epanel/questions/input","9":"epanel/courses/create","10":"auth/register","11":"auth/login","12":"auth/bulkRegisterPreview"}[chunkId]||chunkId) + ".js";
+/******/ 		script.src = __webpack_require__.p + "js/" + ({"0":"epanel/home","1":"epanel/layouts/header","2":"epanel/user/userUpload","3":"epanel/questions/upload","4":"epanel/auth/admin-login","5":"auth/register","6":"auth/bulkRegister","7":"epanel/user/home","8":"epanel/layouts/footer","9":"epanel/questions/input","10":"epanel/courses/create","11":"auth/login","12":"auth/bulkRegisterPreview"}[chunkId]||chunkId) + ".js";
 /******/ 		var timeout = setTimeout(onScriptComplete, 120000);
 /******/ 		script.onerror = script.onload = onScriptComplete;
 /******/ 		function onScriptComplete() {

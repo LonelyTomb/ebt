@@ -1,4 +1,4 @@
-webpackJsonp([5,12],{
+webpackJsonp([6,12],{
 
 /***/ 48:
 /***/ (function(module, exports, __webpack_require__) {
@@ -54,13 +54,13 @@ module.exports = Component.exports
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(84)
+  __webpack_require__(89)
 }
 var normalizeComponent = __webpack_require__(60)
 /* script */
-var __vue_script__ = __webpack_require__(86)
+var __vue_script__ = __webpack_require__(91)
 /* template */
-var __vue_template__ = __webpack_require__(87)
+var __vue_template__ = __webpack_require__(92)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -722,13 +722,13 @@ if (false) {
 
 /***/ }),
 
-/***/ 84:
+/***/ 89:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(85);
+var content = __webpack_require__(90);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -749,7 +749,7 @@ if(false) {
 
 /***/ }),
 
-/***/ 85:
+/***/ 90:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(12)(false);
@@ -764,7 +764,7 @@ exports.push([module.i, "\n.uk-form-custom[data-v-9f877056]:hover {\n  cursor: p
 
 /***/ }),
 
-/***/ 86:
+/***/ 91:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -923,7 +923,7 @@ var format = ["surname", "firstname", "othernames", "username", "email", "gender
 
 /***/ }),
 
-/***/ 87:
+/***/ 92:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
