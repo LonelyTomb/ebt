@@ -5,5 +5,5 @@ Register User
 @endsection
 
 @section('content')
-<bulk-register-component></bulk-register-component>
+<bulk-register></bulk-register>
 @endsection

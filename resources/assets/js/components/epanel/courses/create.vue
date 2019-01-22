@@ -1,83 +1,142 @@
 <template>
-<div class="courses-container">
-    <article class="uk-article">
-        <!-- <h2 class="">Admin Login</h2> -->
-        <section class="uk-section">
-            <div class="uk-card uk-card-default uk-width-1-2@m uk-margin-auto uk-box-shadow-large">
-                <div class="uk-card-header uk-card-primary">
-                    <h3 class="uk-heading">Add New Course</h3>
-                </div>
-                <div class="uk-card-body">
-                    <form class="uk-form uk-form-horizontal" id="course-creation-form" ref="course">
-                        <div>
-                            <label for="title" class="uk-form-label">Title</label>
-                            <div class="uk-form-controls">
-                                <input type="text" name="title" id="title" class="uk-input" v-model="course.title">
-                            </div>
-                        </div>
-                        <hr>
-                        <div>
-                            <label for="code" class="uk-form-label">Code</label>
-                            <div class="uk-form-controls">
-                                <input type="text" name="code" id="code" class="uk-input" v-model="course.code">
-                            </div>
-                        </div>
-                        <hr>
-                        <div>
-                            <label for="questions" class="uk-form-label">No of Questions</label>
-                            <div class="uk-form-controls">
-                                <input type="number" name="questions" id="questions" class="uk-input" v-model="course.questions" min=0>
-                            </div>
-                        </div>
-                        <hr>
-                        <div>
-                            <label for="points" class="uk-form-label">Points Per Question</label>
-                            <div class="uk-form-controls">
-                                <input type="number" name="points" id="points" class="uk-input" v-model="course.points" min=0>
-                            </div>
-                        </div>
-                        <hr>
-                        <div>
-                            <label for="duration" class="uk-form-label">Duration</label>
-                            <div class="uk-form-controls">
-                                <input type="number" name="duration" id="duration" class="uk-input" v-model="course.duration" min=0>
-                            </div>
-                        </div>
-                        <hr>
-                        <div>
-                            <label for="always-available" class="uk-form-label">Always Available</label>
-                            <div class="uk-form-controls">
-                                <input type="checkbox" name="always-available" id="always-available" class="uk-checkbox"
+  <v-container align-center>
+    <v-layout>
+      <v-flex xs11 md8>
+        <v-card class="mx-auto">
+          <v-toolbar :card="true">
+            <v-toolbar-title>Add New Course</v-toolbar-title>
+          </v-toolbar>
+          <v-card-text>
+            <v-form id="course-creation-form" ref="course" enctype="multipart/form-data" name="course-creation-form">
+              <v-container>
+                <v-layout row>
+                  <v-flex sm4>
+                    <v-subheader>Title</v-subheader>
+                  </v-flex>
+                  <v-flex sm8>
+                    <v-text-field
+                      label="Title"
+                      placeholder="Title"
+                      solo
+                     name="title" id="title" v-model="course.title"
+                    ></v-text-field>
+                  </v-flex>
+                </v-layout>
+                <v-layout row>
+                  <v-flex sm4>
+                    <v-subheader>Code</v-subheader>
+                  </v-flex>
+                  <v-flex sm8>
+                    <v-text-field
+                      label="Code"
+                      placeholder="Code"
+                      solo
+                     name="code" id="code" v-model="course.code"
+                    ></v-text-field>
+                  </v-flex>
+                </v-layout>
+                <v-layout row>
+                  <v-flex sm4>
+                    <v-subheader>No of Questions</v-subheader>
+                  </v-flex>
+                  <v-flex sm8>
+                    <v-text-field
+                      label="No of Questions"
+                      placeholder="No of Questions"
+                      solo
+                     type="number" name="questions" id="questions" v-model="course.questions" min=0
+                    ></v-text-field>
+                  </v-flex>
+                </v-layout>
+                <v-layout row>
+                  <v-flex sm4>
+                    <v-subheader>Points Per Question</v-subheader>
+                  </v-flex>
+                  <v-flex sm8>
+                    <v-text-field
+                      label="Points Per Question"
+                      placeholder="Points Per Question"
+                      solo
+                     type="number" name="points" id="points" v-model="course.points" min=0
+                    ></v-text-field>
+                  </v-flex>
+                </v-layout>
+                <v-layout row>
+                  <v-flex sm4>
+                    <v-subheader>Duration</v-subheader>
+                  </v-flex>
+                  <v-flex sm8>
+                    <v-text-field
+                      label="Duration"
+                      placeholder="Duration"
+                      solo
+                     type="number" name="duration" id="duration" v-model="course.duration" min=0>
+                    ></v-text-field>
+                  </v-flex>
+                </v-layout>
+                <v-layout row>
+                  <v-flex sm4>
+                    <v-subheader>Always Available</v-subheader>
+                  </v-flex>
+                  <v-flex sm8>
+                    <v-checkbox
+                      label="Always Available"
+                      placeholder="Always Available"
+                      solo
+                     t name="always-available" id="always-available"
                                     v-model="course.alwaysAvailable" value="1">
-                            </div>
-                        </div>
-                        <hr>
-                        <div v-if="course.alwaysAvailable == 0">
-                            <label for="start-time" class="uk-form-label">Start Time</label>
-                            <div class="uk-form-controls">
-                                <input type="datetime-local" name="start-time" id="start-time" class="uk-input"
+                    ></v-checkbox>
+                  </v-flex>
+                </v-layout>
+                <v-layout row>
+                  <v-flex sm4>
+                    <v-subheader>Start Time</v-subheader>
+                  </v-flex>
+                  <v-flex sm8>
+                    <v-text-field
+                      label="Start Time"
+                      placeholder="Start Time"
+                      solo
+                      type="datetime-local" name="start-time" id="start-time"
                                     v-model="course.startTime" value="1">
-                            </div>
-                        </div>
-                        <hr>
-                        <div v-if="course.alwaysAvailable == 0">
-                            <label for="stop-time" class="uk-form-label">Stop Time</label>
-                            <div class="uk-form-controls">
-                                <input type="datetime-local" name="stop-time" id="stop-time" class="uk-input"
+                    ></v-text-field>
+                  </v-flex>
+                </v-layout>
+                <v-layout row>
+                  <v-flex sm4>
+                    <v-subheader>Stop Time</v-subheader>
+                  </v-flex>
+                  <v-flex sm8>
+                    <v-text-field
+                      label="Stop Time"
+                      placeholder="Stop Time"
+                      solo
+                     type="datetime-local" name="stop-time" id="stop-time"
                                     v-model="course.stopTime" value="1">
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="uk-card-footer uk-card-secondary">
-                    <button class="uk-button uk-button-primary uk-box-shadow-hover-medium" form="course-creation-form" @click.prevent="submit(course)">Create</button>
-                </div>
-            </div>
-        </section>
-    </article>
-</div>
+                    ></v-text-field>
+                  </v-flex>
+                </v-layout>
+              </v-container>
+            </v-form>
+          </v-card-text>
+          <v-card-actions>
+            <v-container>
+              <v-layout class="text-xs-center">
+                <v-flex>
+                  <v-btn color="info" @click="submit(course)" block>Create</v-btn>
+                </v-flex>
+              </v-layout>
+            </v-container>
+          </v-card-actions>
+          <transition name="loading">
+            <v-progress-linear :indeterminate="true" v-if="loading === true"></v-progress-linear>
+          </transition>
+        </v-card>
+      </v-flex>
+    </v-layout>
+    <v-snackbar :top="true" color="success" v-model="snackbar">Success</v-snackbar>
+  </v-container>
 </template>
-
 <script>
 
 export default {

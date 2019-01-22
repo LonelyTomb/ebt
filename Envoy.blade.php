@@ -95,7 +95,7 @@
 @endtask
 
 @task('deployment_migrate')
-	php {{ $release }}/artisan migrate --seed --env={{ $env }} --force --no-interaction
+	php {{ $release }}/artisan migrate:refresh --seed --env={{ $env }} --force --no-interaction
 @endtask
 
 @task('deployment_cache')

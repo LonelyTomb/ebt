@@ -243,6 +243,65 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -287,425 +346,497 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "courses-container" }, [
-    _c("article", { staticClass: "uk-article" }, [
-      _c("section", { staticClass: "uk-section" }, [
-        _c(
-          "div",
-          {
-            staticClass:
-              "uk-card uk-card-default uk-width-1-2@m uk-margin-auto uk-box-shadow-large"
-          },
-          [
-            _vm._m(0),
-            _vm._v(" "),
-            _c("div", { staticClass: "uk-card-body" }, [
+  return _c(
+    "v-container",
+    { attrs: { "align-center": "" } },
+    [
+      _c(
+        "v-layout",
+        [
+          _c(
+            "v-flex",
+            { attrs: { xs11: "", md8: "" } },
+            [
               _c(
-                "form",
-                {
-                  ref: "course",
-                  staticClass: "uk-form uk-form-horizontal",
-                  attrs: { id: "course-creation-form" }
-                },
+                "v-card",
+                { staticClass: "mx-auto" },
                 [
-                  _c("div", [
-                    _c(
-                      "label",
-                      { staticClass: "uk-form-label", attrs: { for: "title" } },
-                      [_vm._v("Title")]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "uk-form-controls" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.course.title,
-                            expression: "course.title"
-                          }
-                        ],
-                        staticClass: "uk-input",
-                        attrs: { type: "text", name: "title", id: "title" },
-                        domProps: { value: _vm.course.title },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(_vm.course, "title", $event.target.value)
-                          }
-                        }
-                      })
-                    ])
-                  ]),
+                  _c(
+                    "v-toolbar",
+                    { attrs: { card: true } },
+                    [_c("v-toolbar-title", [_vm._v("Add New Course")])],
+                    1
+                  ),
                   _vm._v(" "),
-                  _c("hr"),
-                  _vm._v(" "),
-                  _c("div", [
-                    _c(
-                      "label",
-                      { staticClass: "uk-form-label", attrs: { for: "code" } },
-                      [_vm._v("Code")]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "uk-form-controls" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.course.code,
-                            expression: "course.code"
+                  _c(
+                    "v-card-text",
+                    [
+                      _c(
+                        "v-form",
+                        {
+                          ref: "course",
+                          attrs: {
+                            id: "course-creation-form",
+                            enctype: "multipart/form-data",
+                            name: "course-creation-form"
                           }
-                        ],
-                        staticClass: "uk-input",
-                        attrs: { type: "text", name: "code", id: "code" },
-                        domProps: { value: _vm.course.code },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(_vm.course, "code", $event.target.value)
-                          }
-                        }
-                      })
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("hr"),
-                  _vm._v(" "),
-                  _c("div", [
-                    _c(
-                      "label",
-                      {
-                        staticClass: "uk-form-label",
-                        attrs: { for: "questions" }
-                      },
-                      [_vm._v("No of Questions")]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "uk-form-controls" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.course.questions,
-                            expression: "course.questions"
-                          }
-                        ],
-                        staticClass: "uk-input",
-                        attrs: {
-                          type: "number",
-                          name: "questions",
-                          id: "questions",
-                          min: "0"
                         },
-                        domProps: { value: _vm.course.questions },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(
-                              _vm.course,
-                              "questions",
-                              $event.target.value
-                            )
-                          }
-                        }
-                      })
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("hr"),
-                  _vm._v(" "),
-                  _c("div", [
-                    _c(
-                      "label",
-                      {
-                        staticClass: "uk-form-label",
-                        attrs: { for: "points" }
-                      },
-                      [_vm._v("Points Per Question")]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "uk-form-controls" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.course.points,
-                            expression: "course.points"
-                          }
-                        ],
-                        staticClass: "uk-input",
-                        attrs: {
-                          type: "number",
-                          name: "points",
-                          id: "points",
-                          min: "0"
-                        },
-                        domProps: { value: _vm.course.points },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(_vm.course, "points", $event.target.value)
-                          }
-                        }
-                      })
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("hr"),
-                  _vm._v(" "),
-                  _c("div", [
-                    _c(
-                      "label",
-                      {
-                        staticClass: "uk-form-label",
-                        attrs: { for: "duration" }
-                      },
-                      [_vm._v("Duration")]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "uk-form-controls" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.course.duration,
-                            expression: "course.duration"
-                          }
-                        ],
-                        staticClass: "uk-input",
-                        attrs: {
-                          type: "number",
-                          name: "duration",
-                          id: "duration",
-                          min: "0"
-                        },
-                        domProps: { value: _vm.course.duration },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(
-                              _vm.course,
-                              "duration",
-                              $event.target.value
-                            )
-                          }
-                        }
-                      })
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("hr"),
-                  _vm._v(" "),
-                  _c("div", [
-                    _c(
-                      "label",
-                      {
-                        staticClass: "uk-form-label",
-                        attrs: { for: "always-available" }
-                      },
-                      [_vm._v("Always Available")]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "uk-form-controls" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.course.alwaysAvailable,
-                            expression: "course.alwaysAvailable"
-                          }
-                        ],
-                        staticClass: "uk-checkbox",
-                        attrs: {
-                          type: "checkbox",
-                          name: "always-available",
-                          id: "always-available",
-                          value: "1"
-                        },
-                        domProps: {
-                          checked: Array.isArray(_vm.course.alwaysAvailable)
-                            ? _vm._i(_vm.course.alwaysAvailable, "1") > -1
-                            : _vm.course.alwaysAvailable
-                        },
-                        on: {
-                          change: function($event) {
-                            var $$a = _vm.course.alwaysAvailable,
-                              $$el = $event.target,
-                              $$c = $$el.checked ? true : false
-                            if (Array.isArray($$a)) {
-                              var $$v = "1",
-                                $$i = _vm._i($$a, $$v)
-                              if ($$el.checked) {
-                                $$i < 0 &&
-                                  _vm.$set(
-                                    _vm.course,
-                                    "alwaysAvailable",
-                                    $$a.concat([$$v])
+                        [
+                          _c(
+                            "v-container",
+                            [
+                              _c(
+                                "v-layout",
+                                { attrs: { row: "" } },
+                                [
+                                  _c(
+                                    "v-flex",
+                                    { attrs: { sm4: "" } },
+                                    [_c("v-subheader", [_vm._v("Title")])],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-flex",
+                                    { attrs: { sm8: "" } },
+                                    [
+                                      _c("v-text-field", {
+                                        attrs: {
+                                          label: "Title",
+                                          placeholder: "Title",
+                                          solo: "",
+                                          name: "title",
+                                          id: "title"
+                                        },
+                                        model: {
+                                          value: _vm.course.title,
+                                          callback: function($$v) {
+                                            _vm.$set(_vm.course, "title", $$v)
+                                          },
+                                          expression: "course.title"
+                                        }
+                                      })
+                                    ],
+                                    1
                                   )
-                              } else {
-                                $$i > -1 &&
-                                  _vm.$set(
-                                    _vm.course,
-                                    "alwaysAvailable",
-                                    $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-layout",
+                                { attrs: { row: "" } },
+                                [
+                                  _c(
+                                    "v-flex",
+                                    { attrs: { sm4: "" } },
+                                    [_c("v-subheader", [_vm._v("Code")])],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-flex",
+                                    { attrs: { sm8: "" } },
+                                    [
+                                      _c("v-text-field", {
+                                        attrs: {
+                                          label: "Code",
+                                          placeholder: "Code",
+                                          solo: "",
+                                          name: "code",
+                                          id: "code"
+                                        },
+                                        model: {
+                                          value: _vm.course.code,
+                                          callback: function($$v) {
+                                            _vm.$set(_vm.course, "code", $$v)
+                                          },
+                                          expression: "course.code"
+                                        }
+                                      })
+                                    ],
+                                    1
                                   )
-                              }
-                            } else {
-                              _vm.$set(_vm.course, "alwaysAvailable", $$c)
-                            }
-                          }
-                        }
-                      })
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("hr"),
-                  _vm._v(" "),
-                  _vm.course.alwaysAvailable == 0
-                    ? _c("div", [
-                        _c(
-                          "label",
-                          {
-                            staticClass: "uk-form-label",
-                            attrs: { for: "start-time" }
-                          },
-                          [_vm._v("Start Time")]
-                        ),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "uk-form-controls" }, [
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.course.startTime,
-                                expression: "course.startTime"
-                              }
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-layout",
+                                { attrs: { row: "" } },
+                                [
+                                  _c(
+                                    "v-flex",
+                                    { attrs: { sm4: "" } },
+                                    [
+                                      _c("v-subheader", [
+                                        _vm._v("No of Questions")
+                                      ])
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-flex",
+                                    { attrs: { sm8: "" } },
+                                    [
+                                      _c("v-text-field", {
+                                        attrs: {
+                                          label: "No of Questions",
+                                          placeholder: "No of Questions",
+                                          solo: "",
+                                          type: "number",
+                                          name: "questions",
+                                          id: "questions",
+                                          min: "0"
+                                        },
+                                        model: {
+                                          value: _vm.course.questions,
+                                          callback: function($$v) {
+                                            _vm.$set(
+                                              _vm.course,
+                                              "questions",
+                                              $$v
+                                            )
+                                          },
+                                          expression: "course.questions"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-layout",
+                                { attrs: { row: "" } },
+                                [
+                                  _c(
+                                    "v-flex",
+                                    { attrs: { sm4: "" } },
+                                    [
+                                      _c("v-subheader", [
+                                        _vm._v("Points Per Question")
+                                      ])
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-flex",
+                                    { attrs: { sm8: "" } },
+                                    [
+                                      _c("v-text-field", {
+                                        attrs: {
+                                          label: "Points Per Question",
+                                          placeholder: "Points Per Question",
+                                          solo: "",
+                                          type: "number",
+                                          name: "points",
+                                          id: "points",
+                                          min: "0"
+                                        },
+                                        model: {
+                                          value: _vm.course.points,
+                                          callback: function($$v) {
+                                            _vm.$set(_vm.course, "points", $$v)
+                                          },
+                                          expression: "course.points"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-layout",
+                                { attrs: { row: "" } },
+                                [
+                                  _c(
+                                    "v-flex",
+                                    { attrs: { sm4: "" } },
+                                    [_c("v-subheader", [_vm._v("Duration")])],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-flex",
+                                    { attrs: { sm8: "" } },
+                                    [
+                                      _c(
+                                        "v-text-field",
+                                        {
+                                          attrs: {
+                                            label: "Duration",
+                                            placeholder: "Duration",
+                                            solo: "",
+                                            type: "number",
+                                            name: "duration",
+                                            id: "duration",
+                                            min: "0"
+                                          },
+                                          model: {
+                                            value: _vm.course.duration,
+                                            callback: function($$v) {
+                                              _vm.$set(
+                                                _vm.course,
+                                                "duration",
+                                                $$v
+                                              )
+                                            },
+                                            expression: "course.duration"
+                                          }
+                                        },
+                                        [_vm._v("\n                  >")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-layout",
+                                { attrs: { row: "" } },
+                                [
+                                  _c(
+                                    "v-flex",
+                                    { attrs: { sm4: "" } },
+                                    [
+                                      _c("v-subheader", [
+                                        _vm._v("Always Available")
+                                      ])
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-flex",
+                                    { attrs: { sm8: "" } },
+                                    [
+                                      _c(
+                                        "v-checkbox",
+                                        {
+                                          attrs: {
+                                            label: "Always Available",
+                                            placeholder: "Always Available",
+                                            solo: "",
+                                            t: "",
+                                            name: "always-available",
+                                            id: "always-available",
+                                            value: "1"
+                                          },
+                                          model: {
+                                            value: _vm.course.alwaysAvailable,
+                                            callback: function($$v) {
+                                              _vm.$set(
+                                                _vm.course,
+                                                "alwaysAvailable",
+                                                $$v
+                                              )
+                                            },
+                                            expression: "course.alwaysAvailable"
+                                          }
+                                        },
+                                        [_vm._v("\n                  >")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-layout",
+                                { attrs: { row: "" } },
+                                [
+                                  _c(
+                                    "v-flex",
+                                    { attrs: { sm4: "" } },
+                                    [_c("v-subheader", [_vm._v("Start Time")])],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-flex",
+                                    { attrs: { sm8: "" } },
+                                    [
+                                      _c(
+                                        "v-text-field",
+                                        {
+                                          attrs: {
+                                            label: "Start Time",
+                                            placeholder: "Start Time",
+                                            solo: "",
+                                            type: "datetime-local",
+                                            name: "start-time",
+                                            id: "start-time",
+                                            value: "1"
+                                          },
+                                          model: {
+                                            value: _vm.course.startTime,
+                                            callback: function($$v) {
+                                              _vm.$set(
+                                                _vm.course,
+                                                "startTime",
+                                                $$v
+                                              )
+                                            },
+                                            expression: "course.startTime"
+                                          }
+                                        },
+                                        [_vm._v("\n                  >")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-layout",
+                                { attrs: { row: "" } },
+                                [
+                                  _c(
+                                    "v-flex",
+                                    { attrs: { sm4: "" } },
+                                    [_c("v-subheader", [_vm._v("Stop Time")])],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-flex",
+                                    { attrs: { sm8: "" } },
+                                    [
+                                      _c(
+                                        "v-text-field",
+                                        {
+                                          attrs: {
+                                            label: "Stop Time",
+                                            placeholder: "Stop Time",
+                                            solo: "",
+                                            type: "datetime-local",
+                                            name: "stop-time",
+                                            id: "stop-time",
+                                            value: "1"
+                                          },
+                                          model: {
+                                            value: _vm.course.stopTime,
+                                            callback: function($$v) {
+                                              _vm.$set(
+                                                _vm.course,
+                                                "stopTime",
+                                                $$v
+                                              )
+                                            },
+                                            expression: "course.stopTime"
+                                          }
+                                        },
+                                        [_vm._v("\n                  >")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
                             ],
-                            staticClass: "uk-input",
-                            attrs: {
-                              type: "datetime-local",
-                              name: "start-time",
-                              id: "start-time",
-                              value: "1"
-                            },
-                            domProps: { value: _vm.course.startTime },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(
-                                  _vm.course,
-                                  "startTime",
-                                  $event.target.value
-                                )
-                              }
-                            }
-                          })
-                        ])
-                      ])
-                    : _vm._e(),
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
                   _vm._v(" "),
-                  _c("hr"),
-                  _vm._v(" "),
-                  _vm.course.alwaysAvailable == 0
-                    ? _c("div", [
-                        _c(
-                          "label",
-                          {
-                            staticClass: "uk-form-label",
-                            attrs: { for: "stop-time" }
-                          },
-                          [_vm._v("Stop Time")]
-                        ),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "uk-form-controls" }, [
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.course.stopTime,
-                                expression: "course.stopTime"
-                              }
+                  _c(
+                    "v-card-actions",
+                    [
+                      _c(
+                        "v-container",
+                        [
+                          _c(
+                            "v-layout",
+                            { staticClass: "text-xs-center" },
+                            [
+                              _c(
+                                "v-flex",
+                                [
+                                  _c(
+                                    "v-btn",
+                                    {
+                                      attrs: { color: "info", block: "" },
+                                      on: {
+                                        click: function($event) {
+                                          _vm.submit(_vm.course)
+                                        }
+                                      }
+                                    },
+                                    [_vm._v("Create")]
+                                  )
+                                ],
+                                1
+                              )
                             ],
-                            staticClass: "uk-input",
-                            attrs: {
-                              type: "datetime-local",
-                              name: "stop-time",
-                              id: "stop-time",
-                              value: "1"
-                            },
-                            domProps: { value: _vm.course.stopTime },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(
-                                  _vm.course,
-                                  "stopTime",
-                                  $event.target.value
-                                )
-                              }
-                            }
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "transition",
+                    { attrs: { name: "loading" } },
+                    [
+                      _vm.loading === true
+                        ? _c("v-progress-linear", {
+                            attrs: { indeterminate: true }
                           })
-                        ])
-                      ])
-                    : _vm._e()
-                ]
+                        : _vm._e()
+                    ],
+                    1
+                  )
+                ],
+                1
               )
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "uk-card-footer uk-card-secondary" }, [
-              _c(
-                "button",
-                {
-                  staticClass:
-                    "uk-button uk-button-primary uk-box-shadow-hover-medium",
-                  attrs: { form: "course-creation-form" },
-                  on: {
-                    click: function($event) {
-                      $event.preventDefault()
-                      _vm.submit(_vm.course)
-                    }
-                  }
-                },
-                [_vm._v("Create")]
-              )
-            ])
-          ]
-        )
-      ])
-    ])
-  ])
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-snackbar",
+        {
+          attrs: { top: true, color: "success" },
+          model: {
+            value: _vm.snackbar,
+            callback: function($$v) {
+              _vm.snackbar = $$v
+            },
+            expression: "snackbar"
+          }
+        },
+        [_vm._v("Success")]
+      )
+    ],
+    1
+  )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "uk-card-header uk-card-primary" }, [
-      _c("h3", { staticClass: "uk-heading" }, [_vm._v("Add New Course")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {

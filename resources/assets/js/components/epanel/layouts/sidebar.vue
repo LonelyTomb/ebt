@@ -45,15 +45,15 @@ export default {
             },
             {
               title: "Upload Questions List",
-              link: "epanel.questions.upload"
+              link: "questions.upload"
             },
             {
               title: "Add New Course",
-              link: "epanel.courses.create"
+              link: "courses.create"
             },
             {
               title: "Input Question",
-              link: "epanel.questions.create"
+              link: "questions.create"
             }
           ]
         },

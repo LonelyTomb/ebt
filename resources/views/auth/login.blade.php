@@ -3,5 +3,5 @@
 Login
 @endsection
 @section('content')
-<login-component></login-component>
+<login></login>
 @endsection
